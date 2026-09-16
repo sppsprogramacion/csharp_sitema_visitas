@@ -41,7 +41,7 @@
             // btnVerVisitas
             // 
             this.btnVerVisitas.BackColor = System.Drawing.Color.Indigo;
-            this.btnVerVisitas.FlatAppearance.BorderColor = System.Drawing.Color.SteelBlue;
+            this.btnVerVisitas.FlatAppearance.BorderColor = System.Drawing.Color.Indigo;
             this.btnVerVisitas.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnVerVisitas.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnVerVisitas.ForeColor = System.Drawing.Color.White;
