@@ -69,6 +69,9 @@ namespace CapaPresentacion
             this.ControlTieneDiscapacidad(dCiudadanoIngresoResponse.ciudadanoResponse.tiene_discapacidad);
             this.ControlEdad(dCiudadanoIngresoResponse.ciudadanoResponse.edad);
 
+            //Cargar Huellas
+            this.bloquearChecksHuellasCargadas(dCiudadanoIngresoResponse.huellasCiudadanoResponse);
+
             //Cargar menores
             var datosfiltradosMenores = dCiudadanoIngresoResponse.menoresResponse
                 .Select(c => new
@@ -187,10 +190,93 @@ namespace CapaPresentacion
                 lblDiscapacidad.ForeColor = Color.White;
                 lblDiscapacidad.Text = "";
             }
-        }        
+        }
         //FIN CONTROL TIENE DISCAPACIDAD
         //------------------------------------------------------------------------------------------
 
+        //BLOQUEAR DEDOS SEGUN HUELLA CARGADA
+        private async void bloquearChecksHuellasCargadas(List<DHuella> listaHuellas)
+        {
 
+            if (listaHuellas.Count == 0)
+            {
+                MessageBox.Show("El ciudadano no posee huellas registradas.", "Sistema Visistas", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+
+                return;
+            }
+
+            foreach (DHuella huella in listaHuellas)
+            {
+                int dedo = Convert.ToInt32(huella.dedo_id);
+                //MessageBox.Show (dedo);
+                switch (dedo)
+                {
+                    case 1:
+                        opPD.Enabled = false;
+                        opPD.FlatStyle = FlatStyle.Flat;
+                        opPD.BackColor = Color.Green;
+                        break;
+
+                    case 2:
+                        opID.Enabled = false;
+                        opID.FlatStyle = FlatStyle.Flat;
+                        opID.BackColor = Color.Green;
+                        break;
+
+                    case 3:
+                        opMAD.Enabled = false;
+                        opMAD.FlatStyle = FlatStyle.Flat;
+                        opMAD.BackColor = Color.Green;
+                        break;
+
+                    case 4:
+                        opAD.Enabled = false;
+                        opAD.FlatStyle = FlatStyle.Flat;
+                        opAD.BackColor = Color.Green;
+                        break;
+
+                    case 5:
+                        opMED.Enabled = false;
+                        opMED.FlatStyle = FlatStyle.Flat;
+                        opMED.BackColor = Color.Green;
+                        break;
+
+                    case 6:
+                        opPI.Enabled = false;
+                        opPI.FlatStyle = FlatStyle.Flat;
+                        opPI.BackColor = Color.Green;
+                        break;
+
+                    case 7:
+                        opII.Enabled = false;
+                        opII.FlatStyle = FlatStyle.Flat;
+                        opII.BackColor = Color.Green;
+                        break;
+
+                    case 8:
+                        opMAI.Enabled = false;
+                        opMAI.FlatStyle = FlatStyle.Flat;
+                        opMAI.BackColor = Color.Green;
+                        break;
+
+                    case 9:
+                        opAI.Enabled = false;
+                        opAI.FlatStyle = FlatStyle.Flat;
+                        opAI.BackColor = Color.Green;
+                        break;
+
+                    case 10:
+                        opMEI.Enabled = false;
+                        opMEI.FlatStyle = FlatStyle.Flat;
+                        opMEI.BackColor = Color.Green;
+                        break;
+
+                    default:
+                        break;
+
+
+                }//fin switch
+            }//fin foreach
+        }//FIN PRocedimiento para bloquear dedos segun huella cargada
     }
 }

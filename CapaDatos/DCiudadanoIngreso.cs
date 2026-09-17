@@ -10,6 +10,7 @@ namespace CapaDatos
     {
         public DCiudadanoVisita ciudadanoResponse { get; set; }
         public List<DInternoVisita> internosResponse { get; set; }
-        public List<DMenorVisita> menoresResponse { get; set; } 
+        public List<DMenorVisita> menoresResponse { get; set; }
+        public List<DHuella> huellasCiudadanoResponse { get; set; }
     }
 }

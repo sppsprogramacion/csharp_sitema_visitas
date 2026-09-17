@@ -67,6 +67,7 @@
     <Compile Include="DDepartamento.cs" />
     <Compile Include="DEntradaSalida.cs" />
     <Compile Include="DExcepcionIngresoVisita.cs" />
+    <Compile Include="DHuella.cs" />
     <Compile Include="DInterno.cs" />
     <Compile Include="DInternoVisita.cs" />
     <Compile Include="DLogin.cs" />
