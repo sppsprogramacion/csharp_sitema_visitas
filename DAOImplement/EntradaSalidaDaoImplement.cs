@@ -20,9 +20,54 @@ namespace DAOImplement
         private string url_base = MiConexion.getConexion();
         HttpClient httpClient = new HttpClient();
 
-        public Task<(DEntradaSalida, string error)> CrearProhivisionVisita(string entradaSalida)
+        public async Task<(DEntradaSalida, string error)> CrearEntradaSalida(string entradaSalida)
         {
-            throw new NotImplementedException();
+            string token = SessionManager.Token; // Aquí pones tu token real
+
+            DEntradaSalida dataEntradaSalida = new DEntradaSalida();
+
+            try
+            {
+                // Agregar el token en los headers
+                this.httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
+
+                // Crear el contenido de la solicitud HTTP
+                StringContent content = new StringContent(entradaSalida, Encoding.UTF8, "application/json");
+
+                // Enviar la solicitud HTTP POST
+                HttpResponseMessage httpResponse = await this.httpClient.PostAsync(url_base + "/entradas-salidas", content);
+
+                if (httpResponse.IsSuccessStatusCode)
+                {
+                    var contentRespuesta = await httpResponse.Content.ReadAsStringAsync();
+                    dataEntradaSalida = JsonConvert.DeserializeObject<DEntradaSalida>(contentRespuesta);
+
+                    return (dataEntradaSalida, null);
+                }
+                else
+                {
+                    string errorMessage = await httpResponse.Content.ReadAsStringAsync();
+                    var mensaje = JObject.Parse(errorMessage)["message"]?.ToString();
+                    return (null, $"Error al crear: {mensaje}");
+                }
+
+            }
+            catch (HttpRequestException httpRequestException)
+            {
+                // Capturar errores de la solicitud HTTP
+                return (null, $"Error de conexión: {httpRequestException.Message}");
+            }
+            catch (JsonException jsonException)
+            {
+                // Capturar errores en la serialización/deserialización de JSON                
+                return (null, $"Error inesperado");
+            }
+            catch (Exception ex)
+            {
+                // Manejo de errores (log, mensaje al usuario, etc.)
+                Console.WriteLine($"Error: {ex.Message}");
+                return (null, $"Error inesperado: {ex.Message}");
+            }
         }
               
 

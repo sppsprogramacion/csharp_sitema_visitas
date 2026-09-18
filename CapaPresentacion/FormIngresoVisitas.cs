@@ -1,6 +1,8 @@
 ﻿using CapaDatos;
 using CapaNegocio;
 using CapaPresentacion.FuncionesGenerales;
+using CapaPresentacion.Validaciones;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -15,6 +17,9 @@ namespace CapaPresentacion
 {
     public partial class FormIngresoVisitas : Form
     {
+        private ErrorProvider errorProvider = new ErrorProvider();
+
+
         public FormIngresoVisitas()
         {
             InitializeComponent();
@@ -132,9 +137,9 @@ namespace CapaPresentacion
         }
 
         //GUARDAR ENTRADA SALIDA
-        private void btnGuardar_Click(object sender, EventArgs e)
+        private async void btnGuardar_Click(object sender, EventArgs e)
         {
-            List<int> idsSeleccionados = new List<int>();
+            List<int> idsMenoresSeleccionados = new List<int>();
 
             foreach (DataGridViewRow row in dtgMenores.Rows)
             {
@@ -145,14 +150,91 @@ namespace CapaPresentacion
                 if (seleccionado)
                 {
                     int id = Convert.ToInt32(row.Cells["Id"].Value);
-                    idsSeleccionados.Add(id);
+                    idsMenoresSeleccionados.Add(id);
                 }
             }
 
-           foreach(int id in idsSeleccionados){
+           foreach(int id in idsMenoresSeleccionados){
 
                 MessageBox.Show("id: " + id); 
            }
+
+            //limpiar errores de provider
+            errorProvider.Clear();
+
+            //validacion de formulario
+            //var datosFormulario = new ProhibicionDatos
+            //{
+            //    txtIdCiudadano = txtIdCiudadano.Text,
+            //    txtDisposicion = txtDisposicion.Text,
+            //    txtDetalle = txtDetalle.Text,
+            //    dtpFechaInicio = dtpFechaInicio.Value,
+            //    dtpFechaFin = dtpFechaFin.Value,
+            //};
+
+            //var validator = new ProhibicionNuevaValidator();
+            //var result = validator.Validate(datosFormulario);
+
+            //if (!result.IsValid)
+            //{
+            //    MessageBox.Show("Complete correctamente los campos del formulario", "Restriccion Visitas", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            //    foreach (var failure in result.Errors)
+            //    {
+
+            //        Control control = Controls.Find(failure.PropertyName, true)[0];
+            //        errorProvider.SetError(control, failure.ErrorMessage);
+            //    }
+            //    return;
+            //}
+
+            //enviar datos si son correctos
+            int idInterno = 0;
+
+            if (dtgInternos.SelectedRows.Count > 0)
+            {
+                idInterno = Convert.ToInt32(dtgInternos.CurrentRow.Cells["Id"].Value.ToString());
+
+                if (idInterno == 0)
+                {
+                    
+                    MessageBox.Show("Debe seleccionar un interno.", "Sistema Visitas", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+            }
+
+            var data = new
+            {
+                interno_id = idInterno,
+                ciudadano_id = Convert.ToInt32(txtIdCiudadano.Text),
+                casillero = "",
+                listaIdsMenores = idsMenoresSeleccionados
+            };
+
+            string dataEntrada = JsonConvert.SerializeObject(data);
+
+            NEntradaSalida nEntradaSalida = new NEntradaSalida();
+            this.Enabled = false;
+            (DEntradaSalida dataRespuesta, string errorResponse) = await nEntradaSalida.CrearEntradaSalida(dataEntrada);
+            this.Enabled = true;
+
+            if (dataRespuesta != null)
+            {
+                MessageBox.Show("La entrada del ciudadano se guardo correctamente", "Sistema Visitas", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                //this.HabilitarControles(false);
+                //this.LimpiarControles();
+
+                
+
+                //cargar lista de ciudadanos en datagrid
+                //this.CargarDataGridProhibiciones();
+            }
+            else
+            {
+                MessageBox.Show(errorResponse, "Sistema Visitas", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+            }
+
+
         }
         //FIN ENTRADA SALIDA
         //----------------------------------------------------------------

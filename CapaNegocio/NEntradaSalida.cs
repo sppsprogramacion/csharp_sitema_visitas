@@ -11,6 +11,17 @@ namespace CapaNegocio
 {
     public class NEntradaSalida
     {
+        //CREAR ENTRADA SALIDA
+        public async Task<(DEntradaSalida, string error)> CrearEntradaSalida(string entradaSalida)
+        {
+            IEntradaSalidaDao entradaSalidaDao = new EntradaSalidaDaoImplement();
+
+            (DEntradaSalida entradaSalidaResponse, string errorResponse) = await entradaSalidaDao.CrearEntradaSalida(entradaSalida);
+
+            return (entradaSalidaResponse, errorResponse);
+        }
+        //FIN CREAR ENTRADA SALIDA..................................................................
+
         //BUSCAR CIUDADANO INGRESO
         public async Task<(DCiudadanoIngreso, string error)> BuscarCiudadanoIngresoXDni(int dniCiudadano)
         {
