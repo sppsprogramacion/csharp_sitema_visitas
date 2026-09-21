@@ -69,6 +69,9 @@
     <Compile Include="DEntradaSalidaIngresoPPResponse.cs" />
     <Compile Include="DExcepcionIngresoVisita.cs" />
     <Compile Include="DHuella.cs" />
+    <Compile Include="DHuellaCambio.cs" />
+    <Compile Include="DHuellaLocal.cs" />
+    <Compile Include="DHuellasSincronizacionInicial.cs" />
     <Compile Include="DInterno.cs" />
     <Compile Include="DInternoVisita.cs" />
     <Compile Include="DLogin.cs" />
@@ -89,6 +92,7 @@
     <Compile Include="DSectoresDestino.cs" />
     <Compile Include="DSexo.cs" />
     <Compile Include="DEstadoCivil.cs" />
+    <Compile Include="DSQLite.cs" />
     <Compile Include="DTipoAcceso.cs" />
     <Compile Include="DTipoAtencion.cs" />
     <Compile Include="DUsuario.cs" />
