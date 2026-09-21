@@ -9,7 +9,7 @@ namespace DAO
 {
     public interface IEntradaSalidaDao
     {
-        Task<(DEntradaSalida, string error)> CrearEntradaSalida(string entradaSalida);
+        Task<(DEntradaSalidaIngresoPPResponse, string error)> CrearEntradaSalida(string entradaSalida);
         Task<(bool, string error)> AnularEntradaSalida(int id, string dataAnular);
 
         Task<(DEntradaSalida, string error)> BuscarEntradaSalidaXId(int idEntradaSalida);

@@ -18,17 +18,17 @@ namespace CapaPresentacion.Reportes.AdministrarVisita
         {
             MemoryStream ms = new MemoryStream();
 
-            Document doc = new Document(PageSize.A4.Rotate(), 50, 50, 50, 50);
+            Document doc = new Document(PageSize.A4.Rotate(), 20, 20, 20, 20);
 
             PdfWriter writer = PdfWriter.GetInstance(doc, ms);
             writer.CloseStream = false; // evita cerrar el MemoryStream al cerrar el documento
 
             doc.Open();
 
-            var fuenteLogo = FontFactory.GetFont(FontFactory.TIMES, 9, BaseColor.BLACK);
-            var fuenteOrganismo = FontFactory.GetFont(FontFactory.TIMES, 10, BaseColor.BLACK);
+            var fuenteLogo = FontFactory.GetFont(FontFactory.TIMES, 8, BaseColor.BLACK);
+            var fuenteOrganismo = FontFactory.GetFont(FontFactory.TIMES, 8, BaseColor.BLACK);
             var fuenteTitulo = FontFactory.GetFont(FontFactory.HELVETICA_BOLD, 10, BaseColor.BLACK);
-            var fuenteNormal = FontFactory.GetFont(FontFactory.HELVETICA, 10, BaseColor.BLACK);
+            var fuenteNormal = FontFactory.GetFont(FontFactory.HELVETICA, 9, BaseColor.BLACK);
 
             //logo encabezado
             //string rutaImagen = Path.Combine(Application.StartupPath, "Resources/Img-reportes/", "logo_spps2.png");
@@ -42,11 +42,11 @@ namespace CapaPresentacion.Reportes.AdministrarVisita
             logo.ScaleAbsolute(40, 40);
             logo.SetAbsolutePosition(150, 770);
             doc.Add(logo);
-            doc.Add(new Paragraph(" "));
+            //doc.Add(new Paragraph(" "));
 
             // Crear tabla con 2 columnas
             PdfPTable tablaEncabezado = new PdfPTable(1);
-            tablaEncabezado.WidthPercentage = 35; // ocupa la mitad de la página
+            tablaEncabezado.WidthPercentage = 16; // ocupa la mitad de la página
             tablaEncabezado.HorizontalAlignment = Element.ALIGN_LEFT; // tabla a la izquierda
 
             // Centrar contenido de todas las celdas
@@ -55,7 +55,11 @@ namespace CapaPresentacion.Reportes.AdministrarVisita
             tablaEncabezado.DefaultCell.Border = Rectangle.NO_BORDER;
 
             // Agregar celdas
-            tablaEncabezado.AddCell(new Paragraph("  SERVICIO PENITENCIARIO DE LA PROVINCIA DE SALTA", fuenteLogo));
+            tablaEncabezado.AddCell(new Paragraph("SERVICIO PENITENCIARIO \n DE LA PROVINCIA DE SALTA", fuenteLogo)
+            {
+                Alignment = Element.ALIGN_LEFT
+            });
+
             tablaEncabezado.AddCell(new Paragraph(organismo, fuenteOrganismo));
 
             // Agregar tabla al documento
@@ -69,47 +73,36 @@ namespace CapaPresentacion.Reportes.AdministrarVisita
             // "d 'de' MMMM 'de' yyyy" → ejemplo: "9 de septiembre de 2025"
             string fechaCompleta = "Salta, " + fechaHoy.ToString("d 'de' MMMM 'de' yyyy", cultura);
 
-            doc.Add(new Paragraph(" "));
             doc.Add(new Paragraph(fechaCompleta, fuenteNormal)
             {
                 Alignment = Element.ALIGN_RIGHT
             });
             //fin fecha.............................
 
-            doc.Add(new Paragraph(" "));
 
             //datos ciudadano
             doc.Add(new Paragraph(" Apellido y nombre: " + ciudadanox.apellido + " " + ciudadanox.nombre , fuenteNormal));
             doc.Add(new Paragraph(" DNI: " + ciudadanox.dni, fuenteNormal));
-            PdfPTable tablaDatos = new PdfPTable(2);
-            tablaDatos.WidthPercentage = 60;
-            tablaDatos.HorizontalAlignment = Element.ALIGN_LEFT; // tabla a la izquierda
-            tablaDatos.DefaultCell.Border = Rectangle.NO_BORDER;
-            tablaDatos.AddCell(new Paragraph("Sexo: " + ciudadanox.sexo.sexo, fuenteNormal));
-            tablaDatos.AddCell(new Paragraph("Edad: " + ciudadanox.edad, fuenteNormal));
-            doc.Add(tablaDatos);
+            doc.Add(new Paragraph(" Sexo: " + ciudadanox.sexo.sexo + "      Edad: " + ciudadanox.edad, fuenteNormal));
+            
             //fin datos ciudadano
-
-            doc.Add(new Paragraph(" "));
 
             Paragraph titulo = new Paragraph("Vinculos de la visita", fuenteTitulo);
             titulo.Alignment = Element.ALIGN_CENTER;
             doc.Add(titulo);
-
-
-            doc.Add(new Paragraph(" "));
+            doc.Add(new Paragraph (" "));
 
             PdfPTable tablaVinculos = new PdfPTable(8);
             tablaVinculos.WidthPercentage = 100;
-            tablaVinculos.SetWidths(new float[] { 2.5f, 1.2f, 1.3f, 0.6f, 0.6f, 0.9f, 0.9f, 2.5f });
-            tablaVinculos.AddCell("Interno");
-            tablaVinculos.AddCell("Parentesco");
-            tablaVinculos.AddCell("Unidad");
-            tablaVinculos.AddCell("Vigente");
-            tablaVinculos.AddCell("Prohibido");
-            tablaVinculos.AddCell("Inicio");
-            tablaVinculos.AddCell("Fin");
-            tablaVinculos.AddCell("Detalle");
+            tablaVinculos.SetWidths(new float[] { 2.7f, 0.9f, 1.4f, 0.7f, 0.7f, 0.8f, 0.8f, 2.5f });
+            tablaVinculos.AddCell(new Paragraph("Interno", fuenteTitulo));
+            tablaVinculos.AddCell(new Paragraph("Parentesco", fuenteTitulo));
+            tablaVinculos.AddCell(new Paragraph("Unidad", fuenteTitulo));
+            tablaVinculos.AddCell(new Paragraph("Vigente", fuenteTitulo));
+            tablaVinculos.AddCell(new Paragraph("Prohibido", fuenteTitulo));
+            tablaVinculos.AddCell(new Paragraph("Inicio", fuenteTitulo));
+            tablaVinculos.AddCell(new Paragraph("Fin", fuenteTitulo));
+            tablaVinculos.AddCell(new Paragraph("Detalle", fuenteTitulo));
 
             // Filas dinámicas
             foreach (var vinculo in listaVinculos)

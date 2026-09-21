@@ -12,11 +12,11 @@ namespace CapaNegocio
     public class NEntradaSalida
     {
         //CREAR ENTRADA SALIDA
-        public async Task<(DEntradaSalida, string error)> CrearEntradaSalida(string entradaSalida)
+        public async Task<(DEntradaSalidaIngresoPPResponse, string error)> CrearEntradaSalida(string entradaSalida)
         {
             IEntradaSalidaDao entradaSalidaDao = new EntradaSalidaDaoImplement();
 
-            (DEntradaSalida entradaSalidaResponse, string errorResponse) = await entradaSalidaDao.CrearEntradaSalida(entradaSalida);
+            (DEntradaSalidaIngresoPPResponse entradaSalidaResponse, string errorResponse) = await entradaSalidaDao.CrearEntradaSalida(entradaSalida);
 
             return (entradaSalidaResponse, errorResponse);
         }

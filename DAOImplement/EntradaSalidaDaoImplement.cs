@@ -20,11 +20,11 @@ namespace DAOImplement
         private string url_base = MiConexion.getConexion();
         HttpClient httpClient = new HttpClient();
 
-        public async Task<(DEntradaSalida, string error)> CrearEntradaSalida(string entradaSalida)
+        public async Task<(DEntradaSalidaIngresoPPResponse, string error)> CrearEntradaSalida(string entradaSalida)
         {
             string token = SessionManager.Token; // Aquí pones tu token real
 
-            DEntradaSalida dataEntradaSalida = new DEntradaSalida();
+            DEntradaSalidaIngresoPPResponse dataEntradaSalida = new DEntradaSalidaIngresoPPResponse();
 
             try
             {
@@ -40,7 +40,7 @@ namespace DAOImplement
                 if (httpResponse.IsSuccessStatusCode)
                 {
                     var contentRespuesta = await httpResponse.Content.ReadAsStringAsync();
-                    dataEntradaSalida = JsonConvert.DeserializeObject<DEntradaSalida>(contentRespuesta);
+                    dataEntradaSalida = JsonConvert.DeserializeObject<DEntradaSalidaIngresoPPResponse>(contentRespuesta);
 
                     return (dataEntradaSalida, null);
                 }

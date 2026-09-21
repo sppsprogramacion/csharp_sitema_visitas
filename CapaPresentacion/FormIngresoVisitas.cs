@@ -1,13 +1,17 @@
 ﻿using CapaDatos;
 using CapaNegocio;
 using CapaPresentacion.FuncionesGenerales;
+using CapaPresentacion.Reportes.IngresoVisistas;
 using CapaPresentacion.Validaciones;
 using Newtonsoft.Json;
+using PdfiumViewer;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Drawing.Printing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -30,6 +34,10 @@ namespace CapaPresentacion
             //// Ajustar el tamaño del formulario            
             FormularioAyudas.AjustarFormulario(this);
 
+            lblApellidoNombre.Text = "_";
+            lblCategoriaEdad.Text = "_";
+            lblDiscapacidad.Text = "_";
+            lblEstadoCiudadano.Text = "_";
             txtDniBuscar.Focus();
         }
 
@@ -71,7 +79,8 @@ namespace CapaPresentacion
 
             this.Enabled = true;
 
-            this.ControlTieneDiscapacidad(dCiudadanoIngresoResponse.ciudadanoResponse.tiene_discapacidad);
+            
+            this.ControlTieneDiscapacidad(dCiudadanoIngresoResponse.ciudadanoResponse.tiene_discapacidad, dCiudadanoIngresoResponse.ciudadanoResponse.discapacidad_detalle);
             this.ControlEdad(dCiudadanoIngresoResponse.ciudadanoResponse.edad);
 
             //Cargar Huellas
@@ -134,9 +143,25 @@ namespace CapaPresentacion
                 dtgInternos.Columns[2].Width = 80;
                 dtgInternos.Columns[3].Width = 60;
             }
+
+            //control de prohibicion
+            if (!dCiudadanoIngresoResponse.ciudadanoResponse.esta_prohibido)
+            {
+                lblEstadoCiudadano.Text = "SIN RESTRICCIONES DE INGRESO";
+                lblEstadoCiudadano.ForeColor = Color.LimeGreen;
+                gboxDatosParaIngreso.Enabled = true;
+            }
+            else
+            {
+                lblEstadoCiudadano.Text = "TIENE RESTRICCIONES PARA EL INGRESO";
+                lblEstadoCiudadano.ForeColor = Color.Red;
+            }
+
+            txtDniBuscar.Enabled = false;
+            btnBuscar.Enabled = false;
         }
 
-        //GUARDAR ENTRADA SALIDA
+        //BOTON GUARDAR ENTRADA SALIDA
         private async void btnGuardar_Click(object sender, EventArgs e)
         {
             List<int> idsMenoresSeleccionados = new List<int>();
@@ -206,7 +231,7 @@ namespace CapaPresentacion
             {
                 interno_id = idInterno,
                 ciudadano_id = Convert.ToInt32(txtIdCiudadano.Text),
-                casillero = "",
+                casillero = txtCasillero.Text,
                 listaIdsMenores = idsMenoresSeleccionados
             };
 
@@ -214,17 +239,84 @@ namespace CapaPresentacion
 
             NEntradaSalida nEntradaSalida = new NEntradaSalida();
             this.Enabled = false;
-            (DEntradaSalida dataRespuesta, string errorResponse) = await nEntradaSalida.CrearEntradaSalida(dataEntrada);
+            (DEntradaSalidaIngresoPPResponse dataEntradaSalidaResponse, string errorResponse) = await nEntradaSalida.CrearEntradaSalida(dataEntrada);
             this.Enabled = true;
 
-            if (dataRespuesta != null)
+            if (dataEntradaSalidaResponse != null)
             {
                 MessageBox.Show("La entrada del ciudadano se guardo correctamente", "Sistema Visitas", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                
 
+                // Generar PDF en memoria
+                MemoryStream msOriginal = ReportesIngresoVisitas.RepPdfFichaIngreso(dataEntradaSalidaResponse);
+
+                // Clonar el stream para que PdfiumViewer pueda cerrarlo sin afectar el original
+                MemoryStream ms = new MemoryStream(msOriginal.ToArray());
+
+                PdfDocument pdfDocument = null;
+
+                try
+                {
+                    pdfDocument = PdfDocument.Load(ms);
+
+                    Form formVisor = new Form
+                    {
+                        Text = "Vista previa PDF",
+                        Width = 800,
+                        Height = 600
+                    };
+
+                    PdfViewer pdfViewer = new PdfViewer
+                    {
+                        Dock = DockStyle.Fill,
+                        Document = pdfDocument
+                    };
+
+                    formVisor.Controls.Add(pdfViewer);
+
+                    // Imprimir automáticamente al abrir el visor
+                    formVisor.Shown += (s, args) =>
+                    {
+                        try
+                        {
+                            using (PrintDocument printDocument = pdfDocument.CreatePrintDocument())
+                            {
+                                printDocument.Print();
+                            }
+                        }
+                        catch (Exception ex)
+                        {
+                            MessageBox.Show(
+                                "Error al imprimir la ficha: " + ex.Message,
+                                "Sistema Visitas",
+                                MessageBoxButtons.OK,
+                                MessageBoxIcon.Error
+                            );
+                        }
+                    };
+
+                    formVisor.FormClosed += (s, args) =>
+                    {
+                        // Liberar recursos al cerrar el visor
+                        pdfViewer.Document.Dispose();
+                        pdfViewer.Dispose();
+                        formVisor.Dispose();
+                        ms.Dispose();
+                        pdfDocument = null;
+                    };
+
+                    formVisor.ShowDialog();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Error al mostrar la ficha: " + ex.Message);
+                    ms.Dispose();
+                    pdfDocument?.Dispose();
+                }
                 //this.HabilitarControles(false);
                 //this.LimpiarControles();
 
-                
+
 
                 //cargar lista de ciudadanos en datagrid
                 //this.CargarDataGridProhibiciones();
@@ -236,9 +328,58 @@ namespace CapaPresentacion
 
 
         }
-        //FIN ENTRADA SALIDA
+        //FIN BOTON GUARDAR ENTRADA SALIDA
         //----------------------------------------------------------------
 
+        //BOTON CANCELAR
+        private void btnCancelar_Click_1(object sender, EventArgs e)
+        {
+            lblEstadoCiudadano.Text = "_";
+            lblEstadoCiudadano.ForeColor = Color.LimeGreen;
+
+            txtIdCiudadano.Text = string.Empty;
+            lblApellidoNombre.Text = "_";
+            txtDni.Text = string.Empty;
+            txtSexo.Text = string.Empty;
+            txtFechaNacimiento.Text = string.Empty;
+            txtNacionalidad.Text = string.Empty;
+            txtPais.Text = string.Empty;
+            txtProvincia.Text = string.Empty;
+            txtDepartamento.Text = string.Empty;
+            txtMunicipio.Text = string.Empty;
+            txtCiudad.Text = string.Empty;
+            txtBarrio.Text = string.Empty;
+            txtDireccion.Text = string.Empty;
+            txtFechaAlta.Text = string.Empty;
+            picFotoVisita.Image = null;
+
+            lblCategoriaEdad.Text = "_";
+            lblDiscapacidad.Text = "_";
+
+            opPD.BackColor = Color.Black;
+            opID.BackColor = Color.Black;
+            opMAD.BackColor = Color.Black;
+            opAD.BackColor = Color.Black;
+            opMED.BackColor = Color.Black;
+            opPI.BackColor = Color.Black;
+            opII.BackColor = Color.Black;
+            opMAI.BackColor = Color.Black;
+            opAI.BackColor = Color.Black;
+            opMEI.BackColor = Color.Black;
+
+            dtgMenores.DataSource = null;
+            dtgInternos.DataSource = null;
+            txtCasillero.Text = string.Empty;
+            gboxDatosParaIngreso.Enabled = false;
+
+            btnBuscar.Enabled = true;
+            txtDniBuscar.Enabled = true;
+            txtDniBuscar.Text = string.Empty;
+            txtDniBuscar.Focus();
+
+        }
+        //FIN BOTON CANCELAR
+        //--------------------------------------------------------------------------
 
 
         //CONTROL EDAD
@@ -257,11 +398,11 @@ namespace CapaPresentacion
         //-------------------------------------------------------------------------------------
 
         //CONTROL TIENE DISCAPACIDAD
-        private void ControlTieneDiscapacidad(bool tieneDiscapacidad)
+        private void ControlTieneDiscapacidad(bool tieneDiscapacidad, string detalle)
         {
             if (tieneDiscapacidad)
             {
-                lblDiscapacidad.Text = "TIENE DISCAPACIDAD";
+                lblDiscapacidad.Text = "TIENE DISCAPACIDAD. " + detalle;
                 lblDiscapacidad.ForeColor = Color.DarkOrange;
                 //lblDetalleTieneDiscapacidad.Text = dCiudadanoGlo.discapacidad_detalle;
                 //lblDetalleTieneDiscapacidad.ForeColor = Color.SteelBlue;
@@ -277,9 +418,9 @@ namespace CapaPresentacion
         //------------------------------------------------------------------------------------------
 
         //BLOQUEAR DEDOS SEGUN HUELLA CARGADA
-        private async void bloquearChecksHuellasCargadas(List<DHuella> listaHuellas)
+        private void bloquearChecksHuellasCargadas(List<DHuella> listaHuellas)
         {
-
+           
             if (listaHuellas.Count == 0)
             {
                 MessageBox.Show("El ciudadano no posee huellas registradas.", "Sistema Visistas", MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -360,5 +501,7 @@ namespace CapaPresentacion
                 }//fin switch
             }//fin foreach
         }//FIN PRocedimiento para bloquear dedos segun huella cargada
+
+        
     }
 }
