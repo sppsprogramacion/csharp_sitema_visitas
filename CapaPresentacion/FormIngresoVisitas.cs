@@ -275,25 +275,25 @@ namespace CapaPresentacion
                     formVisor.Controls.Add(pdfViewer);
 
                     // Imprimir automáticamente al abrir el visor
-                    formVisor.Shown += (s, args) =>
-                    {
-                        try
-                        {
-                            using (PrintDocument printDocument = pdfDocument.CreatePrintDocument())
-                            {
-                                printDocument.Print();
-                            }
-                        }
-                        catch (Exception ex)
-                        {
-                            MessageBox.Show(
-                                "Error al imprimir la ficha: " + ex.Message,
-                                "Sistema Visitas",
-                                MessageBoxButtons.OK,
-                                MessageBoxIcon.Error
-                            );
-                        }
-                    };
+                    //formVisor.Shown += (s, args) =>
+                    //{
+                    //    try
+                    //    {
+                    //        using (PrintDocument printDocument = pdfDocument.CreatePrintDocument())
+                    //        {
+                    //            printDocument.Print();
+                    //        }
+                    //    }
+                    //    catch (Exception ex)
+                    //    {
+                    //        MessageBox.Show(
+                    //            "Error al imprimir la ficha: " + ex.Message,
+                    //            "Sistema Visitas",
+                    //            MessageBoxButtons.OK,
+                    //            MessageBoxIcon.Error
+                    //        );
+                    //    }
+                    //};
 
                     formVisor.FormClosed += (s, args) =>
                     {

@@ -24,10 +24,10 @@ namespace CapaPresentacion.Reportes.IngresoVisistas
             float altoPagina = 90f * mmToPoints;
 
             Document doc = new Document(new Rectangle(anchoPagina, altoPagina),
-                8f,  // izquierda
-                8f,  // derecha
-                8f,  // arriba
-                8f   // abajo
+                5f,  // izquierda
+                10f,  // derecha
+                5f,  // arriba
+                5f   // abajo
             );
 
             PdfWriter writer = PdfWriter.GetInstance(doc, ms);
@@ -35,10 +35,10 @@ namespace CapaPresentacion.Reportes.IngresoVisistas
 
             doc.Open();
 
-            var fuenteLogo = FontFactory.GetFont(FontFactory.TIMES, 5, BaseColor.BLACK);
-            var fuenteOrganismo = FontFactory.GetFont(FontFactory.TIMES, 5, BaseColor.BLACK);
-            var fuenteFecha = FontFactory.GetFont(FontFactory.TIMES, 7, BaseColor.BLACK);
-            var fuenteNumeroFicha = FontFactory.GetFont(FontFactory.HELVETICA_BOLD, 11, BaseColor.BLACK);
+            var fuenteLogo = FontFactory.GetFont(FontFactory.TIMES, 7, BaseColor.BLACK);
+            var fuenteOrganismo = FontFactory.GetFont(FontFactory.TIMES, 8, BaseColor.BLACK);
+            var fuenteFecha = FontFactory.GetFont(FontFactory.TIMES, 10, BaseColor.BLACK);
+            var fuenteNumeroFicha = FontFactory.GetFont(FontFactory.HELVETICA_BOLD, 12, BaseColor.BLACK);
             var fuenteVisita = FontFactory.GetFont(FontFactory.HELVETICA_BOLD, 9, BaseColor.BLACK);
             var fuenteNormal = FontFactory.GetFont(FontFactory.HELVETICA, 9, BaseColor.BLACK);
 
@@ -61,7 +61,7 @@ namespace CapaPresentacion.Reportes.IngresoVisistas
 
             // Crear tabla con 1 columna para el encabezado
             PdfPTable tablaEncabezado = new PdfPTable(1);
-            tablaEncabezado.WidthPercentage = 40; // ocupa la mitad de la página
+            tablaEncabezado.WidthPercentage = 57; // ocupa la mitad de la página
             tablaEncabezado.HorizontalAlignment = Element.ALIGN_LEFT; // tabla a la izquierda
 
             // Centrar contenido de todas las celdas
@@ -88,11 +88,16 @@ namespace CapaPresentacion.Reportes.IngresoVisistas
             doc.Add(new Paragraph(ingresoPPResponse.fecha_registro.ToShortDateString() + " " + ingresoPPResponse.hora_registro, fuenteFecha)
             {
                 Alignment = Element.ALIGN_RIGHT
-            });            
+            });
             //fin fecha.............................
 
 
             //DATOS DE FICHA
+            doc.Add(new Paragraph(" Ficha Nº: " + ingresoPPResponse.numero_ficha, fuenteNumeroFicha)
+            {
+                Alignment = Element.ALIGN_CENTER
+            });
+
             // Crear código de barras
             Barcode128 barcode = new Barcode128();
 
@@ -112,17 +117,12 @@ namespace CapaPresentacion.Reportes.IngresoVisistas
 
             // Agregar al documento
             doc.Add(imagenBarcode);
-
-            doc.Add(new Paragraph(" Ficha Nº: " + ingresoPPResponse.numero_ficha, fuenteNumeroFicha)
-            {
-                Alignment = Element.ALIGN_CENTER
-            });
-            doc.Add(new Paragraph(" "));
+            
 
             doc.Add(new Paragraph(" Visita: " + ingresoPPResponse.ciudadano, fuenteVisita));
             doc.Add(new Paragraph(" Interno: " + ingresoPPResponse.interno, fuenteNormal));
             doc.Add(new Paragraph(" Parentesco: " + ingresoPPResponse.parentesco, fuenteNormal));
-            doc.Add(new Paragraph(" Menores: " + ingresoPPResponse.menores, fuenteNormal));
+            doc.Add(new Paragraph(" Menores: " + ingresoPPResponse.menores + " " + ingresoPPResponse.menores, fuenteNormal));
             doc.Add(new Paragraph(" Casillero: " + ingresoPPResponse.casillero, fuenteNormal));
             //fin datos ficha
 
