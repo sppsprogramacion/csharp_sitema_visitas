@@ -28,9 +28,10 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle35 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle36 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
             this.gboxVisita = new System.Windows.Forms.GroupBox();
+            this.lblEstadoCiudadano = new System.Windows.Forms.Label();
             this.lblDiscapacidad = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.txtDireccion = new System.Windows.Forms.TextBox();
@@ -58,7 +59,6 @@
             this.opMEI = new System.Windows.Forms.CheckBox();
             this.label70 = new System.Windows.Forms.Label();
             this.label72 = new System.Windows.Forms.Label();
-            this.pictureBox4 = new System.Windows.Forms.PictureBox();
             this.txtSexo = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
             this.txtIdCiudadano = new System.Windows.Forms.TextBox();
@@ -67,7 +67,6 @@
             this.label4 = new System.Windows.Forms.Label();
             this.txtFechaNacimiento = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
-            this.picFotoVisita = new System.Windows.Forms.PictureBox();
             this.txtPais = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
             this.lblProvincia = new System.Windows.Forms.Label();
@@ -75,24 +74,29 @@
             this.txtDni = new System.Windows.Forms.TextBox();
             this.label9 = new System.Windows.Forms.Label();
             this.gboxDatosParaIngreso = new System.Windows.Forms.GroupBox();
-            this.btnCancelar = new System.Windows.Forms.Button();
+            this.label15 = new System.Windows.Forms.Label();
+            this.txtCasillero = new System.Windows.Forms.TextBox();
             this.btnGuardar = new System.Windows.Forms.Button();
             this.label13 = new System.Windows.Forms.Label();
             this.label12 = new System.Windows.Forms.Label();
             this.dtgInternos = new System.Windows.Forms.DataGridView();
             this.dtgMenores = new System.Windows.Forms.DataGridView();
+            this.btnCancelar = new System.Windows.Forms.Button();
             this.label14 = new System.Windows.Forms.Label();
             this.txtDniBuscar = new System.Windows.Forms.TextBox();
             this.btnBuscar = new System.Windows.Forms.Button();
-            this.txtCasillero = new System.Windows.Forms.TextBox();
-            this.label15 = new System.Windows.Forms.Label();
-            this.lblEstadoCiudadano = new System.Windows.Forms.Label();
+            this.picHuella = new System.Windows.Forms.PictureBox();
+            this.pictureBox4 = new System.Windows.Forms.PictureBox();
+            this.picFotoVisita = new System.Windows.Forms.PictureBox();
+            this.lblEstado = new System.Windows.Forms.Label();
+            this.lblDedo = new System.Windows.Forms.Label();
             this.gboxVisita.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.picFotoVisita)).BeginInit();
             this.gboxDatosParaIngreso.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dtgInternos)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dtgMenores)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picHuella)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picFotoVisita)).BeginInit();
             this.SuspendLayout();
             // 
             // gboxVisita
@@ -144,12 +148,23 @@
             this.gboxVisita.Controls.Add(this.label9);
             this.gboxVisita.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.gboxVisita.ForeColor = System.Drawing.Color.White;
-            this.gboxVisita.Location = new System.Drawing.Point(12, 75);
+            this.gboxVisita.Location = new System.Drawing.Point(12, 85);
             this.gboxVisita.Name = "gboxVisita";
             this.gboxVisita.Size = new System.Drawing.Size(528, 640);
             this.gboxVisita.TabIndex = 109;
             this.gboxVisita.TabStop = false;
             this.gboxVisita.Text = "DATOS CIUDADANO";
+            // 
+            // lblEstadoCiudadano
+            // 
+            this.lblEstadoCiudadano.AutoSize = true;
+            this.lblEstadoCiudadano.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblEstadoCiudadano.ForeColor = System.Drawing.Color.LimeGreen;
+            this.lblEstadoCiudadano.Location = new System.Drawing.Point(13, 256);
+            this.lblEstadoCiudadano.Name = "lblEstadoCiudadano";
+            this.lblEstadoCiudadano.Size = new System.Drawing.Size(316, 25);
+            this.lblEstadoCiudadano.TabIndex = 153;
+            this.lblEstadoCiudadano.Text = "EstadoCiudadanoProhibicion";
             // 
             // lblDiscapacidad
             // 
@@ -441,16 +456,6 @@
             this.label72.TabIndex = 121;
             this.label72.Text = "MANO IZQUIERDA";
             // 
-            // pictureBox4
-            // 
-            this.pictureBox4.Image = global::CapaPresentacion.Properties.Resources.manos_lila;
-            this.pictureBox4.Location = new System.Drawing.Point(237, 127);
-            this.pictureBox4.Name = "pictureBox4";
-            this.pictureBox4.Size = new System.Drawing.Size(282, 124);
-            this.pictureBox4.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox4.TabIndex = 120;
-            this.pictureBox4.TabStop = false;
-            // 
             // txtSexo
             // 
             this.txtSexo.BackColor = System.Drawing.SystemColors.ActiveBorder;
@@ -539,17 +544,6 @@
             this.label3.TabIndex = 24;
             this.label3.Text = "Fecha nacimiento";
             // 
-            // picFotoVisita
-            // 
-            this.picFotoVisita.BackColor = System.Drawing.Color.Transparent;
-            this.picFotoVisita.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.picFotoVisita.Location = new System.Drawing.Point(15, 47);
-            this.picFotoVisita.Name = "picFotoVisita";
-            this.picFotoVisita.Size = new System.Drawing.Size(215, 205);
-            this.picFotoVisita.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.picFotoVisita.TabIndex = 19;
-            this.picFotoVisita.TabStop = false;
-            // 
             // txtPais
             // 
             this.txtPais.BackColor = System.Drawing.SystemColors.ActiveBorder;
@@ -629,27 +623,35 @@
             this.gboxDatosParaIngreso.Enabled = false;
             this.gboxDatosParaIngreso.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.gboxDatosParaIngreso.ForeColor = System.Drawing.Color.White;
-            this.gboxDatosParaIngreso.Location = new System.Drawing.Point(548, 74);
+            this.gboxDatosParaIngreso.Location = new System.Drawing.Point(548, 84);
             this.gboxDatosParaIngreso.Name = "gboxDatosParaIngreso";
             this.gboxDatosParaIngreso.Size = new System.Drawing.Size(585, 592);
             this.gboxDatosParaIngreso.TabIndex = 147;
             this.gboxDatosParaIngreso.TabStop = false;
             this.gboxDatosParaIngreso.Text = "DATOS PARA INGRESO";
             // 
-            // btnCancelar
+            // label15
             // 
-            this.btnCancelar.BackColor = System.Drawing.Color.DarkOrange;
-            this.btnCancelar.FlatAppearance.BorderColor = System.Drawing.Color.DarkOrange;
-            this.btnCancelar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnCancelar.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnCancelar.ForeColor = System.Drawing.Color.White;
-            this.btnCancelar.Location = new System.Drawing.Point(297, 22);
-            this.btnCancelar.Name = "btnCancelar";
-            this.btnCancelar.Size = new System.Drawing.Size(105, 40);
-            this.btnCancelar.TabIndex = 152;
-            this.btnCancelar.Text = "CANCELAR";
-            this.btnCancelar.UseVisualStyleBackColor = false;
-            this.btnCancelar.Click += new System.EventHandler(this.btnCancelar_Click_1);
+            this.label15.AutoSize = true;
+            this.label15.BackColor = System.Drawing.Color.Transparent;
+            this.label15.Font = new System.Drawing.Font("Arial Black", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label15.ForeColor = System.Drawing.Color.White;
+            this.label15.Location = new System.Drawing.Point(6, 479);
+            this.label15.Name = "label15";
+            this.label15.Size = new System.Drawing.Size(77, 19);
+            this.label15.TabIndex = 153;
+            this.label15.Text = "Casillero";
+            // 
+            // txtCasillero
+            // 
+            this.txtCasillero.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.txtCasillero.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.txtCasillero.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtCasillero.Location = new System.Drawing.Point(10, 499);
+            this.txtCasillero.Multiline = true;
+            this.txtCasillero.Name = "txtCasillero";
+            this.txtCasillero.Size = new System.Drawing.Size(569, 30);
+            this.txtCasillero.TabIndex = 152;
             // 
             // btnGuardar
             // 
@@ -695,8 +697,8 @@
             this.dtgInternos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dtgInternos.Location = new System.Drawing.Point(7, 307);
             this.dtgInternos.Name = "dtgInternos";
-            dataGridViewCellStyle35.ForeColor = System.Drawing.Color.Black;
-            this.dtgInternos.RowsDefaultCellStyle = dataGridViewCellStyle35;
+            dataGridViewCellStyle7.ForeColor = System.Drawing.Color.Black;
+            this.dtgInternos.RowsDefaultCellStyle = dataGridViewCellStyle7;
             this.dtgInternos.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dtgInternos.Size = new System.Drawing.Size(572, 169);
             this.dtgInternos.TabIndex = 1;
@@ -706,10 +708,25 @@
             this.dtgMenores.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dtgMenores.Location = new System.Drawing.Point(7, 37);
             this.dtgMenores.Name = "dtgMenores";
-            dataGridViewCellStyle36.ForeColor = System.Drawing.Color.Black;
-            this.dtgMenores.RowsDefaultCellStyle = dataGridViewCellStyle36;
+            dataGridViewCellStyle8.ForeColor = System.Drawing.Color.Black;
+            this.dtgMenores.RowsDefaultCellStyle = dataGridViewCellStyle8;
             this.dtgMenores.Size = new System.Drawing.Size(572, 244);
             this.dtgMenores.TabIndex = 0;
+            // 
+            // btnCancelar
+            // 
+            this.btnCancelar.BackColor = System.Drawing.Color.DarkOrange;
+            this.btnCancelar.FlatAppearance.BorderColor = System.Drawing.Color.DarkOrange;
+            this.btnCancelar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnCancelar.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnCancelar.ForeColor = System.Drawing.Color.White;
+            this.btnCancelar.Location = new System.Drawing.Point(297, 22);
+            this.btnCancelar.Name = "btnCancelar";
+            this.btnCancelar.Size = new System.Drawing.Size(105, 40);
+            this.btnCancelar.TabIndex = 152;
+            this.btnCancelar.Text = "CANCELAR";
+            this.btnCancelar.UseVisualStyleBackColor = false;
+            this.btnCancelar.Click += new System.EventHandler(this.btnCancelar_Click_1);
             // 
             // label14
             // 
@@ -748,39 +765,64 @@
             this.btnBuscar.UseVisualStyleBackColor = false;
             this.btnBuscar.Click += new System.EventHandler(this.btnBuscar_Click);
             // 
-            // txtCasillero
+            // picHuella
             // 
-            this.txtCasillero.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.txtCasillero.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.txtCasillero.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtCasillero.Location = new System.Drawing.Point(10, 499);
-            this.txtCasillero.Multiline = true;
-            this.txtCasillero.Name = "txtCasillero";
-            this.txtCasillero.Size = new System.Drawing.Size(569, 30);
-            this.txtCasillero.TabIndex = 152;
+            this.picHuella.BackColor = System.Drawing.Color.Transparent;
+            this.picHuella.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.picHuella.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.picHuella.Enabled = false;
+            this.picHuella.Image = global::CapaPresentacion.Properties.Resources.huella_scaneo_8;
+            this.picHuella.Location = new System.Drawing.Point(557, 5);
+            this.picHuella.Name = "picHuella";
+            this.picHuella.Size = new System.Drawing.Size(75, 70);
+            this.picHuella.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.picHuella.TabIndex = 153;
+            this.picHuella.TabStop = false;
             // 
-            // label15
+            // pictureBox4
             // 
-            this.label15.AutoSize = true;
-            this.label15.BackColor = System.Drawing.Color.Transparent;
-            this.label15.Font = new System.Drawing.Font("Arial Black", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label15.ForeColor = System.Drawing.Color.White;
-            this.label15.Location = new System.Drawing.Point(6, 479);
-            this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(77, 19);
-            this.label15.TabIndex = 153;
-            this.label15.Text = "Casillero";
+            this.pictureBox4.Image = global::CapaPresentacion.Properties.Resources.manos_lila;
+            this.pictureBox4.Location = new System.Drawing.Point(237, 127);
+            this.pictureBox4.Name = "pictureBox4";
+            this.pictureBox4.Size = new System.Drawing.Size(282, 124);
+            this.pictureBox4.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox4.TabIndex = 120;
+            this.pictureBox4.TabStop = false;
             // 
-            // lblEstadoCiudadano
+            // picFotoVisita
             // 
-            this.lblEstadoCiudadano.AutoSize = true;
-            this.lblEstadoCiudadano.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblEstadoCiudadano.ForeColor = System.Drawing.Color.LimeGreen;
-            this.lblEstadoCiudadano.Location = new System.Drawing.Point(13, 256);
-            this.lblEstadoCiudadano.Name = "lblEstadoCiudadano";
-            this.lblEstadoCiudadano.Size = new System.Drawing.Size(316, 25);
-            this.lblEstadoCiudadano.TabIndex = 153;
-            this.lblEstadoCiudadano.Text = "EstadoCiudadanoProhibicion";
+            this.picFotoVisita.BackColor = System.Drawing.Color.Transparent;
+            this.picFotoVisita.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.picFotoVisita.Location = new System.Drawing.Point(15, 47);
+            this.picFotoVisita.Name = "picFotoVisita";
+            this.picFotoVisita.Size = new System.Drawing.Size(215, 205);
+            this.picFotoVisita.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.picFotoVisita.TabIndex = 19;
+            this.picFotoVisita.TabStop = false;
+            // 
+            // lblEstado
+            // 
+            this.lblEstado.AutoSize = true;
+            this.lblEstado.BackColor = System.Drawing.Color.Transparent;
+            this.lblEstado.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblEstado.ForeColor = System.Drawing.Color.Cyan;
+            this.lblEstado.Location = new System.Drawing.Point(637, 6);
+            this.lblEstado.Name = "lblEstado";
+            this.lblEstado.Size = new System.Drawing.Size(181, 29);
+            this.lblEstado.TabIndex = 154;
+            this.lblEstado.Text = "Lector detenido";
+            // 
+            // lblDedo
+            // 
+            this.lblDedo.AutoSize = true;
+            this.lblDedo.BackColor = System.Drawing.Color.Transparent;
+            this.lblDedo.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblDedo.ForeColor = System.Drawing.Color.Chartreuse;
+            this.lblDedo.Location = new System.Drawing.Point(637, 43);
+            this.lblDedo.Name = "lblDedo";
+            this.lblDedo.Size = new System.Drawing.Size(116, 25);
+            this.lblDedo.TabIndex = 155;
+            this.lblDedo.Text = "Detenido...";
             // 
             // FormIngresoVisitas
             // 
@@ -789,6 +831,9 @@
             this.AutoScroll = true;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(103)))), ((int)(((byte)(153)))));
             this.ClientSize = new System.Drawing.Size(1145, 732);
+            this.Controls.Add(this.lblDedo);
+            this.Controls.Add(this.lblEstado);
+            this.Controls.Add(this.picHuella);
             this.Controls.Add(this.btnCancelar);
             this.Controls.Add(this.label14);
             this.Controls.Add(this.txtDniBuscar);
@@ -801,12 +846,13 @@
             this.Load += new System.EventHandler(this.FormIngresoVisitas_Load);
             this.gboxVisita.ResumeLayout(false);
             this.gboxVisita.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.picFotoVisita)).EndInit();
             this.gboxDatosParaIngreso.ResumeLayout(false);
             this.gboxDatosParaIngreso.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dtgInternos)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dtgMenores)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picHuella)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picFotoVisita)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -871,5 +917,8 @@
         private System.Windows.Forms.Label label15;
         private System.Windows.Forms.TextBox txtCasillero;
         private System.Windows.Forms.Label lblEstadoCiudadano;
+        private System.Windows.Forms.PictureBox picHuella;
+        private System.Windows.Forms.Label lblEstado;
+        private System.Windows.Forms.Label lblDedo;
     }
 }
