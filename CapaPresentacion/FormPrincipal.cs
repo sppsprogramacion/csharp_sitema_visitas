@@ -1,4 +1,6 @@
-﻿using CapaPresentacion.FuncionesGenerales;
+﻿using CapaDatos;
+using CapaNegocio;
+using CapaPresentacion.FuncionesGenerales;
 using CommonCache;
 using System;
 using System.Collections.Generic;
@@ -38,13 +40,42 @@ namespace CapaPresentacion
             formProhibicionesAnticipadas.ShowDialog();
         }
 
-        private void FormPrincipal_Load(object sender, EventArgs e)
+        private async void FormPrincipal_Load(object sender, EventArgs e)
         {
             FormularioAyudas.AjustarFormulario(this);
             this.ControlBox = false;
 
             lblEncabezado.Text = lblEncabezado.Text + " - " + CurrentUser.Instance.organismo;
             lblUsuario.Text = CurrentUser.Instance.nombre.ToUpper() + " " + CurrentUser.Instance.apellido.ToUpper();
+
+            //INICIAR SQLLITE
+            try
+            {
+                DSQLite sqlite = new DSQLite();
+
+                sqlite.Inicializar();
+
+                //SINCRONIZACION
+                NHuella nHuella = new NHuella();
+
+                this.Enabled = false;
+                (bool estadoResponse, string errorResponse) = await nHuella.Sincronizar();
+                this.Enabled = true;
+
+                if (estadoResponse == false)
+                {
+                    MessageBox.Show(errorResponse, "Sistema Visitas", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+
+                //FIN SINCRONIZACION 
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(
+                    ex.Message
+                );
+            }
         }
 
         private void btnExcepcionesIngreso_Click(object sender, EventArgs e)

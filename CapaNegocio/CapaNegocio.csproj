@@ -91,6 +91,7 @@
     <Compile Include="NEntradaSalida.cs" />
     <Compile Include="NEstadoCivil.cs" />
     <Compile Include="NExcepcionIngresoVisita.cs" />
+    <Compile Include="NHuella.cs" />
     <Compile Include="NInterno.cs" />
     <Compile Include="NNovedadCiudadano.cs" />
     <Compile Include="NParentesco.cs" />

@@ -35,6 +35,7 @@
             this.lblUsuario = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.btnIngresoVisita = new System.Windows.Forms.Button();
+            this.btnEgresoVisitas = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -45,7 +46,7 @@
             this.btnVerVisitas.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnVerVisitas.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnVerVisitas.ForeColor = System.Drawing.Color.White;
-            this.btnVerVisitas.Location = new System.Drawing.Point(150, 56);
+            this.btnVerVisitas.Location = new System.Drawing.Point(287, 56);
             this.btnVerVisitas.Name = "btnVerVisitas";
             this.btnVerVisitas.Size = new System.Drawing.Size(120, 70);
             this.btnVerVisitas.TabIndex = 0;
@@ -116,12 +117,27 @@
             this.btnIngresoVisita.UseVisualStyleBackColor = false;
             this.btnIngresoVisita.Click += new System.EventHandler(this.btnIngresoVisita_Click);
             // 
+            // btnEgresoVisitas
+            // 
+            this.btnEgresoVisitas.BackColor = System.Drawing.Color.DarkOrange;
+            this.btnEgresoVisitas.FlatAppearance.BorderColor = System.Drawing.Color.DarkOrange;
+            this.btnEgresoVisitas.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnEgresoVisitas.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnEgresoVisitas.ForeColor = System.Drawing.Color.White;
+            this.btnEgresoVisitas.Location = new System.Drawing.Point(155, 56);
+            this.btnEgresoVisitas.Name = "btnEgresoVisitas";
+            this.btnEgresoVisitas.Size = new System.Drawing.Size(120, 70);
+            this.btnEgresoVisitas.TabIndex = 81;
+            this.btnEgresoVisitas.Text = "Egreso de visitas";
+            this.btnEgresoVisitas.UseVisualStyleBackColor = false;
+            // 
             // FormPrincipal
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(103)))), ((int)(((byte)(153)))));
             this.ClientSize = new System.Drawing.Size(916, 606);
+            this.Controls.Add(this.btnEgresoVisitas);
             this.Controls.Add(this.btnIngresoVisita);
             this.Controls.Add(this.lblUsuario);
             this.Controls.Add(this.pictureBox1);
@@ -148,6 +164,7 @@
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Label lblUsuario;
         private System.Windows.Forms.Button btnIngresoVisita;
+        private System.Windows.Forms.Button btnEgresoVisitas;
     }
 }
 

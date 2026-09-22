@@ -28,8 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.gboxVisita = new System.Windows.Forms.GroupBox();
             this.lblEstadoCiudadano = new System.Windows.Forms.Label();
             this.lblDiscapacidad = new System.Windows.Forms.Label();
@@ -85,11 +85,12 @@
             this.label14 = new System.Windows.Forms.Label();
             this.txtDniBuscar = new System.Windows.Forms.TextBox();
             this.btnBuscar = new System.Windows.Forms.Button();
+            this.lblLectorEstado = new System.Windows.Forms.Label();
+            this.lblLectorDedo = new System.Windows.Forms.Label();
+            this.lblFondoHuella = new System.Windows.Forms.Label();
             this.picHuella = new System.Windows.Forms.PictureBox();
             this.pictureBox4 = new System.Windows.Forms.PictureBox();
             this.picFotoVisita = new System.Windows.Forms.PictureBox();
-            this.lblEstado = new System.Windows.Forms.Label();
-            this.lblDedo = new System.Windows.Forms.Label();
             this.gboxVisita.SuspendLayout();
             this.gboxDatosParaIngreso.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dtgInternos)).BeginInit();
@@ -154,17 +155,18 @@
             this.gboxVisita.TabIndex = 109;
             this.gboxVisita.TabStop = false;
             this.gboxVisita.Text = "DATOS CIUDADANO";
+            this.gboxVisita.Enter += new System.EventHandler(this.gboxVisita_Enter);
             // 
             // lblEstadoCiudadano
             // 
             this.lblEstadoCiudadano.AutoSize = true;
             this.lblEstadoCiudadano.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblEstadoCiudadano.ForeColor = System.Drawing.Color.LimeGreen;
-            this.lblEstadoCiudadano.Location = new System.Drawing.Point(13, 256);
+            this.lblEstadoCiudadano.Location = new System.Drawing.Point(13, 259);
             this.lblEstadoCiudadano.Name = "lblEstadoCiudadano";
-            this.lblEstadoCiudadano.Size = new System.Drawing.Size(316, 25);
+            this.lblEstadoCiudadano.Size = new System.Drawing.Size(130, 25);
             this.lblEstadoCiudadano.TabIndex = 153;
-            this.lblEstadoCiudadano.Text = "EstadoCiudadanoProhibicion";
+            this.lblEstadoCiudadano.Text = "Restriccion";
             // 
             // lblDiscapacidad
             // 
@@ -315,9 +317,9 @@
             this.lblCategoriaEdad.ForeColor = System.Drawing.Color.White;
             this.lblCategoriaEdad.Location = new System.Drawing.Point(237, 44);
             this.lblCategoriaEdad.Name = "lblCategoriaEdad";
-            this.lblCategoriaEdad.Size = new System.Drawing.Size(119, 18);
+            this.lblCategoriaEdad.Size = new System.Drawing.Size(133, 18);
             this.lblCategoriaEdad.TabIndex = 134;
-            this.lblCategoriaEdad.Text = "CategoriaEdad";
+            this.lblCategoriaEdad.Text = "Categoria - edad";
             // 
             // lblApellidoNombre
             // 
@@ -326,109 +328,129 @@
             this.lblApellidoNombre.ForeColor = System.Drawing.Color.Orange;
             this.lblApellidoNombre.Location = new System.Drawing.Point(13, 14);
             this.lblApellidoNombre.Name = "lblApellidoNombre";
-            this.lblApellidoNombre.Size = new System.Drawing.Size(178, 25);
+            this.lblApellidoNombre.Size = new System.Drawing.Size(201, 25);
             this.lblApellidoNombre.TabIndex = 133;
-            this.lblApellidoNombre.Text = "ApellidoNombre";
+            this.lblApellidoNombre.Text = "Apellido y nombre";
             // 
             // opMED
             // 
             this.opMED.AutoSize = true;
-            this.opMED.BackColor = System.Drawing.Color.Black;
-            this.opMED.Location = new System.Drawing.Point(236, 167);
+            this.opMED.BackColor = System.Drawing.Color.White;
+            this.opMED.Enabled = false;
+            this.opMED.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.opMED.Location = new System.Drawing.Point(237, 167);
             this.opMED.Name = "opMED";
-            this.opMED.Size = new System.Drawing.Size(15, 14);
+            this.opMED.Size = new System.Drawing.Size(12, 11);
             this.opMED.TabIndex = 132;
             this.opMED.UseVisualStyleBackColor = false;
             // 
             // opAD
             // 
             this.opAD.AutoSize = true;
-            this.opAD.BackColor = System.Drawing.Color.Black;
-            this.opAD.Location = new System.Drawing.Point(257, 145);
+            this.opAD.BackColor = System.Drawing.Color.White;
+            this.opAD.Enabled = false;
+            this.opAD.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.opAD.Location = new System.Drawing.Point(259, 144);
             this.opAD.Name = "opAD";
-            this.opAD.Size = new System.Drawing.Size(15, 14);
+            this.opAD.Size = new System.Drawing.Size(12, 11);
             this.opAD.TabIndex = 131;
             this.opAD.UseVisualStyleBackColor = false;
             // 
             // opMAD
             // 
             this.opMAD.AutoSize = true;
-            this.opMAD.BackColor = System.Drawing.Color.Black;
-            this.opMAD.Location = new System.Drawing.Point(286, 135);
+            this.opMAD.BackColor = System.Drawing.Color.White;
+            this.opMAD.Enabled = false;
+            this.opMAD.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.opMAD.Location = new System.Drawing.Point(287, 135);
             this.opMAD.Name = "opMAD";
-            this.opMAD.Size = new System.Drawing.Size(15, 14);
+            this.opMAD.Size = new System.Drawing.Size(12, 11);
             this.opMAD.TabIndex = 130;
             this.opMAD.UseVisualStyleBackColor = false;
             // 
             // opID
             // 
             this.opID.AutoSize = true;
-            this.opID.BackColor = System.Drawing.Color.Black;
+            this.opID.BackColor = System.Drawing.Color.White;
+            this.opID.Enabled = false;
+            this.opID.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.opID.Location = new System.Drawing.Point(314, 135);
             this.opID.Name = "opID";
-            this.opID.Size = new System.Drawing.Size(15, 14);
+            this.opID.Size = new System.Drawing.Size(12, 11);
             this.opID.TabIndex = 129;
             this.opID.UseVisualStyleBackColor = false;
             // 
             // opPD
             // 
             this.opPD.AutoSize = true;
-            this.opPD.BackColor = System.Drawing.Color.Black;
-            this.opPD.Location = new System.Drawing.Point(354, 188);
+            this.opPD.BackColor = System.Drawing.Color.White;
+            this.opPD.Enabled = false;
+            this.opPD.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.opPD.Location = new System.Drawing.Point(356, 188);
             this.opPD.Name = "opPD";
-            this.opPD.Size = new System.Drawing.Size(15, 14);
+            this.opPD.Size = new System.Drawing.Size(12, 11);
             this.opPD.TabIndex = 128;
             this.opPD.UseVisualStyleBackColor = false;
             // 
             // opPI
             // 
             this.opPI.AutoSize = true;
-            this.opPI.BackColor = System.Drawing.Color.Black;
+            this.opPI.BackColor = System.Drawing.Color.White;
+            this.opPI.Enabled = false;
+            this.opPI.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.opPI.Location = new System.Drawing.Point(383, 189);
             this.opPI.Name = "opPI";
-            this.opPI.Size = new System.Drawing.Size(15, 14);
+            this.opPI.Size = new System.Drawing.Size(12, 11);
             this.opPI.TabIndex = 127;
             this.opPI.UseVisualStyleBackColor = false;
             // 
             // opII
             // 
             this.opII.AutoSize = true;
-            this.opII.BackColor = System.Drawing.Color.Black;
-            this.opII.Location = new System.Drawing.Point(427, 131);
+            this.opII.BackColor = System.Drawing.Color.White;
+            this.opII.Enabled = false;
+            this.opII.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.opII.Location = new System.Drawing.Point(428, 131);
             this.opII.Name = "opII";
-            this.opII.Size = new System.Drawing.Size(15, 14);
+            this.opII.Size = new System.Drawing.Size(12, 11);
             this.opII.TabIndex = 126;
             this.opII.UseVisualStyleBackColor = false;
             // 
             // opMAI
             // 
             this.opMAI.AutoSize = true;
-            this.opMAI.BackColor = System.Drawing.Color.Black;
-            this.opMAI.Location = new System.Drawing.Point(454, 131);
+            this.opMAI.BackColor = System.Drawing.Color.White;
+            this.opMAI.Enabled = false;
+            this.opMAI.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.opMAI.Location = new System.Drawing.Point(456, 131);
             this.opMAI.Name = "opMAI";
-            this.opMAI.Size = new System.Drawing.Size(15, 14);
+            this.opMAI.Size = new System.Drawing.Size(12, 11);
             this.opMAI.TabIndex = 125;
             this.opMAI.UseVisualStyleBackColor = false;
             // 
             // opAI
             // 
             this.opAI.AutoSize = true;
-            this.opAI.BackColor = System.Drawing.Color.Black;
+            this.opAI.BackColor = System.Drawing.Color.White;
+            this.opAI.Enabled = false;
+            this.opAI.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.opAI.ForeColor = System.Drawing.Color.White;
-            this.opAI.Location = new System.Drawing.Point(483, 141);
+            this.opAI.Location = new System.Drawing.Point(484, 139);
             this.opAI.Name = "opAI";
-            this.opAI.Size = new System.Drawing.Size(15, 14);
+            this.opAI.Size = new System.Drawing.Size(12, 11);
             this.opAI.TabIndex = 124;
             this.opAI.UseVisualStyleBackColor = false;
             // 
             // opMEI
             // 
             this.opMEI.AutoSize = true;
-            this.opMEI.BackColor = System.Drawing.Color.Black;
-            this.opMEI.ForeColor = System.Drawing.Color.Black;
-            this.opMEI.Location = new System.Drawing.Point(505, 164);
+            this.opMEI.BackColor = System.Drawing.Color.White;
+            this.opMEI.Enabled = false;
+            this.opMEI.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.opMEI.ForeColor = System.Drawing.Color.White;
+            this.opMEI.Location = new System.Drawing.Point(506, 162);
             this.opMEI.Name = "opMEI";
-            this.opMEI.Size = new System.Drawing.Size(15, 14);
+            this.opMEI.Size = new System.Drawing.Size(12, 11);
             this.opMEI.TabIndex = 123;
             this.opMEI.UseVisualStyleBackColor = false;
             // 
@@ -697,8 +719,8 @@
             this.dtgInternos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dtgInternos.Location = new System.Drawing.Point(7, 307);
             this.dtgInternos.Name = "dtgInternos";
-            dataGridViewCellStyle7.ForeColor = System.Drawing.Color.Black;
-            this.dtgInternos.RowsDefaultCellStyle = dataGridViewCellStyle7;
+            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.Black;
+            this.dtgInternos.RowsDefaultCellStyle = dataGridViewCellStyle1;
             this.dtgInternos.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dtgInternos.Size = new System.Drawing.Size(572, 169);
             this.dtgInternos.TabIndex = 1;
@@ -708,8 +730,8 @@
             this.dtgMenores.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dtgMenores.Location = new System.Drawing.Point(7, 37);
             this.dtgMenores.Name = "dtgMenores";
-            dataGridViewCellStyle8.ForeColor = System.Drawing.Color.Black;
-            this.dtgMenores.RowsDefaultCellStyle = dataGridViewCellStyle8;
+            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.Black;
+            this.dtgMenores.RowsDefaultCellStyle = dataGridViewCellStyle2;
             this.dtgMenores.Size = new System.Drawing.Size(572, 244);
             this.dtgMenores.TabIndex = 0;
             // 
@@ -765,19 +787,55 @@
             this.btnBuscar.UseVisualStyleBackColor = false;
             this.btnBuscar.Click += new System.EventHandler(this.btnBuscar_Click);
             // 
+            // lblLectorEstado
+            // 
+            this.lblLectorEstado.AutoSize = true;
+            this.lblLectorEstado.BackColor = System.Drawing.Color.Transparent;
+            this.lblLectorEstado.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblLectorEstado.ForeColor = System.Drawing.Color.Cyan;
+            this.lblLectorEstado.Location = new System.Drawing.Point(637, 10);
+            this.lblLectorEstado.Name = "lblLectorEstado";
+            this.lblLectorEstado.Size = new System.Drawing.Size(161, 25);
+            this.lblLectorEstado.TabIndex = 154;
+            this.lblLectorEstado.Text = "Lector detenido";
+            // 
+            // lblLectorDedo
+            // 
+            this.lblLectorDedo.AutoSize = true;
+            this.lblLectorDedo.BackColor = System.Drawing.Color.Transparent;
+            this.lblLectorDedo.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblLectorDedo.ForeColor = System.Drawing.Color.Chartreuse;
+            this.lblLectorDedo.Location = new System.Drawing.Point(637, 47);
+            this.lblLectorDedo.Name = "lblLectorDedo";
+            this.lblLectorDedo.Size = new System.Drawing.Size(101, 24);
+            this.lblLectorDedo.TabIndex = 155;
+            this.lblLectorDedo.Text = "Detenido...";
+            // 
+            // lblFondoHuella
+            // 
+            this.lblFondoHuella.BackColor = System.Drawing.Color.Black;
+            this.lblFondoHuella.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.lblFondoHuella.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblFondoHuella.ForeColor = System.Drawing.Color.Cyan;
+            this.lblFondoHuella.Location = new System.Drawing.Point(557, 5);
+            this.lblFondoHuella.Name = "lblFondoHuella";
+            this.lblFondoHuella.Size = new System.Drawing.Size(75, 70);
+            this.lblFondoHuella.TabIndex = 75;
+            // 
             // picHuella
             // 
-            this.picHuella.BackColor = System.Drawing.Color.Transparent;
+            this.picHuella.BackColor = System.Drawing.Color.Black;
             this.picHuella.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.picHuella.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.picHuella.Enabled = false;
             this.picHuella.Image = global::CapaPresentacion.Properties.Resources.huella_scaneo_8;
-            this.picHuella.Location = new System.Drawing.Point(557, 5);
+            this.picHuella.Location = new System.Drawing.Point(558, 5);
             this.picHuella.Name = "picHuella";
             this.picHuella.Size = new System.Drawing.Size(75, 70);
             this.picHuella.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.picHuella.TabIndex = 153;
             this.picHuella.TabStop = false;
+            this.picHuella.Visible = false;
             // 
             // pictureBox4
             // 
@@ -800,30 +858,6 @@
             this.picFotoVisita.TabIndex = 19;
             this.picFotoVisita.TabStop = false;
             // 
-            // lblEstado
-            // 
-            this.lblEstado.AutoSize = true;
-            this.lblEstado.BackColor = System.Drawing.Color.Transparent;
-            this.lblEstado.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblEstado.ForeColor = System.Drawing.Color.Cyan;
-            this.lblEstado.Location = new System.Drawing.Point(637, 6);
-            this.lblEstado.Name = "lblEstado";
-            this.lblEstado.Size = new System.Drawing.Size(181, 29);
-            this.lblEstado.TabIndex = 154;
-            this.lblEstado.Text = "Lector detenido";
-            // 
-            // lblDedo
-            // 
-            this.lblDedo.AutoSize = true;
-            this.lblDedo.BackColor = System.Drawing.Color.Transparent;
-            this.lblDedo.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblDedo.ForeColor = System.Drawing.Color.Chartreuse;
-            this.lblDedo.Location = new System.Drawing.Point(637, 43);
-            this.lblDedo.Name = "lblDedo";
-            this.lblDedo.Size = new System.Drawing.Size(116, 25);
-            this.lblDedo.TabIndex = 155;
-            this.lblDedo.Text = "Detenido...";
-            // 
             // FormIngresoVisitas
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -831,8 +865,8 @@
             this.AutoScroll = true;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(103)))), ((int)(((byte)(153)))));
             this.ClientSize = new System.Drawing.Size(1145, 732);
-            this.Controls.Add(this.lblDedo);
-            this.Controls.Add(this.lblEstado);
+            this.Controls.Add(this.lblLectorDedo);
+            this.Controls.Add(this.lblLectorEstado);
             this.Controls.Add(this.picHuella);
             this.Controls.Add(this.btnCancelar);
             this.Controls.Add(this.label14);
@@ -840,6 +874,7 @@
             this.Controls.Add(this.btnBuscar);
             this.Controls.Add(this.gboxDatosParaIngreso);
             this.Controls.Add(this.gboxVisita);
+            this.Controls.Add(this.lblFondoHuella);
             this.Name = "FormIngresoVisitas";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "INGRESO DE VISITAS";
@@ -918,7 +953,8 @@
         private System.Windows.Forms.TextBox txtCasillero;
         private System.Windows.Forms.Label lblEstadoCiudadano;
         private System.Windows.Forms.PictureBox picHuella;
-        private System.Windows.Forms.Label lblEstado;
-        private System.Windows.Forms.Label lblDedo;
+        private System.Windows.Forms.Label lblLectorEstado;
+        private System.Windows.Forms.Label lblLectorDedo;
+        private System.Windows.Forms.Label lblFondoHuella;
     }
 }

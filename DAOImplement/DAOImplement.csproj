@@ -94,6 +94,7 @@
     <Compile Include="EstadoCivilDaoImpl.cs" />
     <Compile Include="AuthDaoImpl.cs" />
     <Compile Include="ExcepcionIngresoVisitaDaoImpl.cs" />
+    <Compile Include="HuellaDaoImplement.cs" />
     <Compile Include="InternoDaolmpl.cs" />
     <Compile Include="NovedadCiudadanoDaoImpl.cs" />
     <Compile Include="OrganismoDaoImpl.cs" />

@@ -91,6 +91,7 @@
     <Compile Include="IEstadoCivilDao.cs" />
     <Compile Include="IAuthDao.cs" />
     <Compile Include="IExcepcionIngresoVisitaDao.cs" />
+    <Compile Include="IHuellaDao.cs" />
     <Compile Include="IInternoDao.cs" />
     <Compile Include="INovedadCiudadanoDao.cs" />
     <Compile Include="IOrganismoDao.cs" />

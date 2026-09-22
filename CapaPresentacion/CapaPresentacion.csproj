@@ -204,6 +204,12 @@
     <Compile Include="FormAdminVisita.Designer.cs">
       <DependentUpon>FormAdminVisita.cs</DependentUpon>
     </Compile>
+    <Compile Include="FormEgresoVisita.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormEgresoVisita.Designer.cs">
+      <DependentUpon>FormEgresoVisita.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormExcepcionesIngreso.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -215,6 +221,12 @@
     </Compile>
     <Compile Include="FormHistorialProhibicion.Designer.cs">
       <DependentUpon>FormHistorialProhibicion.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormHuellasEncontrado.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormHuellasEncontrado.designer.cs">
+      <DependentUpon>FormHuellasEncontrado.cs</DependentUpon>
     </Compile>
     <Compile Include="FormIngresoVisitas.cs">
       <SubType>Form</SubType>
@@ -283,11 +295,17 @@
     <EmbeddedResource Include="FormAdminVisita.resx">
       <DependentUpon>FormAdminVisita.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="FormEgresoVisita.resx">
+      <DependentUpon>FormEgresoVisita.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormExcepcionesIngreso.resx">
       <DependentUpon>FormExcepcionesIngreso.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormHistorialProhibicion.resx">
       <DependentUpon>FormHistorialProhibicion.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormHuellasEncontrado.resx">
+      <DependentUpon>FormHuellasEncontrado.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormIngresoVisitas.resx">
       <DependentUpon>FormIngresoVisitas.cs</DependentUpon>

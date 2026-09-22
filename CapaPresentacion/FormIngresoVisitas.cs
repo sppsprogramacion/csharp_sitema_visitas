@@ -1,5 +1,6 @@
 ﻿using CapaDatos;
 using CapaNegocio;
+using CapaPresentacion.Biometria;
 using CapaPresentacion.FuncionesGenerales;
 using CapaPresentacion.Reportes.IngresoVisistas;
 using CapaPresentacion.Validaciones;
@@ -23,10 +24,30 @@ namespace CapaPresentacion
     {
         private ErrorProvider errorProvider = new ErrorProvider();
 
+        //para huellas
+        private FingerprintCapture fingerprintCapture;
+        private FingerprintProcessor fingerprintProcessor;
+        private FingerprintTemplate fingerprintTemplate;
+        private FingerprintVerifier fingerprintVerifier;
+        private DPFP.Template templateRegistrado;
+        private byte[] templateBytesRegistrado;
+        private bool modoVerificacion = false;
+        private bool modoIdentificacion = false;
+        private string huellaBase64Global = "";
 
         public FormIngresoVisitas()
         {
             InitializeComponent();
+
+            fingerprintCapture = new FingerprintCapture();
+            fingerprintProcessor = new FingerprintProcessor();
+            fingerprintTemplate = new FingerprintTemplate();
+            fingerprintVerifier = new FingerprintVerifier();
+
+            fingerprintCapture.FingerDetected += FingerprintCapture_FingerDetected;
+            fingerprintCapture.FingerRemoved += FingerprintCapture_FingerRemoved;
+            fingerprintCapture.CaptureError += FingerprintCapture_CaptureError;
+            fingerprintCapture.SampleCaptured += FingerprintCapture_SampleCaptured;
         }
 
         private void FormIngresoVisitas_Load(object sender, EventArgs e)
@@ -34,10 +55,6 @@ namespace CapaPresentacion
             //// Ajustar el tamaño del formulario            
             FormularioAyudas.AjustarFormulario(this);
 
-            lblApellidoNombre.Text = "_";
-            lblCategoriaEdad.Text = "_";
-            lblDiscapacidad.Text = "_";
-            lblEstadoCiudadano.Text = "_";
             txtDniBuscar.Focus();
         }
 
@@ -61,7 +78,7 @@ namespace CapaPresentacion
 
             //CARGAR DATOS DEL CIUDADANO
             txtIdCiudadano.Text = dCiudadanoIngresoResponse.ciudadanoResponse.id_ciudadano.ToString();
-            
+
             lblApellidoNombre.Text = dCiudadanoIngresoResponse.ciudadanoResponse.apellido + " " + dCiudadanoIngresoResponse.ciudadanoResponse.nombre;
             txtDni.Text = dCiudadanoIngresoResponse.ciudadanoResponse.dni.ToString();
             txtSexo.Text = dCiudadanoIngresoResponse.ciudadanoResponse.sexo;
@@ -74,12 +91,12 @@ namespace CapaPresentacion
             txtCiudad.Text = dCiudadanoIngresoResponse.ciudadanoResponse.ciudad;
             txtBarrio.Text = dCiudadanoIngresoResponse.ciudadanoResponse.barrio;
             txtDireccion.Text = dCiudadanoIngresoResponse.ciudadanoResponse.direccion;
-            txtFechaAlta.Text = dCiudadanoIngresoResponse.ciudadanoResponse.fecha_alta.ToShortDateString();            
+            txtFechaAlta.Text = dCiudadanoIngresoResponse.ciudadanoResponse.fecha_alta.ToShortDateString();
             picFotoVisita.Load(dCiudadanoIngresoResponse.ciudadanoResponse.foto);
 
             this.Enabled = true;
 
-            
+
             this.ControlTieneDiscapacidad(dCiudadanoIngresoResponse.ciudadanoResponse.tiene_discapacidad, dCiudadanoIngresoResponse.ciudadanoResponse.discapacidad_detalle);
             this.ControlEdad(dCiudadanoIngresoResponse.ciudadanoResponse.edad);
 
@@ -93,7 +110,7 @@ namespace CapaPresentacion
                     Id = c.id_ciudadano,
                     ApellidoNombre = c.apellido + " " + c.nombre,
                     Dni = c.dni,
-                    Edad = c.edad,                    
+                    Edad = c.edad,
 
                 })
                 .ToList();
@@ -121,7 +138,7 @@ namespace CapaPresentacion
                 dtgMenores.Columns["Dni"].Width = 80;
                 dtgMenores.Columns["Edad"].Width = 50;
             }
-            
+
 
             //Cargar internos
             var datosfiltradosInternos = dCiudadanoIngresoResponse.internosResponse
@@ -149,7 +166,15 @@ namespace CapaPresentacion
             {
                 lblEstadoCiudadano.Text = "SIN RESTRICCIONES DE INGRESO";
                 lblEstadoCiudadano.ForeColor = Color.LimeGreen;
-                gboxDatosParaIngreso.Enabled = true;
+                
+
+                //habilitar verificacion de huella
+                picHuella.Visible = true;
+                fingerprintCapture.Start();
+                modoVerificacion = true;
+                lblLectorEstado.Text = "Coloque el dedo para verificar.";
+                lblLectorDedo.Text = "Esperando huella...";
+                
             }
             else
             {
@@ -179,10 +204,11 @@ namespace CapaPresentacion
                 }
             }
 
-           foreach(int id in idsMenoresSeleccionados){
+            foreach (int id in idsMenoresSeleccionados)
+            {
 
-                MessageBox.Show("id: " + id); 
-           }
+                MessageBox.Show("id: " + id);
+            }
 
             //limpiar errores de provider
             errorProvider.Clear();
@@ -221,7 +247,7 @@ namespace CapaPresentacion
 
                 if (idInterno == 0)
                 {
-                    
+
                     MessageBox.Show("Debe seleccionar un interno.", "Sistema Visitas", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     return;
                 }
@@ -245,7 +271,7 @@ namespace CapaPresentacion
             if (dataEntradaSalidaResponse != null)
             {
                 MessageBox.Show("La entrada del ciudadano se guardo correctamente", "Sistema Visitas", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                
+
 
                 // Generar PDF en memoria
                 MemoryStream msOriginal = ReportesIngresoVisitas.RepPdfFichaIngreso(dataEntradaSalidaResponse);
@@ -334,11 +360,11 @@ namespace CapaPresentacion
         //BOTON CANCELAR
         private void btnCancelar_Click_1(object sender, EventArgs e)
         {
-            lblEstadoCiudadano.Text = "_";
+            lblEstadoCiudadano.Text = "Restriccion";
             lblEstadoCiudadano.ForeColor = Color.LimeGreen;
 
             txtIdCiudadano.Text = string.Empty;
-            lblApellidoNombre.Text = "_";
+            lblApellidoNombre.Text = "Apellido y nombre";
             txtDni.Text = string.Empty;
             txtSexo.Text = string.Empty;
             txtFechaNacimiento.Text = string.Empty;
@@ -353,19 +379,25 @@ namespace CapaPresentacion
             txtFechaAlta.Text = string.Empty;
             picFotoVisita.Image = null;
 
-            lblCategoriaEdad.Text = "_";
-            lblDiscapacidad.Text = "_";
+            lblCategoriaEdad.Text = "Categoria - edad";
+            lblDiscapacidad.Text = "Discapacidad";
 
-            opPD.BackColor = Color.Black;
-            opID.BackColor = Color.Black;
-            opMAD.BackColor = Color.Black;
-            opAD.BackColor = Color.Black;
-            opMED.BackColor = Color.Black;
-            opPI.BackColor = Color.Black;
-            opII.BackColor = Color.Black;
-            opMAI.BackColor = Color.Black;
-            opAI.BackColor = Color.Black;
-            opMEI.BackColor = Color.Black;
+            opPD.BackColor = Color.White;
+            opID.BackColor = Color.White;
+            opMAD.BackColor = Color.White;
+            opAD.BackColor = Color.White;
+            opMED.BackColor = Color.White;
+            opPI.BackColor = Color.White;
+            opII.BackColor = Color.White;
+            opMAI.BackColor = Color.White;
+            opAI.BackColor = Color.White;
+            opMEI.BackColor = Color.White;
+
+            picHuella.Visible = false;
+            fingerprintCapture.Stop();
+            lblLectorEstado.Text = "Lector detenido";
+            lblLectorDedo.Text = "Detenido...";
+
 
             dtgMenores.DataSource = null;
             dtgInternos.DataSource = null;
@@ -403,9 +435,7 @@ namespace CapaPresentacion
             if (tieneDiscapacidad)
             {
                 lblDiscapacidad.Text = "TIENE DISCAPACIDAD. " + detalle;
-                lblDiscapacidad.ForeColor = Color.DarkOrange;
-                //lblDetalleTieneDiscapacidad.Text = dCiudadanoGlo.discapacidad_detalle;
-                //lblDetalleTieneDiscapacidad.ForeColor = Color.SteelBlue;
+                //lblDiscapacidad.ForeColor = Color.DarkOrange;
             }
             else
             {
@@ -420,7 +450,7 @@ namespace CapaPresentacion
         //BLOQUEAR DEDOS SEGUN HUELLA CARGADA
         private void bloquearChecksHuellasCargadas(List<DHuella> listaHuellas)
         {
-           
+
             if (listaHuellas.Count == 0)
             {
                 MessageBox.Show("El ciudadano no posee huellas registradas.", "Sistema Visistas", MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -435,62 +465,51 @@ namespace CapaPresentacion
                 switch (dedo)
                 {
                     case 1:
-                        opPD.Enabled = false;
-                        opPD.FlatStyle = FlatStyle.Flat;
                         opPD.BackColor = Color.Green;
                         break;
 
                     case 2:
-                        opID.Enabled = false;
-                        opID.FlatStyle = FlatStyle.Flat;
+
                         opID.BackColor = Color.Green;
                         break;
 
                     case 3:
-                        opMAD.Enabled = false;
-                        opMAD.FlatStyle = FlatStyle.Flat;
+
                         opMAD.BackColor = Color.Green;
                         break;
 
                     case 4:
-                        opAD.Enabled = false;
-                        opAD.FlatStyle = FlatStyle.Flat;
+
                         opAD.BackColor = Color.Green;
                         break;
 
                     case 5:
-                        opMED.Enabled = false;
-                        opMED.FlatStyle = FlatStyle.Flat;
+
                         opMED.BackColor = Color.Green;
                         break;
 
                     case 6:
-                        opPI.Enabled = false;
-                        opPI.FlatStyle = FlatStyle.Flat;
+
                         opPI.BackColor = Color.Green;
                         break;
 
                     case 7:
-                        opII.Enabled = false;
-                        opII.FlatStyle = FlatStyle.Flat;
+
                         opII.BackColor = Color.Green;
                         break;
 
                     case 8:
-                        opMAI.Enabled = false;
-                        opMAI.FlatStyle = FlatStyle.Flat;
+
                         opMAI.BackColor = Color.Green;
                         break;
 
                     case 9:
-                        opAI.Enabled = false;
-                        opAI.FlatStyle = FlatStyle.Flat;
+
                         opAI.BackColor = Color.Green;
                         break;
 
                     case 10:
-                        opMEI.Enabled = false;
-                        opMEI.FlatStyle = FlatStyle.Flat;
+
                         opMEI.BackColor = Color.Green;
                         break;
 
@@ -501,7 +520,306 @@ namespace CapaPresentacion
                 }//fin switch
             }//fin foreach
         }//FIN PRocedimiento para bloquear dedos segun huella cargada
+         //BLOQUEAR DEDOS SEGUN HUELLA CARGADA
+         //----------------------------------------------------------------------------------------
 
-        
+
+        //------------------------------------------------------
+        //METODOS PARA HUELLAS
+        //------------------------------------------------------
+        #region Metodos para huellas
+        private void FingerprintCapture_FingerDetected(
+            object sender,
+            EventArgs e)
+        {
+            EjecutarEnUI(() =>
+            {
+                lblLectorDedo.Text = "Dedo detectado";
+            });
+        }
+
+        private void FingerprintCapture_FingerRemoved(
+            object sender,
+            EventArgs e)
+        {
+            EjecutarEnUI(() =>
+            {
+                lblLectorDedo.Text = "Dedo retirado";
+            });
+        }
+
+        private void FingerprintCapture_CaptureError(object sender, string e)
+        {
+            MessageBox.Show(
+                e,
+                "Error del lector",
+                MessageBoxButtons.OK,
+                MessageBoxIcon.Error
+            );
+        }
+
+
+        //METODO DE CAPTURA PARA REGISTRO Y/O VERIFICACION
+        private async void FingerprintCapture_SampleCaptured(object sender, FingerprintCapture.SampleEventArgs e)
+        {
+            try
+            {
+                DPFP.FeatureSet featureSet;
+
+                bool resultado;
+
+                //if (modoVerificacion || modoIdentificacion)
+                //{
+                    resultado = fingerprintProcessor.ExtractFeaturesForVerification(
+                            e.Sample,
+                            out featureSet
+                        );
+                //}
+                //else
+                //{
+                //    resultado = fingerprintProcessor.ExtractFeaturesForEnrollment(
+                //            e.Sample,
+                //            out featureSet
+                //        );
+                //}
+
+                if (!resultado)
+                {
+                    EjecutarEnUI(() =>
+                    {
+                        lblLectorEstado.Text = "La calidad de la huella no es suficiente.";
+                    });
+
+                    return;
+                }
+
+
+                // -----------------------------------------
+                // MODO VERIFICACIÓN
+                // -----------------------------------------
+
+                if (modoVerificacion)
+                {
+                    NHuella nHuellas = new NHuella();
+                    //MessageBox.Show("Verificando huella", "Sistema Visistas", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                    (List<DHuella> listaHuellas, string errorResponse) = await nHuellas.RetornarListaXCiudadano(Convert.ToInt32(txtIdCiudadano.Text));
+                    if (listaHuellas == null)
+                    {
+                        MessageBox.Show(errorResponse, "Sistema Visistas", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        return;
+                    }
+
+                    if (listaHuellas.Count == 0)
+                    {
+                        MessageBox.Show("El ciudadano no posee huellas registradas.", "Sistema Visistas", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                        return;
+                    }
+
+                    foreach (DHuella huella in listaHuellas)
+                    {
+                        try
+                        {
+                            byte[] templateBytes = Convert.FromBase64String(huella.huella);
+
+                            DPFP.Template template = fingerprintTemplate.LoadTemplate(templateBytes);
+
+                            if (fingerprintVerifier.Verify(featureSet, template))
+                            {
+                                EjecutarEnUI(() =>
+                                {
+                                    gboxDatosParaIngreso.Enabled = true;
+                                    
+                                });
+
+                                MessageBox.Show($"IDENTIDAD VERIFICADA.\nPuede continuar con el ingreso.", "Sistema Visitas", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                                return;
+                            }
+                        }
+                        catch (Exception ex)
+                        {
+                            // registrar error si quieres
+                            continue;
+                        }
+                    }
+
+                    MessageBox.Show("NO SE VERIFICO LA IDENTIDAD CON ESTA HUELLA. \n\nSE PROCEDE A IDENTIFICACION", "Sistema Visitas", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    modoIdentificacion = true;
+                    //return;
+
+                }
+
+                // -----------------------------------------
+                // MODO IDENTIFICACION
+                // -----------------------------------------
+
+                if (modoIdentificacion)
+                {
+                    MessageBox.Show("Identificando huella", "Sistema Visitas", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                    DSQLite sqlite = new DSQLite();
+
+                    sqlite.Inicializar();
+                    MessageBox.Show("Inicializado", "Sistema Visitas", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                    //SINCRONIZACION
+                    NHuella nHuella = new NHuella();
+
+                    EjecutarEnUI(() =>
+                    {
+                        this.Enabled = false;
+                        
+                    });
+                    MessageBox.Show("inicia sincronizacion", "Sistema Visitas", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                    (bool estadoResponse, string errorResponse) = await nHuella.Sincronizar();
+                    EjecutarEnUI(() =>
+                    {
+                        this.Enabled = true;
+
+                    });
+
+                    MessageBox.Show("sincronizado", "Sistema Visitas", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                    if (estadoResponse == false)
+                    {
+                        MessageBox.Show(errorResponse, "Sistema Visitas", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        return;
+                    }
+                    
+
+                    //FIN SINCRONIZACION 
+
+                    List<DHuellaLocal> listaHuellas = sqlite.ObtenerTodasLasHuellas();
+
+                    if (listaHuellas.Count == 0)
+                    {
+                        MessageBox.Show("No hay huellas registradas.", "Atención al Ciudadano", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+
+                        return;
+                    }
+
+                    MessageBox.Show("Ya tengo las huellas de sqlite", "Sistema Visitas", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+
+                    foreach (DHuellaLocal huella in listaHuellas)
+                    {
+                        try
+                        {
+
+                            //byte[] templateBytes = Convert.FromBase64String(huella.huella);
+
+                            //DPFP.Template template = fingerprintTemplate.LoadTemplate(templateBytes);
+                            DPFP.Template template = fingerprintTemplate.LoadTemplate(huella.huella);
+
+                            if (fingerprintVerifier.Verify(featureSet, template))
+                            {
+                                MessageBox.Show($"COINCIDENCIA ENCONCTRADA CON ESTA HUELLA", "Atención al Ciudadano", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+
+                                FormHuellasEncontrado formHuellasEncontrado = new FormHuellasEncontrado(huella.ciudadano_id);
+                                formHuellasEncontrado.ShowDialog();
+                                return;
+                            }
+                        }
+                        catch (Exception ex)
+                        {
+                            // registrar error si quieres
+                            continue;
+                        }
+                    }
+
+                    MessageBox.Show("NO SE ENCONTRO COINCIDENCIA DE ESTA HUELLA", "Atención al Ciudadano", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+
+                    return;
+
+                }
+
+
+                // -----------------------------------------
+                // MODO REGISTRO - formacion del template
+                // -----------------------------------------
+
+                bool agregada = fingerprintTemplate.AddFeatures(featureSet);
+
+                uint faltantes = fingerprintTemplate.FeaturesNeeded;
+
+
+                EjecutarEnUI(() =>
+                {
+                    if (fingerprintTemplate.IsComplete)
+                    {
+                        // Obtiene el Template original.
+                        templateRegistrado = fingerprintTemplate.GetTemplate();
+
+                        // Lo convierte a bytes.
+                        templateBytesRegistrado = fingerprintTemplate.GetTemplateBytes();
+                        string huellaBase64 = Convert.ToBase64String(templateBytesRegistrado);
+                        this.huellaBase64Global = huellaBase64;
+
+                        EjecutarEnUI(() =>
+                        {
+                            if (huellaBase64 != "")
+                            {
+                                lblLectorEstado.Text = "Template generado correctamente.";
+                            }
+                            else
+                            {
+                                lblLectorEstado.Text = "Error al construir el Template.";
+                            }
+                        });
+
+                    }
+                    else if (agregada)
+                    {
+                        lblLectorEstado.Text = "Captura correcta. Faltan " + faltantes + " muestras.";
+                    }
+                    else
+                    {
+                        lblLectorEstado.Text = "La muestra no fue aceptada. " + "Coloque nuevamente el dedo.";
+                    }
+                });
+            }
+            catch (Exception ex)
+            {
+                EjecutarEnUI(() =>
+                {
+                    lblLectorEstado.Text = "Error: " + ex.Message;
+                });
+            }
+        }
+        //FIN METODO DE CAPTURA PARA REGISTRO Y/O VERIFICACION
+        //-------------------------------------------------------------------------------------------
+
+
+        protected override void OnFormClosing(
+            FormClosingEventArgs e)
+        {
+            fingerprintCapture?.Dispose();
+
+            base.OnFormClosing(e);
+        }
+
+        //PERMITE ACCEDER A CONTROLES DESDE UN METODO QUE NO PODRIA
+        private void EjecutarEnUI(Action accion)
+        {
+            if (InvokeRequired)
+            {
+                Invoke(accion);
+                return;
+            }
+
+            accion();
+        }
+
+        private void gboxVisita_Enter(object sender, EventArgs e)
+        {
+
+        }
+
+        #endregion Metodos para huellas
+        //----------------------------------------------------------
+        //FIN METODOS PARA HUELLAS
+        //----------------------------------------------------------
     }
 }
