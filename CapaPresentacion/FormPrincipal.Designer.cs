@@ -130,6 +130,7 @@
             this.btnEgresoVisitas.TabIndex = 81;
             this.btnEgresoVisitas.Text = "Egreso de visitas";
             this.btnEgresoVisitas.UseVisualStyleBackColor = false;
+            this.btnEgresoVisitas.Click += new System.EventHandler(this.btnEgresoVisitas_Click);
             // 
             // FormPrincipal
             // 

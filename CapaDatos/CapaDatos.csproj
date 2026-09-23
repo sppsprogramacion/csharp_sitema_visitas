@@ -88,6 +88,7 @@
     <Compile Include="DBitacoraProhibicionVisita.cs" />
     <Compile Include="DCiudadano.cs" />
     <Compile Include="DCiudadanoIngreso.cs" />
+    <Compile Include="DCiudadanoIngresoControl.cs" />
     <Compile Include="DCiudadanoVisita.cs" />
     <Compile Include="DDepartamento.cs" />
     <Compile Include="DEntradaSalida.cs" />
@@ -102,6 +103,7 @@
     <Compile Include="DLogin.cs" />
     <Compile Include="DLoginResponse.cs" />
     <Compile Include="DMenorVisita.cs" />
+    <Compile Include="DMenorVisitaIngresado.cs" />
     <Compile Include="DMotivoAtencion.cs" />
     <Compile Include="DMunicipio.cs" />
     <Compile Include="DNacionalidad.cs" />

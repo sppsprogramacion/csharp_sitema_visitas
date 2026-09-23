@@ -34,5 +34,18 @@ namespace CapaNegocio
         }
         //FIN BUSCAR CIUDADANO INGRESO
         //------------------------------------------------------------------------------------------
+
+        //BUSCAR CIUDADANO INGRESO CONTROL
+        public async Task<(DCiudadanoIngresoControl, string error)> BuscarCiudadanoIngresoControlXFicha(int numeroFicha)
+        {
+            IEntradaSalidaDao entradaSalidaDao = new EntradaSalidaDaoImplement();
+
+            (DCiudadanoIngresoControl ciudadanoIngresoResponse, string errorResponse) = await entradaSalidaDao.BuscarCiudadanoIngresoControlXFicha(numeroFicha);
+
+
+            return (ciudadanoIngresoResponse, errorResponse);
+        }
+        //FIN BUSCAR CIUDADANO INGRESO CONTROL
+        //------------------------------------------------------------------------------------------
     }
 }

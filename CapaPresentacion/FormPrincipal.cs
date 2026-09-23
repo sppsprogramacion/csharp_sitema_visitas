@@ -91,5 +91,12 @@ namespace CapaPresentacion
 
             formIngresoVisitas.ShowDialog();
         }
+
+        private void btnEgresoVisitas_Click(object sender, EventArgs e)
+        {
+            FormEgresoVisita formEgresoVisitas = new FormEgresoVisita();
+
+            formEgresoVisitas.ShowDialog();
+        }
     }
 }
