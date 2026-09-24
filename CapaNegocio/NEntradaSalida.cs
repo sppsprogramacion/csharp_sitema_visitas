@@ -47,5 +47,17 @@ namespace CapaNegocio
         }
         //FIN BUSCAR CIUDADANO INGRESO CONTROL
         //------------------------------------------------------------------------------------------
+
+        //EGRESO
+        public async Task<(bool, string error)> EgresoPuertaPrincipal(int idEntradaSalida, string dataegreso)
+        {
+            IEntradaSalidaDao entradaSalidaDao = new EntradaSalidaDaoImplement();
+
+            (bool egresoResponse, string error) = await entradaSalidaDao.EgresoPuertaPrincipal(idEntradaSalida, dataegreso);
+
+            return (egresoResponse, error);
+        }
+        //FIN EGRESO 
+        //---------------------------------------------------------------------------------
     }
 }

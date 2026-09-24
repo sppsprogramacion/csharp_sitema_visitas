@@ -2,11 +2,15 @@
 using CapaNegocio;
 using CapaPresentacion.Biometria;
 using CapaPresentacion.FuncionesGenerales;
+using CapaPresentacion.Reportes.IngresoVisistas;
+using Newtonsoft.Json;
+using PdfiumViewer;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -33,7 +37,17 @@ namespace CapaPresentacion
 
             //BUSCAR CIUDADANO CON EL DNI
             this.Enabled = false;
-            int numeroFicha = Convert.ToInt32(txtNumeroFichaBuscar.Text);
+            int numeroFicha = 0;
+            try
+            {
+                numeroFicha = Convert.ToInt32(txtNumeroFichaBuscar.Text);
+
+            }
+            catch {
+                MessageBox.Show("Debe ingresar un numero de ficha valido", "Sistema Visitas", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
             (DCiudadanoIngresoControl dCiudadanoIngresoResponse, string errorResponse) = await nEntradaSalida.BuscarCiudadanoIngresoControlXFicha(numeroFicha);
 
             if (dCiudadanoIngresoResponse == null)
@@ -96,6 +110,57 @@ namespace CapaPresentacion
             }
                         
         }
+
+        private void btnCancelar_Click(object sender, EventArgs e)
+        {
+
+            this.InicializarContrles();
+        }
+
+        private async void btnGuardar_Click(object sender, EventArgs e)
+        {
+            //VALIDACIONES
+            if (string.IsNullOrEmpty(txtIdIngreso.Text))
+            {
+                MessageBox.Show("Debe cargar datos del ingreso de un ciudadano para poder dar el egreso.", "Sistema Visitas", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            if(txtObservaciones.Text.Trim().Length > 200)
+            {
+                MessageBox.Show("Las observaciones debe tener 200 caracteres como maximo.", "Sistema Visitas", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+
+            }
+            //FIN VALIDACIONES
+
+            var data = new
+            {
+                
+                observaciones_usuarios = txtObservaciones.Text.Trim(),
+            };
+
+            string dataEgreso = JsonConvert.SerializeObject(data);
+
+            NEntradaSalida nEntradaSalida = new NEntradaSalida();
+
+            this.Enabled = false;
+            (bool respuestaEditar, string errorResponse) = await nEntradaSalida.EgresoPuertaPrincipal(Convert.ToInt32(txtIdIngreso.Text), dataEgreso);
+            this.Enabled = true;
+
+            if (respuestaEditar)
+            {
+
+                MessageBox.Show("El egreso se registró correctamente", "Sistema Visitas", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                this.InicializarContrles();
+
+            }
+            else
+            {
+                MessageBox.Show(errorResponse, "Sistema Visitas", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
 
         //CONTROL EDAD
         private void ControlEdad(int edad)
@@ -200,11 +265,62 @@ namespace CapaPresentacion
 
                 }//fin switch
             }//fin foreach
-        }//FIN PRocedimiento para bloquear dedos segun huella cargada
+        }
+        //FIN PRocedimiento para bloquear dedos segun huella cargada
+        //-------------------------------------------------------------------------------
 
-        
         //BLOQUEAR DEDOS SEGUN HUELLA CARGADA
         //----------------------------------------------------------------------------------------
 
+        //INICIALIZAR CONTROLES
+        private void InicializarContrles()
+        {
+            //CARGAR DATOS DEL CIUDADANO
+            lblApellidoNombre.Text = string.Empty; ;
+            picFotoVisita.Image = null;
+            txtDni.Text = string.Empty; ;
+            txtSexo.Text = string.Empty; ;
+            txtFechaNacimiento.Text = string.Empty; ;
+            txtEdad.Text = string.Empty; ;
+
+            //CARGAR DATOS DE INGRESO
+            txtNumeroFicha.Text = string.Empty; ;
+            txtIdIngreso.Text = string.Empty; ;
+            txtNumeroFicha.Text = string.Empty; ;
+            txtParentesco.Text = string.Empty; ;
+            txtIntrno.Text = string.Empty; ;
+            txtCasillero.Text = string.Empty; ;
+            txtFechaIngreso.Text = string.Empty; ;
+            txtHoraIngreso.Text = string.Empty; ;
+            txtOrganismo.Text = string.Empty;
+
+            lblCategoriaEdad.Text = "Categoria - edad";
+            lblDiscapacidad.Text = "Discapacidad";
+
+            opPD.BackColor = Color.White;
+            opID.BackColor = Color.White;
+            opMAD.BackColor = Color.White;
+            opAD.BackColor = Color.White;
+            opMED.BackColor = Color.White;
+            opPI.BackColor = Color.White;
+            opII.BackColor = Color.White;
+            opMAI.BackColor = Color.White;
+            opAI.BackColor = Color.White;
+            opMEI.BackColor = Color.White;
+
+            //picHuella.Visible = false;
+            //fingerprintCapture.Stop();
+            //lblLectorEstado.Text = "Lector detenido";
+            //lblLectorDedo.Text = "Detenido...";
+
+
+            dtgMenores.DataSource = null;
+            txtCasillero.Text = string.Empty;
+            btnBuscar.Enabled = true;
+            txtNumeroFichaBuscar.Text = string.Empty;
+            txtNumeroFichaBuscar.Focus();
+        }
+        //FINALIZAR INICIALIZAR CONTROLES
+        //----------------------------------------------------------------------------
     }
 }

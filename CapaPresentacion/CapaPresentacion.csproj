@@ -258,6 +258,12 @@
     <Compile Include="FormProhibicionesAnticipadas.Designer.cs">
       <DependentUpon>FormProhibicionesAnticipadas.cs</DependentUpon>
     </Compile>
+    <Compile Include="FormReimprimirFicha.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormReimprimirFicha.Designer.cs">
+      <DependentUpon>FormReimprimirFicha.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormVisitas.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -318,6 +324,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormProhibicionesAnticipadas.resx">
       <DependentUpon>FormProhibicionesAnticipadas.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormReimprimirFicha.resx">
+      <DependentUpon>FormReimprimirFicha.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormVisitas.resx">
       <DependentUpon>FormVisitas.cs</DependentUpon>

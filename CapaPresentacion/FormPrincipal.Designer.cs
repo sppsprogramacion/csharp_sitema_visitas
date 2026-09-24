@@ -36,6 +36,7 @@
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.btnIngresoVisita = new System.Windows.Forms.Button();
             this.btnEgresoVisitas = new System.Windows.Forms.Button();
+            this.btnReimprimirFicha = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -46,7 +47,7 @@
             this.btnVerVisitas.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnVerVisitas.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnVerVisitas.ForeColor = System.Drawing.Color.White;
-            this.btnVerVisitas.Location = new System.Drawing.Point(287, 56);
+            this.btnVerVisitas.Location = new System.Drawing.Point(416, 56);
             this.btnVerVisitas.Name = "btnVerVisitas";
             this.btnVerVisitas.Size = new System.Drawing.Size(120, 70);
             this.btnVerVisitas.TabIndex = 0;
@@ -132,12 +133,27 @@
             this.btnEgresoVisitas.UseVisualStyleBackColor = false;
             this.btnEgresoVisitas.Click += new System.EventHandler(this.btnEgresoVisitas_Click);
             // 
+            // btnReimprimirFicha
+            // 
+            this.btnReimprimirFicha.BackColor = System.Drawing.Color.Indigo;
+            this.btnReimprimirFicha.FlatAppearance.BorderColor = System.Drawing.Color.Indigo;
+            this.btnReimprimirFicha.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnReimprimirFicha.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnReimprimirFicha.ForeColor = System.Drawing.Color.White;
+            this.btnReimprimirFicha.Location = new System.Drawing.Point(286, 56);
+            this.btnReimprimirFicha.Name = "btnReimprimirFicha";
+            this.btnReimprimirFicha.Size = new System.Drawing.Size(120, 70);
+            this.btnReimprimirFicha.TabIndex = 82;
+            this.btnReimprimirFicha.Text = "Reimprimir ficha";
+            this.btnReimprimirFicha.UseVisualStyleBackColor = false;
+            // 
             // FormPrincipal
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(103)))), ((int)(((byte)(153)))));
             this.ClientSize = new System.Drawing.Size(916, 606);
+            this.Controls.Add(this.btnReimprimirFicha);
             this.Controls.Add(this.btnEgresoVisitas);
             this.Controls.Add(this.btnIngresoVisita);
             this.Controls.Add(this.lblUsuario);
@@ -166,6 +182,7 @@
         private System.Windows.Forms.Label lblUsuario;
         private System.Windows.Forms.Button btnIngresoVisita;
         private System.Windows.Forms.Button btnEgresoVisitas;
+        private System.Windows.Forms.Button btnReimprimirFicha;
     }
 }
 

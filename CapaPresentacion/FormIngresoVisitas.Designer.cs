@@ -28,8 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             this.gboxVisita = new System.Windows.Forms.GroupBox();
             this.lblEstadoCiudadano = new System.Windows.Forms.Label();
             this.lblDiscapacidad = new System.Windows.Forms.Label();
@@ -59,6 +59,7 @@
             this.opMEI = new System.Windows.Forms.CheckBox();
             this.label70 = new System.Windows.Forms.Label();
             this.label72 = new System.Windows.Forms.Label();
+            this.pictureBox4 = new System.Windows.Forms.PictureBox();
             this.txtSexo = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
             this.txtIdCiudadano = new System.Windows.Forms.TextBox();
@@ -67,6 +68,7 @@
             this.label4 = new System.Windows.Forms.Label();
             this.txtFechaNacimiento = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
+            this.picFotoVisita = new System.Windows.Forms.PictureBox();
             this.txtPais = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
             this.lblProvincia = new System.Windows.Forms.Label();
@@ -89,15 +91,13 @@
             this.lblLectorDedo = new System.Windows.Forms.Label();
             this.lblFondoHuella = new System.Windows.Forms.Label();
             this.picHuella = new System.Windows.Forms.PictureBox();
-            this.pictureBox4 = new System.Windows.Forms.PictureBox();
-            this.picFotoVisita = new System.Windows.Forms.PictureBox();
             this.gboxVisita.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picFotoVisita)).BeginInit();
             this.gboxDatosParaIngreso.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dtgInternos)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dtgMenores)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picHuella)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.picFotoVisita)).BeginInit();
             this.SuspendLayout();
             // 
             // gboxVisita
@@ -478,6 +478,16 @@
             this.label72.TabIndex = 121;
             this.label72.Text = "MANO IZQUIERDA";
             // 
+            // pictureBox4
+            // 
+            this.pictureBox4.Image = global::CapaPresentacion.Properties.Resources.manos_lila;
+            this.pictureBox4.Location = new System.Drawing.Point(237, 127);
+            this.pictureBox4.Name = "pictureBox4";
+            this.pictureBox4.Size = new System.Drawing.Size(282, 124);
+            this.pictureBox4.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox4.TabIndex = 120;
+            this.pictureBox4.TabStop = false;
+            // 
             // txtSexo
             // 
             this.txtSexo.BackColor = System.Drawing.SystemColors.ActiveBorder;
@@ -565,6 +575,17 @@
             this.label3.Size = new System.Drawing.Size(143, 19);
             this.label3.TabIndex = 24;
             this.label3.Text = "Fecha nacimiento";
+            // 
+            // picFotoVisita
+            // 
+            this.picFotoVisita.BackColor = System.Drawing.Color.Transparent;
+            this.picFotoVisita.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.picFotoVisita.Location = new System.Drawing.Point(15, 47);
+            this.picFotoVisita.Name = "picFotoVisita";
+            this.picFotoVisita.Size = new System.Drawing.Size(215, 205);
+            this.picFotoVisita.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.picFotoVisita.TabIndex = 19;
+            this.picFotoVisita.TabStop = false;
             // 
             // txtPais
             // 
@@ -719,8 +740,8 @@
             this.dtgInternos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dtgInternos.Location = new System.Drawing.Point(7, 307);
             this.dtgInternos.Name = "dtgInternos";
-            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.Black;
-            this.dtgInternos.RowsDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle3.ForeColor = System.Drawing.Color.Black;
+            this.dtgInternos.RowsDefaultCellStyle = dataGridViewCellStyle3;
             this.dtgInternos.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dtgInternos.Size = new System.Drawing.Size(572, 169);
             this.dtgInternos.TabIndex = 1;
@@ -730,8 +751,8 @@
             this.dtgMenores.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dtgMenores.Location = new System.Drawing.Point(7, 37);
             this.dtgMenores.Name = "dtgMenores";
-            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.Black;
-            this.dtgMenores.RowsDefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle4.ForeColor = System.Drawing.Color.Black;
+            this.dtgMenores.RowsDefaultCellStyle = dataGridViewCellStyle4;
             this.dtgMenores.Size = new System.Drawing.Size(572, 244);
             this.dtgMenores.TabIndex = 0;
             // 
@@ -746,7 +767,7 @@
             this.btnCancelar.Name = "btnCancelar";
             this.btnCancelar.Size = new System.Drawing.Size(105, 40);
             this.btnCancelar.TabIndex = 152;
-            this.btnCancelar.Text = "CANCELAR";
+            this.btnCancelar.Text = "FINALIZAR";
             this.btnCancelar.UseVisualStyleBackColor = false;
             this.btnCancelar.Click += new System.EventHandler(this.btnCancelar_Click_1);
             // 
@@ -837,27 +858,6 @@
             this.picHuella.TabStop = false;
             this.picHuella.Visible = false;
             // 
-            // pictureBox4
-            // 
-            this.pictureBox4.Image = global::CapaPresentacion.Properties.Resources.manos_lila;
-            this.pictureBox4.Location = new System.Drawing.Point(237, 127);
-            this.pictureBox4.Name = "pictureBox4";
-            this.pictureBox4.Size = new System.Drawing.Size(282, 124);
-            this.pictureBox4.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox4.TabIndex = 120;
-            this.pictureBox4.TabStop = false;
-            // 
-            // picFotoVisita
-            // 
-            this.picFotoVisita.BackColor = System.Drawing.Color.Transparent;
-            this.picFotoVisita.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.picFotoVisita.Location = new System.Drawing.Point(15, 47);
-            this.picFotoVisita.Name = "picFotoVisita";
-            this.picFotoVisita.Size = new System.Drawing.Size(215, 205);
-            this.picFotoVisita.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.picFotoVisita.TabIndex = 19;
-            this.picFotoVisita.TabStop = false;
-            // 
             // FormIngresoVisitas
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -881,13 +881,13 @@
             this.Load += new System.EventHandler(this.FormIngresoVisitas_Load);
             this.gboxVisita.ResumeLayout(false);
             this.gboxVisita.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picFotoVisita)).EndInit();
             this.gboxDatosParaIngreso.ResumeLayout(false);
             this.gboxDatosParaIngreso.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dtgInternos)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dtgMenores)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.picHuella)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.picFotoVisita)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
