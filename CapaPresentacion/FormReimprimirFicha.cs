@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CapaPresentacion.FuncionesGenerales;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -15,6 +16,13 @@ namespace CapaPresentacion
         public FormReimprimirFicha()
         {
             InitializeComponent();
+        }
+
+        private void FormReimprimirFicha_Load(object sender, EventArgs e)
+        {
+            //// Ajustar el tamaño del formulario            
+            FormularioAyudas.AjustarFormulario(this);
+
         }
     }
 }

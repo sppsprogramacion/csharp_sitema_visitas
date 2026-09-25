@@ -146,6 +146,7 @@
             this.btnReimprimirFicha.TabIndex = 82;
             this.btnReimprimirFicha.Text = "Reimprimir ficha";
             this.btnReimprimirFicha.UseVisualStyleBackColor = false;
+            this.btnReimprimirFicha.Click += new System.EventHandler(this.btnReimprimirFicha_Click);
             // 
             // FormPrincipal
             // 

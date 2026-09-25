@@ -64,6 +64,7 @@
             this.Controls.Add(this.groupBox3);
             this.Name = "FormReimprimirFicha";
             this.Text = "REIMPRIMIR FICHA";
+            this.Load += new System.EventHandler(this.FormReimprimirFicha_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dtgIngresos)).EndInit();
             this.groupBox3.ResumeLayout(false);
             this.ResumeLayout(false);

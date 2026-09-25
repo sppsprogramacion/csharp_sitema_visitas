@@ -98,5 +98,12 @@ namespace CapaPresentacion
 
             formEgresoVisitas.ShowDialog();
         }
+
+        private void btnReimprimirFicha_Click(object sender, EventArgs e)
+        {
+            FormReimprimirFicha formReimprimirFicha = new FormReimprimirFicha();
+
+            formReimprimirFicha.ShowDialog();
+        }
     }
 }
