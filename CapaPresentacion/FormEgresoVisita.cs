@@ -38,16 +38,16 @@ namespace CapaPresentacion
             //BUSCAR CIUDADANO CON EL DNI
             this.Enabled = false;
             int numeroFicha = 0;
-            try
-            {
-                numeroFicha = Convert.ToInt32(txtNumeroFichaBuscar.Text);
+            //try
+            //{
+            //    numeroFicha = Convert.ToInt32(txtNumeroFichaBuscar.Text);
 
-            }
-            catch {
-                MessageBox.Show("Debe ingresar un numero de ficha valido", "Sistema Visitas", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
-            }
-
+            //}
+            //catch {
+            //    MessageBox.Show("Debe ingresar un numero de ficha valido", "Sistema Visitas", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            //    return;
+            //}
+            numeroFicha = Convert.ToInt32(txtNumeroFichaBuscar.Text);
             (DCiudadanoIngresoControl dCiudadanoIngresoResponse, string errorResponse) = await nEntradaSalida.BuscarCiudadanoIngresoControlXFicha(numeroFicha);
 
             if (dCiudadanoIngresoResponse == null)

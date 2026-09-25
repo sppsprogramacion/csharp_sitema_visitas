@@ -59,5 +59,18 @@ namespace CapaNegocio
         }
         //FIN EGRESO 
         //---------------------------------------------------------------------------------
+
+        //LISTA ENTRADAS ACTUALES
+        public async Task<(List<DEntradaSalidaConsulta>, string error)> RetornarListaProhibicionesVisita(int idCiudadano)
+        {
+            IEntradaSalidaDao entradaSalidaDao = new EntradaSalidaDaoImplement();
+
+            (List<DEntradaSalidaConsulta> listaEntradas, string errorResponse) = await entradaSalidaDao.ListaEntradaSalidaActuales();
+
+
+            return (listaEntradas, errorResponse);
+        }
+        //FIN //LISTA ENTRADAS ACTUALES
+        //...............................-----------------
     }
 }

@@ -301,25 +301,25 @@ namespace CapaPresentacion
                     formVisor.Controls.Add(pdfViewer);
 
                     // Imprimir automáticamente al abrir el visor
-                    //formVisor.Shown += (s, args) =>
-                    //{
-                    //    try
-                    //    {
-                    //        using (PrintDocument printDocument = pdfDocument.CreatePrintDocument())
-                    //        {
-                    //            printDocument.Print();
-                    //        }
-                    //    }
-                    //    catch (Exception ex)
-                    //    {
-                    //        MessageBox.Show(
-                    //            "Error al imprimir la ficha: " + ex.Message,
-                    //            "Sistema Visitas",
-                    //            MessageBoxButtons.OK,
-                    //            MessageBoxIcon.Error
-                    //        );
-                    //    }
-                    //};
+                    formVisor.Shown += (s, args) =>
+                    {
+                        try
+                        {
+                            using (PrintDocument printDocument = pdfDocument.CreatePrintDocument())
+                            {
+                                printDocument.Print();
+                            }
+                        }
+                        catch (Exception ex)
+                        {
+                            MessageBox.Show(
+                                "Error al imprimir la ficha: " + ex.Message,
+                                "Sistema Visitas",
+                                MessageBoxButtons.OK,
+                                MessageBoxIcon.Error
+                            );
+                        }
+                    };
 
                     formVisor.FormClosed += (s, args) =>
                     {
@@ -657,12 +657,12 @@ namespace CapaPresentacion
 
                 if (modoIdentificacion)
                 {
-                    MessageBox.Show("Identificando huella", "Sistema Visitas", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    //MessageBox.Show("Identificando huella", "Sistema Visitas", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
                     DSQLite sqlite = new DSQLite();
 
                     sqlite.Inicializar();
-                    MessageBox.Show("Inicializado", "Sistema Visitas", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    //MessageBox.Show("Inicializado", "Sistema Visitas", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
                     //SINCRONIZACION
                     NHuella nHuella = new NHuella();
@@ -672,7 +672,7 @@ namespace CapaPresentacion
                         this.Enabled = false;
                         
                     });
-                    MessageBox.Show("inicia sincronizacion", "Sistema Visitas", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    //MessageBox.Show("inicia sincronizacion", "Sistema Visitas", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
                     (bool estadoResponse, string errorResponse) = await nHuella.Sincronizar();
                     EjecutarEnUI(() =>
@@ -681,7 +681,7 @@ namespace CapaPresentacion
 
                     });
 
-                    MessageBox.Show("sincronizado", "Sistema Visitas", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    //MessageBox.Show("sincronizado", "Sistema Visitas", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
                     if (estadoResponse == false)
                     {
@@ -696,12 +696,12 @@ namespace CapaPresentacion
 
                     if (listaHuellas.Count == 0)
                     {
-                        MessageBox.Show("No hay huellas registradas.", "Atención al Ciudadano", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        MessageBox.Show("No hay huellas registradas.", "Sistema Visitas", MessageBoxButtons.OK, MessageBoxIcon.Warning);
 
                         return;
                     }
 
-                    MessageBox.Show("Ya tengo las huellas de sqlite", "Sistema Visitas", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    //MessageBox.Show("Ya tengo las huellas de sqlite", "Sistema Visitas", MessageBoxButtons.OK, MessageBoxIcon.Warning);
 
                     foreach (DHuellaLocal huella in listaHuellas)
                     {
@@ -715,7 +715,7 @@ namespace CapaPresentacion
 
                             if (fingerprintVerifier.Verify(featureSet, template))
                             {
-                                MessageBox.Show($"COINCIDENCIA ENCONCTRADA CON ESTA HUELLA", "Atención al Ciudadano", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                                MessageBox.Show($"COINCIDENCIA ENCONCTRADA CON ESTA HUELLA", "Sistema Visitas", MessageBoxButtons.OK, MessageBoxIcon.Warning);
 
                                 FormHuellasEncontrado formHuellasEncontrado = new FormHuellasEncontrado(huella.ciudadano_id);
                                 formHuellasEncontrado.ShowDialog();
@@ -729,7 +729,7 @@ namespace CapaPresentacion
                         }
                     }
 
-                    MessageBox.Show("NO SE ENCONTRO COINCIDENCIA DE ESTA HUELLA", "Atención al Ciudadano", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    MessageBox.Show("NO SE ENCONTRO COINCIDENCIA DE ESTA HUELLA", "Sistema Visitas", MessageBoxButtons.OK, MessageBoxIcon.Warning);
 
                     return;
 

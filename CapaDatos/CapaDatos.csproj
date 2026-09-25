@@ -92,7 +92,7 @@
     <Compile Include="DCiudadanoVisita.cs" />
     <Compile Include="DDepartamento.cs" />
     <Compile Include="DEntradaSalida.cs" />
-    <Compile Include="DEntradaSalidaIngreso.cs" />
+    <Compile Include="DEntradaSalidaConsulta.cs" />
     <Compile Include="DEntradaSalidaIngresoPPResponse.cs" />
     <Compile Include="DExcepcionIngresoVisita.cs" />
     <Compile Include="DHuella.cs" />

@@ -169,6 +169,7 @@ namespace DAOImplement
         //FIN BUSCAR CIUDADANO INGRESADO PATRA CONTROL
         //--------------------------------------------------------------------------
 
+        //EGRESO PUERTA PRINCIPAL
         public async Task<(bool, string error)> EgresoPuertaPrincipal(int idEntradaSalida, string dataEgreso)
         {
             string token = SessionManager.Token; // Aquí pones tu token real
@@ -223,12 +224,61 @@ namespace DAOImplement
                 return (false, $"Error inesperado: {ex.Message}");
             }
         }
-
+        //FIN //EGRESO PUERTA PRINCIPAL
+        //------------------------------------------------------------------------------
 
         public Task<(DEntradaSalida, string error)> BuscarEntradaSalidaXId(int idEntradaSalida)
         {
             throw new NotImplementedException();
         }
+
+        //LISTA DE INGRESOS ACTUALES
+        public async Task<(List<DEntradaSalidaConsulta>, string error)> ListaEntradaSalidaActuales()
+        {
+            string token = SessionManager.Token; // Aquí pones tu token real
+
+            List<DEntradaSalidaConsulta> listaEntradas = new List<DEntradaSalidaConsulta>();
+
+            try
+            {
+                // Agregar el token en los headers
+                this.httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
+
+                HttpResponseMessage httpResponse = await this.httpClient.GetAsync(url_base + "/entradas-salidas/lista-ingresos-actuales");
+
+                if (httpResponse.IsSuccessStatusCode)
+                {
+                    var content = await httpResponse.Content.ReadAsStringAsync();
+                    listaEntradas = JsonConvert.DeserializeObject<List<DEntradaSalidaConsulta>>(content);
+                    return (listaEntradas, null);
+                }
+                else
+                {
+                    string errorMessage = await httpResponse.Content.ReadAsStringAsync();
+                    var mensaje = JObject.Parse(errorMessage)["message"]?.ToString();
+                    return (null, $"Error en la busqueda: {mensaje}");
+                }
+
+            }
+            catch (HttpRequestException httpRequestException)
+            {
+                // Capturar errores de la solicitud HTTP
+                return (null, $"Error de conexión: {httpRequestException.Message}");
+            }
+            catch (JsonException jsonException)
+            {
+                // Capturar errores en la serialización/deserialización de JSON                
+                return (null, $"Error inesperado");
+            }
+            catch (Exception ex)
+            {
+                // Manejo de errores (log, mensaje al usuario, etc.)
+                Console.WriteLine($"Error: {ex.Message}");
+                return (null, $"Error inesperado: {ex.Message}");
+            }
+        }
+        //FIN LISTA DE INGRESOS ACTUALES
+        //---------------------------------------------------------------
 
 
         public Task<(List<DEntradaSalida>, string error)> ListaEntradaSalidaXCiudadano(int idCiudadano)
@@ -241,6 +291,5 @@ namespace DAOImplement
             throw new NotImplementedException();
         }
 
-        
     }
 }

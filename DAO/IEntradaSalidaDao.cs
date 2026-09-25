@@ -15,6 +15,7 @@ namespace DAO
         Task<(DCiudadanoIngresoControl, string error)> BuscarCiudadanoIngresoControlXFicha(int numeroFicha);
         Task<(DCiudadanoIngreso, string error)> BuscarCiudadanoIngresoXDni(int dniCiudadano);
         Task<(List<DEntradaSalida>, string error)> ListaEntradaSalidaXCiudadano(int idCiudadano);
+        Task<(List<DEntradaSalidaConsulta>, string error)> ListaEntradaSalidaActuales();
         Task<(bool, string error)> EgresoPuertaPrincipal(int idEntradaSalida, string dataEgreso);
     }
 }
