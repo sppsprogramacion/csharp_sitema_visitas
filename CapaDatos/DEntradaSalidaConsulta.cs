@@ -24,7 +24,7 @@ namespace CapaDatos
         public string casillero { get; set; }
         public DateTime fecha_registro { get; set; }
         public string hora_registro { get; set; }
+        public string hora_egreso { get; set; }
         public string organismo { get; set; }
-        public List<DMenorVisitaIngresado> menoresIngresadosResponse { get; set; }
     }
 }

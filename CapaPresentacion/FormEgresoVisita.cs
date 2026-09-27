@@ -32,28 +32,30 @@ namespace CapaPresentacion
 
         private async void btnBuscar_Click(object sender, EventArgs e)
         {
-            NEntradaSalida nEntradaSalida = new NEntradaSalida();
 
 
             //BUSCAR CIUDADANO CON EL DNI
-            this.Enabled = false;
             int numeroFicha = 0;
-            //try
-            //{
-            //    numeroFicha = Convert.ToInt32(txtNumeroFichaBuscar.Text);
+            try
+            {
+                numeroFicha = Convert.ToInt32(txtNumeroFichaBuscar.Text.Trim());
 
-            //}
-            //catch {
-            //    MessageBox.Show("Debe ingresar un numero de ficha valido", "Sistema Visitas", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-            //    return;
-            //}
-            numeroFicha = Convert.ToInt32(txtNumeroFichaBuscar.Text);
-            (DCiudadanoIngresoControl dCiudadanoIngresoResponse, string errorResponse) = await nEntradaSalida.BuscarCiudadanoIngresoControlXFicha(numeroFicha);
+            }
+            catch
+            {
+                MessageBox.Show("Debe ingresar un numero de ficha valido", "Sistema Sisitas", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+            this.Enabled = false;
+
+            NEntradaSalida nEntradaSalida = new NEntradaSalida();
+            (DEntradaSalidaControl dCiudadanoIngresoResponse, string errorResponse) = await nEntradaSalida.BuscarCiudadanoIngresoControlXFicha(numeroFicha);
+            this.Enabled = true;
+
 
             if (dCiudadanoIngresoResponse == null)
             {
                 MessageBox.Show(errorResponse, "Sistema Visitas", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                this.Enabled = true;
 
                 return;
             }
@@ -77,7 +79,6 @@ namespace CapaPresentacion
             txtHoraIngreso.Text = dCiudadanoIngresoResponse.hora_registro;
             txtOrganismo.Text = dCiudadanoIngresoResponse.organismo;
 
-            this.Enabled = true;
 
 
             this.ControlTieneDiscapacidad(dCiudadanoIngresoResponse.tiene_discapacidad, dCiudadanoIngresoResponse.discapacidad_detalle);
@@ -275,27 +276,29 @@ namespace CapaPresentacion
         //INICIALIZAR CONTROLES
         private void InicializarContrles()
         {
-            //CARGAR DATOS DEL CIUDADANO
-            lblApellidoNombre.Text = string.Empty; ;
+            //DATOS DEL CIUDADANO
+            lblApellidoNombre.Text = "Apellido y nombre"; ;
             picFotoVisita.Image = null;
             txtDni.Text = string.Empty; ;
             txtSexo.Text = string.Empty; ;
             txtFechaNacimiento.Text = string.Empty; ;
             txtEdad.Text = string.Empty; ;
 
-            //CARGAR DATOS DE INGRESO
-            txtNumeroFicha.Text = string.Empty; ;
-            txtIdIngreso.Text = string.Empty; ;
-            txtNumeroFicha.Text = string.Empty; ;
-            txtParentesco.Text = string.Empty; ;
-            txtIntrno.Text = string.Empty; ;
-            txtCasillero.Text = string.Empty; ;
-            txtFechaIngreso.Text = string.Empty; ;
-            txtHoraIngreso.Text = string.Empty; ;
-            txtOrganismo.Text = string.Empty;
-
             lblCategoriaEdad.Text = "Categoria - edad";
             lblDiscapacidad.Text = "Discapacidad";
+
+            //DATOS DE INGRESO
+            txtNumeroFicha.Text = string.Empty; 
+            txtIdIngreso.Text = string.Empty; 
+
+            txtFechaIngreso.Text = string.Empty; 
+            txtHoraIngreso.Text = string.Empty; 
+            txtOrganismo.Text = string.Empty;
+
+            txtIntrno.Text = string.Empty; 
+            txtParentesco.Text = string.Empty; 
+            txtCasillero.Text = string.Empty;
+            txtObservaciones.Text = string.Empty;
 
             opPD.BackColor = Color.White;
             opID.BackColor = Color.White;
@@ -307,12 +310,6 @@ namespace CapaPresentacion
             opMAI.BackColor = Color.White;
             opAI.BackColor = Color.White;
             opMEI.BackColor = Color.White;
-
-            //picHuella.Visible = false;
-            //fingerprintCapture.Stop();
-            //lblLectorEstado.Text = "Lector detenido";
-            //lblLectorDedo.Text = "Detenido...";
-
 
             dtgMenores.DataSource = null;
             txtCasillero.Text = string.Empty;

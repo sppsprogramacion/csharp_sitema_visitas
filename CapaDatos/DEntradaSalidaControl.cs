@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace CapaDatos
 {
-    public class DCiudadanoIngresoControl
+    public class DEntradaSalidaControl
     {
         public int id_entrada_salida { get; set; }
         public string numero_ficha { get; set; }
@@ -22,8 +22,10 @@ namespace CapaDatos
         public string nombre_interno { get; set; }
         public string parentesco { get; set; }
         public string casillero { get; set; }
+        public string menores { get; set; }
         public DateTime fecha_registro { get; set; }
         public string hora_registro { get; set; }
+        public string hora_egreso { get; set; }
         public string organismo { get; set; }
         public List<DHuella> huellasCiudadanoResponse { get; set; }
         public List<DMenorVisitaIngresado> menoresIngresadosResponse { get; set; }

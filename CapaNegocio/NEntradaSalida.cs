@@ -36,11 +36,11 @@ namespace CapaNegocio
         //------------------------------------------------------------------------------------------
 
         //BUSCAR CIUDADANO INGRESO CONTROL
-        public async Task<(DCiudadanoIngresoControl, string error)> BuscarCiudadanoIngresoControlXFicha(int numeroFicha)
+        public async Task<(DEntradaSalidaControl, string error)> BuscarCiudadanoIngresoControlXFicha(int numeroFicha)
         {
             IEntradaSalidaDao entradaSalidaDao = new EntradaSalidaDaoImplement();
 
-            (DCiudadanoIngresoControl ciudadanoIngresoResponse, string errorResponse) = await entradaSalidaDao.BuscarCiudadanoIngresoControlXFicha(numeroFicha);
+            (DEntradaSalidaControl ciudadanoIngresoResponse, string errorResponse) = await entradaSalidaDao.BuscarCiudadanoIngresoControlXFicha(numeroFicha);
 
 
             return (ciudadanoIngresoResponse, errorResponse);
@@ -61,7 +61,7 @@ namespace CapaNegocio
         //---------------------------------------------------------------------------------
 
         //LISTA ENTRADAS ACTUALES
-        public async Task<(List<DEntradaSalidaConsulta>, string error)> RetornarListaProhibicionesVisita(int idCiudadano)
+        public async Task<(List<DEntradaSalidaConsulta>, string error)> ListaEntradaSalidaActuales()
         {
             IEntradaSalidaDao entradaSalidaDao = new EntradaSalidaDaoImplement();
 

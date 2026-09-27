@@ -122,9 +122,9 @@ namespace DAOImplement
 
 
         //BUSCAR CIUDADANO INGRESADO PATRA CONTROL
-        public async Task<(DCiudadanoIngresoControl, string error)> BuscarCiudadanoIngresoControlXFicha(int numeroFicha)
+        public async Task<(DEntradaSalidaControl, string error)> BuscarCiudadanoIngresoControlXFicha(int numeroFicha)
         {
-            DCiudadanoIngresoControl dCiudadanoIngreso = new DCiudadanoIngresoControl();
+            DEntradaSalidaControl dCiudadanoIngreso = new DEntradaSalidaControl();
             string token = SessionManager.Token; // Aquí pones tu token real
 
             try
@@ -137,7 +137,7 @@ namespace DAOImplement
                 if (httpResponse.IsSuccessStatusCode)
                 {
                     var content = await httpResponse.Content.ReadAsStringAsync();
-                    dCiudadanoIngreso = JsonConvert.DeserializeObject<DCiudadanoIngresoControl>(content);
+                    dCiudadanoIngreso = JsonConvert.DeserializeObject<DEntradaSalidaControl>(content);
                     return (dCiudadanoIngreso, null);
                 }
                 else

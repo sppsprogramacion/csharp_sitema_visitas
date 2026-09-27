@@ -60,8 +60,27 @@ namespace CapaPresentacion
 
         private async void btnBuscar_Click(object sender, EventArgs e)
         {
-            NEntradaSalida nEntradaSalida = new NEntradaSalida();
 
+            //VALIDAR DNI
+            int numDni = 0;
+            if (string.IsNullOrEmpty(txtDniBuscar.Text.Trim()))
+            {
+                MessageBox.Show("Debe ingresar un numero de DNI", "Sistema Visitas", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            try
+            {
+                numDni = Convert.ToInt32(txtDniBuscar.Text.Trim());
+            }
+            catch
+            {
+                MessageBox.Show("Debe ingresar un numero de DNI valido (solo nùmeros)", "Sistema Visitas", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+            //FIN VALIDAR DNI
+            
+            NEntradaSalida nEntradaSalida = new NEntradaSalida();
 
             //BUSCAR CIUDADANO CON EL DNI
             this.Enabled = false;
@@ -119,8 +138,7 @@ namespace CapaPresentacion
             // Agregar columna para seleccionar
             if (!dtgMenores.Columns.Contains("Seleccionar"))
             {
-                DataGridViewCheckBoxColumn columnaSeleccion =
-                    new DataGridViewCheckBoxColumn();
+                DataGridViewCheckBoxColumn columnaSeleccion = new DataGridViewCheckBoxColumn();
 
                 columnaSeleccion.Name = "Seleccionar";
                 columnaSeleccion.HeaderText = "";
@@ -189,6 +207,27 @@ namespace CapaPresentacion
         //BOTON GUARDAR ENTRADA SALIDA
         private async void btnGuardar_Click(object sender, EventArgs e)
         {
+            //controlar ciudadano cargado 
+            //VALIDAR DNI
+            int idCiudadano = 0;
+            if (string.IsNullOrEmpty(txtIdCiudadano.Text.Trim()))
+            {
+                MessageBox.Show("Debe cargar un ciudadano", "Sistema Visitas", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            try
+            {
+                idCiudadano = Convert.ToInt32(txtIdCiudadano.Text.Trim());
+            }
+            catch
+            {
+                MessageBox.Show("El id ciudadano de ser un numero", "Sistema Visitas", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+            //FIN VALIDAR DNI
+
+            //obteber los ids de los menores seleccionados
             List<int> idsMenoresSeleccionados = new List<int>();
 
             foreach (DataGridViewRow row in dtgMenores.Rows)
@@ -203,42 +242,8 @@ namespace CapaPresentacion
                     idsMenoresSeleccionados.Add(id);
                 }
             }
-
-            foreach (int id in idsMenoresSeleccionados)
-            {
-
-                MessageBox.Show("id: " + id);
-            }
-
-            //limpiar errores de provider
-            errorProvider.Clear();
-
-            //validacion de formulario
-            //var datosFormulario = new ProhibicionDatos
-            //{
-            //    txtIdCiudadano = txtIdCiudadano.Text,
-            //    txtDisposicion = txtDisposicion.Text,
-            //    txtDetalle = txtDetalle.Text,
-            //    dtpFechaInicio = dtpFechaInicio.Value,
-            //    dtpFechaFin = dtpFechaFin.Value,
-            //};
-
-            //var validator = new ProhibicionNuevaValidator();
-            //var result = validator.Validate(datosFormulario);
-
-            //if (!result.IsValid)
-            //{
-            //    MessageBox.Show("Complete correctamente los campos del formulario", "Restriccion Visitas", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-            //    foreach (var failure in result.Errors)
-            //    {
-
-            //        Control control = Controls.Find(failure.PropertyName, true)[0];
-            //        errorProvider.SetError(control, failure.ErrorMessage);
-            //    }
-            //    return;
-            //}
-
-            //enviar datos si son correctos
+                                    
+            //obtener id de interno
             int idInterno = 0;
 
             if (dtgInternos.SelectedRows.Count > 0)
@@ -253,6 +258,7 @@ namespace CapaPresentacion
                 }
             }
 
+            //enviar datos si son correctos
             var data = new
             {
                 interno_id = idInterno,
