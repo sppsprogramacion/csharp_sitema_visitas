@@ -7,6 +7,7 @@ using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using System;
 using System.Windows.Forms;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace CapaPresentacion
 {
@@ -20,10 +21,14 @@ namespace CapaPresentacion
 
         private void FormLogin_Load(object sender, EventArgs e)
         {
-            txtUsuario.Multiline = true;
-            txtUsuario.ScrollBars = ScrollBars.None;
-            txtUsuario.TextAlign = HorizontalAlignment.Left;
+            // Desactivar el autoajuste de tamaño
+            txtUsuario.AutoSize = false;
+            txtUsuario.Size = new System.Drawing.Size(195, 35);
             txtUsuario.Padding = new Padding(20, 20, 20, 0); // Ajusta para que se vea bien
+            txtUsuario.TextAlign = HorizontalAlignment.Left;
+
+            txtPassword.AutoSize = false;
+            txtPassword.Size = new System.Drawing.Size(195, 35);
             txtPassword.PasswordChar = '●';
             txtPassword.TextAlign = HorizontalAlignment.Left;
             txtPassword.Padding = new Padding(15, 15, 15, 15); // Ajusta para que se vea bien

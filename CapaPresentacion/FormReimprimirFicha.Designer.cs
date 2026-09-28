@@ -28,9 +28,13 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             this.dtgIngresos = new System.Windows.Forms.DataGridView();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.gboxVisita = new System.Windows.Forms.GroupBox();
+            this.chkAdulto = new System.Windows.Forms.CheckBox();
             this.txtIdIngreso = new System.Windows.Forms.TextBox();
             this.txtEdad = new System.Windows.Forms.TextBox();
             this.label8 = new System.Windows.Forms.Label();
@@ -48,25 +52,24 @@
             this.txtDni = new System.Windows.Forms.TextBox();
             this.label9 = new System.Windows.Forms.Label();
             this.gboxDatosParaIngreso = new System.Windows.Forms.GroupBox();
-            this.label7 = new System.Windows.Forms.Label();
-            this.txtIntrno = new System.Windows.Forms.TextBox();
-            this.txtParentesco = new System.Windows.Forms.TextBox();
-            this.btnGuardar = new System.Windows.Forms.Button();
-            this.label13 = new System.Windows.Forms.Label();
-            this.label12 = new System.Windows.Forms.Label();
-            this.txtMenores = new System.Windows.Forms.TextBox();
+            this.txtHoraEgreso = new System.Windows.Forms.TextBox();
+            this.label10 = new System.Windows.Forms.Label();
+            this.label15 = new System.Windows.Forms.Label();
+            this.txtCasillero = new System.Windows.Forms.TextBox();
             this.txtHoraIngreso = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
             this.txtOrganismo = new System.Windows.Forms.TextBox();
             this.label11 = new System.Windows.Forms.Label();
             this.txtFechaIngreso = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
-            this.label15 = new System.Windows.Forms.Label();
-            this.txtCasillero = new System.Windows.Forms.TextBox();
+            this.txtMenores = new System.Windows.Forms.TextBox();
+            this.label7 = new System.Windows.Forms.Label();
+            this.txtIntrno = new System.Windows.Forms.TextBox();
+            this.txtParentesco = new System.Windows.Forms.TextBox();
+            this.btnGuardar = new System.Windows.Forms.Button();
+            this.label13 = new System.Windows.Forms.Label();
+            this.label12 = new System.Windows.Forms.Label();
             this.btnReimprimirFicha = new System.Windows.Forms.Button();
-            this.txtHoraEgreso = new System.Windows.Forms.TextBox();
-            this.label10 = new System.Windows.Forms.Label();
-            this.chkAdulto = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.dtgIngresos)).BeginInit();
             this.groupBox3.SuspendLayout();
             this.gboxVisita.SuspendLayout();
@@ -76,9 +79,39 @@
             // 
             // dtgIngresos
             // 
+            this.dtgIngresos.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.dtgIngresos.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(48)))));
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(48)))));
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dtgIngresos.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.dtgIngresos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(120)))), ((int)(((byte)(215)))));
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dtgIngresos.DefaultCellStyle = dataGridViewCellStyle2;
+            this.dtgIngresos.EnableHeadersVisualStyles = false;
+            this.dtgIngresos.GridColor = System.Drawing.Color.White;
             this.dtgIngresos.Location = new System.Drawing.Point(7, 20);
+            this.dtgIngresos.MultiSelect = false;
             this.dtgIngresos.Name = "dtgIngresos";
+            this.dtgIngresos.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = System.Drawing.Color.DarkSlateGray;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle3.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dtgIngresos.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
             this.dtgIngresos.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dtgIngresos.Size = new System.Drawing.Size(1079, 382);
             this.dtgIngresos.TabIndex = 2;
@@ -124,6 +157,17 @@
             this.gboxVisita.TabIndex = 158;
             this.gboxVisita.TabStop = false;
             this.gboxVisita.Text = "DATOS CIUDADANO";
+            // 
+            // chkAdulto
+            // 
+            this.chkAdulto.AutoSize = true;
+            this.chkAdulto.Location = new System.Drawing.Point(425, 190);
+            this.chkAdulto.Name = "chkAdulto";
+            this.chkAdulto.Size = new System.Drawing.Size(62, 17);
+            this.chkAdulto.TabIndex = 159;
+            this.chkAdulto.Text = "Adulto";
+            this.chkAdulto.UseVisualStyleBackColor = true;
+            this.chkAdulto.Visible = false;
             // 
             // txtIdIngreso
             // 
@@ -328,6 +372,128 @@
             this.gboxDatosParaIngreso.TabIndex = 159;
             this.gboxDatosParaIngreso.TabStop = false;
             // 
+            // txtHoraEgreso
+            // 
+            this.txtHoraEgreso.BackColor = System.Drawing.SystemColors.ActiveBorder;
+            this.txtHoraEgreso.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtHoraEgreso.Location = new System.Drawing.Point(228, 194);
+            this.txtHoraEgreso.Name = "txtHoraEgreso";
+            this.txtHoraEgreso.ReadOnly = true;
+            this.txtHoraEgreso.Size = new System.Drawing.Size(100, 20);
+            this.txtHoraEgreso.TabIndex = 167;
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.BackColor = System.Drawing.Color.Transparent;
+            this.label10.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label10.ForeColor = System.Drawing.Color.White;
+            this.label10.Location = new System.Drawing.Point(224, 176);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(94, 16);
+            this.label10.TabIndex = 166;
+            this.label10.Text = "Hora egreso";
+            // 
+            // label15
+            // 
+            this.label15.AutoSize = true;
+            this.label15.BackColor = System.Drawing.Color.Transparent;
+            this.label15.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label15.ForeColor = System.Drawing.Color.White;
+            this.label15.Location = new System.Drawing.Point(430, 99);
+            this.label15.Name = "label15";
+            this.label15.Size = new System.Drawing.Size(69, 16);
+            this.label15.TabIndex = 165;
+            this.label15.Text = "Casillero";
+            // 
+            // txtCasillero
+            // 
+            this.txtCasillero.BackColor = System.Drawing.SystemColors.ActiveBorder;
+            this.txtCasillero.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtCasillero.Location = new System.Drawing.Point(434, 114);
+            this.txtCasillero.Multiline = true;
+            this.txtCasillero.Name = "txtCasillero";
+            this.txtCasillero.ReadOnly = true;
+            this.txtCasillero.Size = new System.Drawing.Size(171, 61);
+            this.txtCasillero.TabIndex = 164;
+            // 
+            // txtHoraIngreso
+            // 
+            this.txtHoraIngreso.BackColor = System.Drawing.SystemColors.ActiveBorder;
+            this.txtHoraIngreso.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtHoraIngreso.Location = new System.Drawing.Point(120, 195);
+            this.txtHoraIngreso.Name = "txtHoraIngreso";
+            this.txtHoraIngreso.ReadOnly = true;
+            this.txtHoraIngreso.Size = new System.Drawing.Size(100, 20);
+            this.txtHoraIngreso.TabIndex = 161;
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.BackColor = System.Drawing.Color.Transparent;
+            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label4.ForeColor = System.Drawing.Color.White;
+            this.label4.Location = new System.Drawing.Point(6, 178);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(106, 16);
+            this.label4.TabIndex = 158;
+            this.label4.Text = "Fecha ingreso";
+            // 
+            // txtOrganismo
+            // 
+            this.txtOrganismo.BackColor = System.Drawing.SystemColors.ActiveBorder;
+            this.txtOrganismo.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtOrganismo.Location = new System.Drawing.Point(335, 193);
+            this.txtOrganismo.Name = "txtOrganismo";
+            this.txtOrganismo.ReadOnly = true;
+            this.txtOrganismo.Size = new System.Drawing.Size(270, 20);
+            this.txtOrganismo.TabIndex = 163;
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.BackColor = System.Drawing.Color.Transparent;
+            this.label11.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label11.ForeColor = System.Drawing.Color.White;
+            this.label11.Location = new System.Drawing.Point(116, 177);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(97, 16);
+            this.label11.TabIndex = 160;
+            this.label11.Text = "Hora ingreso";
+            // 
+            // txtFechaIngreso
+            // 
+            this.txtFechaIngreso.BackColor = System.Drawing.SystemColors.ActiveBorder;
+            this.txtFechaIngreso.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtFechaIngreso.Location = new System.Drawing.Point(10, 195);
+            this.txtFechaIngreso.Name = "txtFechaIngreso";
+            this.txtFechaIngreso.ReadOnly = true;
+            this.txtFechaIngreso.Size = new System.Drawing.Size(102, 20);
+            this.txtFechaIngreso.TabIndex = 159;
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.BackColor = System.Drawing.Color.Transparent;
+            this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label6.ForeColor = System.Drawing.Color.White;
+            this.label6.Location = new System.Drawing.Point(331, 176);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(82, 16);
+            this.label6.TabIndex = 162;
+            this.label6.Text = "Organismo";
+            // 
+            // txtMenores
+            // 
+            this.txtMenores.BackColor = System.Drawing.SystemColors.ActiveBorder;
+            this.txtMenores.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtMenores.Location = new System.Drawing.Point(10, 115);
+            this.txtMenores.Multiline = true;
+            this.txtMenores.Name = "txtMenores";
+            this.txtMenores.ReadOnly = true;
+            this.txtMenores.Size = new System.Drawing.Size(418, 60);
+            this.txtMenores.TabIndex = 157;
+            // 
             // label7
             // 
             this.label7.AutoSize = true;
@@ -397,106 +563,6 @@
             this.label12.TabIndex = 147;
             this.label12.Text = "Menores ";
             // 
-            // txtMenores
-            // 
-            this.txtMenores.BackColor = System.Drawing.SystemColors.ActiveBorder;
-            this.txtMenores.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtMenores.Location = new System.Drawing.Point(10, 115);
-            this.txtMenores.Multiline = true;
-            this.txtMenores.Name = "txtMenores";
-            this.txtMenores.ReadOnly = true;
-            this.txtMenores.Size = new System.Drawing.Size(418, 60);
-            this.txtMenores.TabIndex = 157;
-            // 
-            // txtHoraIngreso
-            // 
-            this.txtHoraIngreso.BackColor = System.Drawing.SystemColors.ActiveBorder;
-            this.txtHoraIngreso.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtHoraIngreso.Location = new System.Drawing.Point(120, 195);
-            this.txtHoraIngreso.Name = "txtHoraIngreso";
-            this.txtHoraIngreso.ReadOnly = true;
-            this.txtHoraIngreso.Size = new System.Drawing.Size(100, 20);
-            this.txtHoraIngreso.TabIndex = 161;
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.BackColor = System.Drawing.Color.Transparent;
-            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.ForeColor = System.Drawing.Color.White;
-            this.label4.Location = new System.Drawing.Point(6, 178);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(106, 16);
-            this.label4.TabIndex = 158;
-            this.label4.Text = "Fecha ingreso";
-            // 
-            // txtOrganismo
-            // 
-            this.txtOrganismo.BackColor = System.Drawing.SystemColors.ActiveBorder;
-            this.txtOrganismo.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtOrganismo.Location = new System.Drawing.Point(335, 193);
-            this.txtOrganismo.Name = "txtOrganismo";
-            this.txtOrganismo.ReadOnly = true;
-            this.txtOrganismo.Size = new System.Drawing.Size(270, 20);
-            this.txtOrganismo.TabIndex = 163;
-            // 
-            // label11
-            // 
-            this.label11.AutoSize = true;
-            this.label11.BackColor = System.Drawing.Color.Transparent;
-            this.label11.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label11.ForeColor = System.Drawing.Color.White;
-            this.label11.Location = new System.Drawing.Point(116, 177);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(97, 16);
-            this.label11.TabIndex = 160;
-            this.label11.Text = "Hora ingreso";
-            // 
-            // txtFechaIngreso
-            // 
-            this.txtFechaIngreso.BackColor = System.Drawing.SystemColors.ActiveBorder;
-            this.txtFechaIngreso.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtFechaIngreso.Location = new System.Drawing.Point(10, 195);
-            this.txtFechaIngreso.Name = "txtFechaIngreso";
-            this.txtFechaIngreso.ReadOnly = true;
-            this.txtFechaIngreso.Size = new System.Drawing.Size(102, 20);
-            this.txtFechaIngreso.TabIndex = 159;
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.BackColor = System.Drawing.Color.Transparent;
-            this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.ForeColor = System.Drawing.Color.White;
-            this.label6.Location = new System.Drawing.Point(331, 176);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(82, 16);
-            this.label6.TabIndex = 162;
-            this.label6.Text = "Organismo";
-            // 
-            // label15
-            // 
-            this.label15.AutoSize = true;
-            this.label15.BackColor = System.Drawing.Color.Transparent;
-            this.label15.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label15.ForeColor = System.Drawing.Color.White;
-            this.label15.Location = new System.Drawing.Point(430, 99);
-            this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(69, 16);
-            this.label15.TabIndex = 165;
-            this.label15.Text = "Casillero";
-            // 
-            // txtCasillero
-            // 
-            this.txtCasillero.BackColor = System.Drawing.SystemColors.ActiveBorder;
-            this.txtCasillero.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtCasillero.Location = new System.Drawing.Point(434, 114);
-            this.txtCasillero.Multiline = true;
-            this.txtCasillero.Name = "txtCasillero";
-            this.txtCasillero.ReadOnly = true;
-            this.txtCasillero.Size = new System.Drawing.Size(171, 61);
-            this.txtCasillero.TabIndex = 164;
-            // 
             // btnReimprimirFicha
             // 
             this.btnReimprimirFicha.BackColor = System.Drawing.Color.Green;
@@ -511,39 +577,6 @@
             this.btnReimprimirFicha.Text = "REIMPRIMIR FICHA";
             this.btnReimprimirFicha.UseVisualStyleBackColor = false;
             this.btnReimprimirFicha.Click += new System.EventHandler(this.btnReimprimirFicha_Click);
-            // 
-            // txtHoraEgreso
-            // 
-            this.txtHoraEgreso.BackColor = System.Drawing.SystemColors.ActiveBorder;
-            this.txtHoraEgreso.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtHoraEgreso.Location = new System.Drawing.Point(228, 194);
-            this.txtHoraEgreso.Name = "txtHoraEgreso";
-            this.txtHoraEgreso.ReadOnly = true;
-            this.txtHoraEgreso.Size = new System.Drawing.Size(100, 20);
-            this.txtHoraEgreso.TabIndex = 167;
-            // 
-            // label10
-            // 
-            this.label10.AutoSize = true;
-            this.label10.BackColor = System.Drawing.Color.Transparent;
-            this.label10.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label10.ForeColor = System.Drawing.Color.White;
-            this.label10.Location = new System.Drawing.Point(224, 176);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(94, 16);
-            this.label10.TabIndex = 166;
-            this.label10.Text = "Hora egreso";
-            // 
-            // chkAdulto
-            // 
-            this.chkAdulto.AutoSize = true;
-            this.chkAdulto.Location = new System.Drawing.Point(425, 190);
-            this.chkAdulto.Name = "chkAdulto";
-            this.chkAdulto.Size = new System.Drawing.Size(62, 17);
-            this.chkAdulto.TabIndex = 159;
-            this.chkAdulto.Text = "Adulto";
-            this.chkAdulto.UseVisualStyleBackColor = true;
-            this.chkAdulto.Visible = false;
             // 
             // FormReimprimirFicha
             // 

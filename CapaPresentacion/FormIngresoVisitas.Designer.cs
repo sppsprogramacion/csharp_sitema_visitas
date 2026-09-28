@@ -28,8 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.gboxVisita = new System.Windows.Forms.GroupBox();
             this.lblEstadoCiudadano = new System.Windows.Forms.Label();
             this.lblDiscapacidad = new System.Windows.Forms.Label();
@@ -184,7 +184,7 @@
             this.label7.BackColor = System.Drawing.Color.Transparent;
             this.label7.Font = new System.Drawing.Font("Arial Black", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label7.ForeColor = System.Drawing.Color.White;
-            this.label7.Location = new System.Drawing.Point(241, 580);
+            this.label7.Location = new System.Drawing.Point(241, 582);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(81, 19);
             this.label7.TabIndex = 145;
@@ -194,7 +194,7 @@
             // 
             this.txtDireccion.BackColor = System.Drawing.SystemColors.ActiveBorder;
             this.txtDireccion.Font = new System.Drawing.Font("Arial Black", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtDireccion.Location = new System.Drawing.Point(245, 600);
+            this.txtDireccion.Location = new System.Drawing.Point(245, 602);
             this.txtDireccion.Name = "txtDireccion";
             this.txtDireccion.ReadOnly = true;
             this.txtDireccion.Size = new System.Drawing.Size(262, 26);
@@ -250,7 +250,7 @@
             this.label10.BackColor = System.Drawing.Color.Transparent;
             this.label10.Font = new System.Drawing.Font("Arial Black", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label10.ForeColor = System.Drawing.Color.White;
-            this.label10.Location = new System.Drawing.Point(241, 531);
+            this.label10.Location = new System.Drawing.Point(241, 533);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(56, 19);
             this.label10.TabIndex = 141;
@@ -260,7 +260,7 @@
             // 
             this.txtBarrio.BackColor = System.Drawing.SystemColors.ActiveBorder;
             this.txtBarrio.Font = new System.Drawing.Font("Arial Black", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtBarrio.Location = new System.Drawing.Point(245, 551);
+            this.txtBarrio.Location = new System.Drawing.Point(245, 553);
             this.txtBarrio.Name = "txtBarrio";
             this.txtBarrio.ReadOnly = true;
             this.txtBarrio.Size = new System.Drawing.Size(262, 26);
@@ -694,7 +694,7 @@
             this.txtCasillero.Multiline = true;
             this.txtCasillero.Name = "txtCasillero";
             this.txtCasillero.Size = new System.Drawing.Size(569, 30);
-            this.txtCasillero.TabIndex = 152;
+            this.txtCasillero.TabIndex = 5;
             // 
             // btnGuardar
             // 
@@ -706,7 +706,7 @@
             this.btnGuardar.Location = new System.Drawing.Point(406, 541);
             this.btnGuardar.Name = "btnGuardar";
             this.btnGuardar.Size = new System.Drawing.Size(173, 40);
-            this.btnGuardar.TabIndex = 151;
+            this.btnGuardar.TabIndex = 6;
             this.btnGuardar.Text = "GUARDAR INGRESO";
             this.btnGuardar.UseVisualStyleBackColor = false;
             this.btnGuardar.Click += new System.EventHandler(this.btnGuardar_Click);
@@ -740,21 +740,21 @@
             this.dtgInternos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dtgInternos.Location = new System.Drawing.Point(7, 307);
             this.dtgInternos.Name = "dtgInternos";
-            dataGridViewCellStyle3.ForeColor = System.Drawing.Color.Black;
-            this.dtgInternos.RowsDefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.Black;
+            this.dtgInternos.RowsDefaultCellStyle = dataGridViewCellStyle1;
             this.dtgInternos.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dtgInternos.Size = new System.Drawing.Size(572, 169);
-            this.dtgInternos.TabIndex = 1;
+            this.dtgInternos.TabIndex = 4;
             // 
             // dtgMenores
             // 
             this.dtgMenores.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dtgMenores.Location = new System.Drawing.Point(7, 37);
             this.dtgMenores.Name = "dtgMenores";
-            dataGridViewCellStyle4.ForeColor = System.Drawing.Color.Black;
-            this.dtgMenores.RowsDefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.Black;
+            this.dtgMenores.RowsDefaultCellStyle = dataGridViewCellStyle2;
             this.dtgMenores.Size = new System.Drawing.Size(572, 244);
-            this.dtgMenores.TabIndex = 0;
+            this.dtgMenores.TabIndex = 3;
             // 
             // btnCancelar
             // 
@@ -766,7 +766,7 @@
             this.btnCancelar.Location = new System.Drawing.Point(297, 22);
             this.btnCancelar.Name = "btnCancelar";
             this.btnCancelar.Size = new System.Drawing.Size(105, 40);
-            this.btnCancelar.TabIndex = 152;
+            this.btnCancelar.TabIndex = 2;
             this.btnCancelar.Text = "FINALIZAR";
             this.btnCancelar.UseVisualStyleBackColor = false;
             this.btnCancelar.Click += new System.EventHandler(this.btnCancelar_Click_1);
@@ -786,12 +786,11 @@
             // 
             this.txtDniBuscar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
             this.txtDniBuscar.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.txtDniBuscar.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtDniBuscar.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtDniBuscar.Location = new System.Drawing.Point(13, 31);
-            this.txtDniBuscar.Multiline = true;
             this.txtDniBuscar.Name = "txtDniBuscar";
-            this.txtDniBuscar.Size = new System.Drawing.Size(154, 30);
-            this.txtDniBuscar.TabIndex = 148;
+            this.txtDniBuscar.Size = new System.Drawing.Size(154, 31);
+            this.txtDniBuscar.TabIndex = 0;
             // 
             // btnBuscar
             // 
@@ -803,7 +802,7 @@
             this.btnBuscar.Location = new System.Drawing.Point(181, 22);
             this.btnBuscar.Name = "btnBuscar";
             this.btnBuscar.Size = new System.Drawing.Size(105, 40);
-            this.btnBuscar.TabIndex = 149;
+            this.btnBuscar.TabIndex = 1;
             this.btnBuscar.Text = "Buscar DNI";
             this.btnBuscar.UseVisualStyleBackColor = false;
             this.btnBuscar.Click += new System.EventHandler(this.btnBuscar_Click);
