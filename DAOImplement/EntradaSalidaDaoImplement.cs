@@ -49,7 +49,7 @@ namespace DAOImplement
                 {
                     string errorMessage = await httpResponse.Content.ReadAsStringAsync();
                     var mensaje = JObject.Parse(errorMessage)["message"]?.ToString();
-                    return (null, $"Error al crear: {mensaje}");
+                    return (null, $"Error al guardar el ingreso: {mensaje}");
                 }
 
             }

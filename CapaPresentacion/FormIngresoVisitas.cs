@@ -108,8 +108,7 @@ namespace CapaPresentacion
             txtDepartamento.Text = dCiudadanoIngresoResponse.ciudadanoResponse.departamento;
             txtMunicipio.Text = dCiudadanoIngresoResponse.ciudadanoResponse.municipio;
             txtCiudad.Text = dCiudadanoIngresoResponse.ciudadanoResponse.ciudad;
-            txtBarrio.Text = dCiudadanoIngresoResponse.ciudadanoResponse.barrio;
-            txtDireccion.Text = dCiudadanoIngresoResponse.ciudadanoResponse.direccion;
+            
             txtFechaAlta.Text = dCiudadanoIngresoResponse.ciudadanoResponse.fecha_alta.ToShortDateString();
             picFotoVisita.Load(dCiudadanoIngresoResponse.ciudadanoResponse.foto);
 
@@ -129,6 +128,7 @@ namespace CapaPresentacion
                     Id = c.id_ciudadano,
                     ApellidoNombre = c.apellido + " " + c.nombre,
                     Dni = c.dni,
+                    Sexo = c.sexo,
                     Edad = c.edad,
 
                 })
@@ -154,6 +154,7 @@ namespace CapaPresentacion
                 dtgMenores.Columns["Id"].Width = 40;
                 dtgMenores.Columns["ApellidoNombre"].Width = 300;
                 dtgMenores.Columns["Dni"].Width = 80;
+                dtgMenores.Columns["Sexo"].Width = 80;
                 dtgMenores.Columns["Edad"].Width = 50;
             }
 
@@ -174,7 +175,7 @@ namespace CapaPresentacion
             if (dCiudadanoIngresoResponse.internosResponse.Count > 0)
             {
                 dtgInternos.Columns[0].Width = 40;
-                dtgInternos.Columns[1].Width = 300;
+                dtgInternos.Columns[1].Width = 375;
                 dtgInternos.Columns[2].Width = 80;
                 dtgInternos.Columns[3].Width = 60;
             }
@@ -198,6 +199,7 @@ namespace CapaPresentacion
             {
                 lblEstadoCiudadano.Text = "TIENE RESTRICCIONES PARA EL INGRESO";
                 lblEstadoCiudadano.ForeColor = Color.Red;
+                lblEstadoCiudadano.BackColor = Color.Orange;
             }
 
             txtDniBuscar.Enabled = false;
@@ -368,6 +370,7 @@ namespace CapaPresentacion
         {
             lblEstadoCiudadano.Text = "Restriccion";
             lblEstadoCiudadano.ForeColor = Color.LimeGreen;
+            lblEstadoCiudadano.BackColor = Color.FromArgb(51, 103, 153);
 
             txtIdCiudadano.Text = string.Empty;
             lblApellidoNombre.Text = "Apellido y nombre";
@@ -379,9 +382,7 @@ namespace CapaPresentacion
             txtProvincia.Text = string.Empty;
             txtDepartamento.Text = string.Empty;
             txtMunicipio.Text = string.Empty;
-            txtCiudad.Text = string.Empty;
-            txtBarrio.Text = string.Empty;
-            txtDireccion.Text = string.Empty;
+            txtCiudad.Text = string.Empty;            
             txtFechaAlta.Text = string.Empty;
             picFotoVisita.Image = null;
 
