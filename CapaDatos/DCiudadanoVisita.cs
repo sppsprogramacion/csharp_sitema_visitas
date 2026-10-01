@@ -25,6 +25,7 @@ namespace CapaDatos
         public string direccion { get; set; }
         public int numero_dom { get; set; }
         public bool esta_prohibido { get; set; }
+        public bool tiene_excepcion_ingreso { get; set; }
         public bool tiene_discapacidad { get; set; }
         public string discapacidad_detalle { get; set; }
         public string foto { get; set; }

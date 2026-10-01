@@ -180,7 +180,7 @@ namespace CapaPresentacion
                 dtgInternos.Columns[3].Width = 60;
             }
 
-            //control de prohibicion
+            //CONTROL DE PROHIBICION
             if (!dCiudadanoIngresoResponse.ciudadanoResponse.esta_prohibido)
             {
                 lblEstadoCiudadano.Text = "SIN RESTRICCIONES DE INGRESO";
@@ -197,9 +197,30 @@ namespace CapaPresentacion
             }
             else
             {
-                lblEstadoCiudadano.Text = "TIENE RESTRICCIONES PARA EL INGRESO";
-                lblEstadoCiudadano.ForeColor = Color.Red;
-                lblEstadoCiudadano.BackColor = Color.Orange;
+                if (dCiudadanoIngresoResponse.ciudadanoResponse.tiene_excepcion_ingreso)
+                {
+
+                    lblEstadoCiudadano.Text = "AUTORIZACION EXCEPCIONAL PARA INGRESAR";
+                    lblEstadoCiudadano.ForeColor = Color.Red;
+                    lblEstadoCiudadano.BackColor = Color.Orange;
+
+
+                    //habilitar verificacion de huella
+                    picHuella.Visible = true;
+                    fingerprintCapture.Start();
+                    modoVerificacion = true;
+                    lblLectorEstado.Text = "Coloque el dedo para verificar.";
+                    lblLectorDedo.Text = "Esperando huella...";
+                }
+                else
+                {
+
+                    lblEstadoCiudadano.Text = "TIENE RESTRICCIONES PARA EL INGRESO";
+                    lblEstadoCiudadano.ForeColor = Color.Red;
+                    lblEstadoCiudadano.BackColor = Color.Orange;
+                    MessageBox.Show("La visita no puede ingresar. Tiene restriccion de ingreso vigente", "Sistema Visitas", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+
+                }
             }
 
             txtDniBuscar.Enabled = false;
