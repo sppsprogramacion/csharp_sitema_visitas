@@ -192,6 +192,8 @@
     <Compile Include="Biometria\FingerprintProcessor.cs" />
     <Compile Include="Biometria\FingerprintTemplate.cs" />
     <Compile Include="Biometria\FingerprintVerifier.cs" />
+    <Compile Include="ClasesEspeciales\DEntradaSalidaGrilla.cs" />
+    <Compile Include="ClasesEspeciales\SortableBindingList.cs" />
     <Compile Include="FormAdminProhibicionAnticipada.cs">
       <SubType>Form</SubType>
     </Compile>

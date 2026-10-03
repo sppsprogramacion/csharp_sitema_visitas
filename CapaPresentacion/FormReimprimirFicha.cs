@@ -1,5 +1,6 @@
 ﻿using CapaDatos;
 using CapaNegocio;
+using CapaPresentacion.ClasesEspeciales;
 using CapaPresentacion.FuncionesGenerales;
 using CapaPresentacion.Reportes.IngresoVisistas;
 using PdfiumViewer;
@@ -43,8 +44,27 @@ namespace CapaPresentacion
                 return;
             }
 
+            //var datosfiltrados = listaEntradaSalidaResponse
+            //    .Select(c => new
+            //    {
+            //        Id = c.id_entrada_salida,
+            //        NumFicha = c.numero_ficha,
+            //        Visita = c.nombre_visita,
+            //        DniVisita = c.dni_visita,
+            //        Interno = c.nombre_interno,
+            //        Parentesco = c.parentesco,
+            //        FechaIngreso = c.fecha_registro,
+            //        HoraIngreso = c.hora_registro,
+            //        HoraEgreso = c.hora_egreso,
+            //        Organismo = c.organismo,
+
+            //    })
+            //    .ToList();
+
+            //dtgIngresos.DataSource = listaEntradaSalidaResponse;
+
             var datosfiltrados = listaEntradaSalidaResponse
-                .Select(c => new
+                .Select(c => new DEntradaSalidaGrilla
                 {
                     Id = c.id_entrada_salida,
                     NumFicha = c.numero_ficha,
@@ -56,15 +76,19 @@ namespace CapaPresentacion
                     HoraIngreso = c.hora_registro,
                     HoraEgreso = c.hora_egreso,
                     Organismo = c.organismo,
-
                 })
                 .ToList();
 
-            dtgIngresos.DataSource = datosfiltrados;
+            var listaOrdenable = new SortableBindingList<DEntradaSalidaGrilla>(datosfiltrados);
+
+            BindingSource bs = new BindingSource();
+            bs.DataSource = listaOrdenable;
+            dtgIngresos.DataSource = bs;
+
 
             if (listaEntradaSalidaResponse.Count == 0)
             {
-                MessageBox.Show("No se encontraron registros", "Restrición Visitas", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("No se encontraron registros", "Sistema Visitas", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 return;
             }
             else
@@ -185,17 +209,15 @@ namespace CapaPresentacion
 
                 if (dtgIngresos.SelectedRows.Count > 0)
                 {
-                    int numeroFichaAux;
-                    try
-                    {
-                        numeroFichaAux = Convert.ToInt32(dtgIngresos.CurrentRow.Cells["NumFicha"].Value.ToString());
 
-                    }
-                    catch
+                    var valorNumFicha = dtgIngresos.CurrentRow?.Cells["NumFicha"].Value;
+
+                    if (valorNumFicha == null || !int.TryParse(valorNumFicha.ToString(), out int numeroFichaAux))
                     {
-                        MessageBox.Show("Debe ingresar un numero de ficha valido", "Sistema Visitas", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        
                         return;
                     }
+
 
                     if (numeroFichaAux > 0)
                     {
@@ -204,7 +226,7 @@ namespace CapaPresentacion
                     }
                     else
                     {
-                        MessageBox.Show("Debe seleccionar una prohibición.", "Sistema Visitas", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        MessageBox.Show("Debe seleccionar una entrada.", "Sistema Visitas", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     }
                 }
             }
