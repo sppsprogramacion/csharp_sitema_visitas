@@ -121,8 +121,8 @@ namespace DAOImplement
         //--------------------------------------------------------------------------
 
 
-        //BUSCAR CIUDADANO INGRESADO PATRA CONTROL
-        public async Task<(DEntradaSalidaControl, string error)> BuscarCiudadanoIngresoControlXFicha(int numeroFicha)
+        //BUSCAR ENTRADA PARA CONTROL X FICHA
+        public async Task<(DEntradaSalidaControl, string error)> BuscarEntradaControlXFicha(int numeroFicha)
         {
             DEntradaSalidaControl dCiudadanoIngreso = new DEntradaSalidaControl();
             string token = SessionManager.Token; // Aquí pones tu token real
@@ -132,7 +132,7 @@ namespace DAOImplement
                 // Agregar el token en los headers
                 this.httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
 
-                HttpResponseMessage httpResponse = await this.httpClient.GetAsync(url_base + "/entradas-salidas/buscar-ciudadano-ingreso-control/" + numeroFicha);
+                HttpResponseMessage httpResponse = await this.httpClient.GetAsync(url_base + "/entradas-salidas/buscar-entrada-control-ficha/" + numeroFicha);
 
                 if (httpResponse.IsSuccessStatusCode)
                 {
@@ -166,8 +166,58 @@ namespace DAOImplement
                 return (null, $"Error inesperado: {ex.Message}");
             }
         }
-        //FIN BUSCAR CIUDADANO INGRESADO PATRA CONTROL
+        //FIN BUSCAR ENTRADA PARA CONTROL X FICHA
         //--------------------------------------------------------------------------
+
+
+        //BUSCAR ENTRADA PARA CONTROL X CIUDADANO
+        public async Task<(DEntradaSalidaControl, string error)> BuscarEntradaControlXCiudadano(int idCiudadano)
+        {
+            DEntradaSalidaControl dCiudadanoIngreso = new DEntradaSalidaControl();
+            string token = SessionManager.Token; // Aquí pones tu token real
+
+            try
+            {
+                // Agregar el token en los headers
+                this.httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
+
+                HttpResponseMessage httpResponse = await this.httpClient.GetAsync(url_base + "/entradas-salidas/buscar-entrada-control-ciudadano/" + idCiudadano);
+
+                if (httpResponse.IsSuccessStatusCode)
+                {
+                    var content = await httpResponse.Content.ReadAsStringAsync();
+                    dCiudadanoIngreso = JsonConvert.DeserializeObject<DEntradaSalidaControl>(content);
+                    return (dCiudadanoIngreso, null);
+                }
+                else
+                {
+                    string errorMessage = await httpResponse.Content.ReadAsStringAsync();
+                    var mensaje = JObject.Parse(errorMessage)["message"]?.ToString();
+                    return (null, $"Error en la busqueda: {mensaje}");
+                }
+
+
+            }
+            catch (HttpRequestException httpRequestException)
+            {
+                // Capturar errores de la solicitud HTTP
+                return (null, $"Error de conexión: {httpRequestException.Message}");
+            }
+            catch (JsonException jsonException)
+            {
+                // Capturar errores en la serialización/deserialización de JSON                
+                return (null, $"Error inesperado");
+            }
+            catch (Exception ex)
+            {
+                // Manejo de errores (log, mensaje al usuario, etc.)
+                Console.WriteLine($"Error: {ex.Message}");
+                return (null, $"Error inesperado: {ex.Message}");
+            }
+        }
+        //FIN BUSCAR ENTRADA PARA CONTROL X CIUDADANO
+        //--------------------------------------------------------------------------
+
 
         //EGRESO PUERTA PRINCIPAL
         public async Task<(bool, string error)> EgresoPuertaPrincipal(int idEntradaSalida, string dataEgreso)
@@ -291,5 +341,6 @@ namespace DAOImplement
             throw new NotImplementedException();
         }
 
+        
     }
 }

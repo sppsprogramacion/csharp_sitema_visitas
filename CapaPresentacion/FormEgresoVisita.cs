@@ -49,7 +49,7 @@ namespace CapaPresentacion
             this.Enabled = false;
 
             NEntradaSalida nEntradaSalida = new NEntradaSalida();
-            (DEntradaSalidaControl dCiudadanoIngresoResponse, string errorResponse) = await nEntradaSalida.BuscarCiudadanoIngresoControlXFicha(numeroFicha);
+            (DEntradaSalidaControl dCiudadanoIngresoResponse, string errorResponse) = await nEntradaSalida.BuscarEntradaControlXFicha(numeroFicha);
             this.Enabled = true;
 
 
