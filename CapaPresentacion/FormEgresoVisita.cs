@@ -94,6 +94,7 @@ namespace CapaPresentacion
                     Id = c.id_ciudadano,
                     ApellidoNombre = c.nombre_menor,
                     Dni = c.dni,
+                    Sexo = c.sexo,
                     Edad = c.edad,
 
                 })
@@ -107,6 +108,7 @@ namespace CapaPresentacion
                 dtgMenores.Columns["Id"].Width = 40;
                 dtgMenores.Columns["ApellidoNombre"].Width = 300;
                 dtgMenores.Columns["Dni"].Width = 80;
+                dtgMenores.Columns["Sexo"].Width = 80;
                 dtgMenores.Columns["Edad"].Width = 50;
             }
                         

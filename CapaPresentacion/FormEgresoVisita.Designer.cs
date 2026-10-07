@@ -181,7 +181,7 @@
             this.gboxVisita.ForeColor = System.Drawing.Color.White;
             this.gboxVisita.Location = new System.Drawing.Point(13, 72);
             this.gboxVisita.Name = "gboxVisita";
-            this.gboxVisita.Size = new System.Drawing.Size(528, 420);
+            this.gboxVisita.Size = new System.Drawing.Size(508, 420);
             this.gboxVisita.TabIndex = 157;
             this.gboxVisita.TabStop = false;
             this.gboxVisita.Text = "DATOS CIUDADANO";
@@ -236,7 +236,7 @@
             this.lblDiscapacidad.ForeColor = System.Drawing.Color.White;
             this.lblDiscapacidad.Location = new System.Drawing.Point(238, 123);
             this.lblDiscapacidad.Name = "lblDiscapacidad";
-            this.lblDiscapacidad.Size = new System.Drawing.Size(282, 55);
+            this.lblDiscapacidad.Size = new System.Drawing.Size(260, 55);
             this.lblDiscapacidad.TabIndex = 147;
             this.lblDiscapacidad.Text = "Discapacidad";
             // 
@@ -268,7 +268,7 @@
             this.opMED.BackColor = System.Drawing.Color.White;
             this.opMED.Enabled = false;
             this.opMED.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.opMED.Location = new System.Drawing.Point(237, 221);
+            this.opMED.Location = new System.Drawing.Point(233, 221);
             this.opMED.Name = "opMED";
             this.opMED.Size = new System.Drawing.Size(12, 11);
             this.opMED.TabIndex = 132;
@@ -280,7 +280,7 @@
             this.opAD.BackColor = System.Drawing.Color.White;
             this.opAD.Enabled = false;
             this.opAD.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.opAD.Location = new System.Drawing.Point(259, 198);
+            this.opAD.Location = new System.Drawing.Point(255, 198);
             this.opAD.Name = "opAD";
             this.opAD.Size = new System.Drawing.Size(12, 11);
             this.opAD.TabIndex = 131;
@@ -292,7 +292,7 @@
             this.opMAD.BackColor = System.Drawing.Color.White;
             this.opMAD.Enabled = false;
             this.opMAD.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.opMAD.Location = new System.Drawing.Point(287, 189);
+            this.opMAD.Location = new System.Drawing.Point(283, 189);
             this.opMAD.Name = "opMAD";
             this.opMAD.Size = new System.Drawing.Size(12, 11);
             this.opMAD.TabIndex = 130;
@@ -314,7 +314,7 @@
             this.opID.BackColor = System.Drawing.Color.White;
             this.opID.Enabled = false;
             this.opID.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.opID.Location = new System.Drawing.Point(314, 189);
+            this.opID.Location = new System.Drawing.Point(307, 189);
             this.opID.Name = "opID";
             this.opID.Size = new System.Drawing.Size(12, 11);
             this.opID.TabIndex = 129;
@@ -326,7 +326,7 @@
             this.opPD.BackColor = System.Drawing.Color.White;
             this.opPD.Enabled = false;
             this.opPD.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.opPD.Location = new System.Drawing.Point(356, 242);
+            this.opPD.Location = new System.Drawing.Point(346, 243);
             this.opPD.Name = "opPD";
             this.opPD.Size = new System.Drawing.Size(12, 11);
             this.opPD.TabIndex = 128;
@@ -338,7 +338,7 @@
             this.opPI.BackColor = System.Drawing.Color.White;
             this.opPI.Enabled = false;
             this.opPI.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.opPI.Location = new System.Drawing.Point(383, 243);
+            this.opPI.Location = new System.Drawing.Point(371, 243);
             this.opPI.Name = "opPI";
             this.opPI.Size = new System.Drawing.Size(12, 11);
             this.opPI.TabIndex = 127;
@@ -350,7 +350,7 @@
             this.opII.BackColor = System.Drawing.Color.White;
             this.opII.Enabled = false;
             this.opII.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.opII.Location = new System.Drawing.Point(428, 185);
+            this.opII.Location = new System.Drawing.Point(412, 185);
             this.opII.Name = "opII";
             this.opII.Size = new System.Drawing.Size(12, 11);
             this.opII.TabIndex = 126;
@@ -374,7 +374,7 @@
             this.opMAI.BackColor = System.Drawing.Color.White;
             this.opMAI.Enabled = false;
             this.opMAI.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.opMAI.Location = new System.Drawing.Point(456, 185);
+            this.opMAI.Location = new System.Drawing.Point(437, 185);
             this.opMAI.Name = "opMAI";
             this.opMAI.Size = new System.Drawing.Size(12, 11);
             this.opMAI.TabIndex = 125;
@@ -387,7 +387,7 @@
             this.opAI.Enabled = false;
             this.opAI.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.opAI.ForeColor = System.Drawing.Color.White;
-            this.opAI.Location = new System.Drawing.Point(484, 193);
+            this.opAI.Location = new System.Drawing.Point(464, 192);
             this.opAI.Name = "opAI";
             this.opAI.Size = new System.Drawing.Size(12, 11);
             this.opAI.TabIndex = 124;
@@ -400,7 +400,7 @@
             this.opMEI.Enabled = false;
             this.opMEI.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.opMEI.ForeColor = System.Drawing.Color.White;
-            this.opMEI.Location = new System.Drawing.Point(506, 206);
+            this.opMEI.Location = new System.Drawing.Point(485, 216);
             this.opMEI.Name = "opMEI";
             this.opMEI.Size = new System.Drawing.Size(12, 11);
             this.opMEI.TabIndex = 123;
@@ -424,7 +424,7 @@
             this.label72.BackColor = System.Drawing.Color.Transparent;
             this.label72.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label72.ForeColor = System.Drawing.Color.White;
-            this.label72.Location = new System.Drawing.Point(395, 274);
+            this.label72.Location = new System.Drawing.Point(375, 274);
             this.label72.Name = "label72";
             this.label72.Size = new System.Drawing.Size(122, 16);
             this.label72.TabIndex = 121;
@@ -435,7 +435,7 @@
             this.pictureBox4.Image = global::CapaPresentacion.Properties.Resources.manos_lila;
             this.pictureBox4.Location = new System.Drawing.Point(237, 181);
             this.pictureBox4.Name = "pictureBox4";
-            this.pictureBox4.Size = new System.Drawing.Size(282, 124);
+            this.pictureBox4.Size = new System.Drawing.Size(259, 125);
             this.pictureBox4.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox4.TabIndex = 120;
             this.pictureBox4.TabStop = false;
@@ -523,7 +523,7 @@
             this.label11.BackColor = System.Drawing.Color.Transparent;
             this.label11.Font = new System.Drawing.Font("Arial Black", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label11.ForeColor = System.Drawing.Color.White;
-            this.label11.Location = new System.Drawing.Point(133, 71);
+            this.label11.Location = new System.Drawing.Point(121, 71);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(106, 19);
             this.label11.TabIndex = 143;
@@ -533,10 +533,10 @@
             // 
             this.txtHoraIngreso.BackColor = System.Drawing.SystemColors.ActiveBorder;
             this.txtHoraIngreso.Font = new System.Drawing.Font("Arial Black", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtHoraIngreso.Location = new System.Drawing.Point(137, 91);
+            this.txtHoraIngreso.Location = new System.Drawing.Point(125, 91);
             this.txtHoraIngreso.Name = "txtHoraIngreso";
             this.txtHoraIngreso.ReadOnly = true;
-            this.txtHoraIngreso.Size = new System.Drawing.Size(120, 26);
+            this.txtHoraIngreso.Size = new System.Drawing.Size(102, 26);
             this.txtHoraIngreso.TabIndex = 144;
             // 
             // txtFechaIngreso
@@ -546,7 +546,7 @@
             this.txtFechaIngreso.Location = new System.Drawing.Point(10, 91);
             this.txtFechaIngreso.Name = "txtFechaIngreso";
             this.txtFechaIngreso.ReadOnly = true;
-            this.txtFechaIngreso.Size = new System.Drawing.Size(120, 26);
+            this.txtFechaIngreso.Size = new System.Drawing.Size(111, 26);
             this.txtFechaIngreso.TabIndex = 27;
             // 
             // label4
@@ -575,9 +575,9 @@
             this.gboxDatosParaIngreso.Controls.Add(this.dtgMenores);
             this.gboxDatosParaIngreso.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.gboxDatosParaIngreso.ForeColor = System.Drawing.Color.White;
-            this.gboxDatosParaIngreso.Location = new System.Drawing.Point(548, 72);
+            this.gboxDatosParaIngreso.Location = new System.Drawing.Point(527, 72);
             this.gboxDatosParaIngreso.Name = "gboxDatosParaIngreso";
-            this.gboxDatosParaIngreso.Size = new System.Drawing.Size(585, 562);
+            this.gboxDatosParaIngreso.Size = new System.Drawing.Size(606, 562);
             this.gboxDatosParaIngreso.TabIndex = 158;
             this.gboxDatosParaIngreso.TabStop = false;
             // 
@@ -600,7 +600,7 @@
             this.txtObservaciones.Location = new System.Drawing.Point(9, 420);
             this.txtObservaciones.Multiline = true;
             this.txtObservaciones.Name = "txtObservaciones";
-            this.txtObservaciones.Size = new System.Drawing.Size(569, 65);
+            this.txtObservaciones.Size = new System.Drawing.Size(591, 65);
             this.txtObservaciones.TabIndex = 157;
             // 
             // label7
@@ -621,7 +621,7 @@
             this.txtIntrno.Font = new System.Drawing.Font("Arial Black", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtIntrno.Location = new System.Drawing.Point(10, 32);
             this.txtIntrno.Name = "txtIntrno";
-            this.txtIntrno.Size = new System.Drawing.Size(569, 26);
+            this.txtIntrno.Size = new System.Drawing.Size(590, 26);
             this.txtIntrno.TabIndex = 154;
             // 
             // txtParentesco
@@ -641,7 +641,7 @@
             this.btnGuardar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnGuardar.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnGuardar.ForeColor = System.Drawing.Color.White;
-            this.btnGuardar.Location = new System.Drawing.Point(406, 505);
+            this.btnGuardar.Location = new System.Drawing.Point(427, 505);
             this.btnGuardar.Name = "btnGuardar";
             this.btnGuardar.Size = new System.Drawing.Size(173, 40);
             this.btnGuardar.TabIndex = 151;
@@ -688,9 +688,9 @@
             this.dtgMenores.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle2.BackColor = System.Drawing.Color.SteelBlue;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             dataGridViewCellStyle2.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.SteelBlue;
             dataGridViewCellStyle2.SelectionForeColor = System.Drawing.Color.White;
             dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
             this.dtgMenores.DefaultCellStyle = dataGridViewCellStyle2;
@@ -702,22 +702,24 @@
             dataGridViewCellStyle3.BackColor = System.Drawing.Color.SteelBlue;
             dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             dataGridViewCellStyle3.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.SteelBlue;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.White;
             dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
             this.dtgMenores.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
             dataGridViewCellStyle4.BackColor = System.Drawing.Color.SteelBlue;
-            dataGridViewCellStyle4.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             dataGridViewCellStyle4.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.Color.SteelBlue;
+            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.Color.White;
             this.dtgMenores.RowsDefaultCellStyle = dataGridViewCellStyle4;
-            this.dtgMenores.Size = new System.Drawing.Size(569, 224);
+            this.dtgMenores.Size = new System.Drawing.Size(591, 224);
             this.dtgMenores.TabIndex = 0;
             // 
             // txtOrganismo
             // 
             this.txtOrganismo.BackColor = System.Drawing.SystemColors.ActiveBorder;
             this.txtOrganismo.Font = new System.Drawing.Font("Arial Black", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtOrganismo.Location = new System.Drawing.Point(264, 91);
+            this.txtOrganismo.Location = new System.Drawing.Point(240, 91);
             this.txtOrganismo.Name = "txtOrganismo";
             this.txtOrganismo.ReadOnly = true;
             this.txtOrganismo.Size = new System.Drawing.Size(258, 26);
@@ -729,7 +731,7 @@
             this.label6.BackColor = System.Drawing.Color.Transparent;
             this.label6.Font = new System.Drawing.Font("Arial Black", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label6.ForeColor = System.Drawing.Color.White;
-            this.label6.Location = new System.Drawing.Point(260, 72);
+            this.label6.Location = new System.Drawing.Point(236, 72);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(91, 19);
             this.label6.TabIndex = 152;
@@ -755,7 +757,7 @@
             this.txtCasillero.Multiline = true;
             this.txtCasillero.Name = "txtCasillero";
             this.txtCasillero.ReadOnly = true;
-            this.txtCasillero.Size = new System.Drawing.Size(513, 30);
+            this.txtCasillero.Size = new System.Drawing.Size(488, 30);
             this.txtCasillero.TabIndex = 152;
             // 
             // groupBox1
@@ -773,7 +775,7 @@
             this.groupBox1.ForeColor = System.Drawing.Color.White;
             this.groupBox1.Location = new System.Drawing.Point(13, 494);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(529, 140);
+            this.groupBox1.Size = new System.Drawing.Size(508, 140);
             this.groupBox1.TabIndex = 159;
             this.groupBox1.TabStop = false;
             // 
