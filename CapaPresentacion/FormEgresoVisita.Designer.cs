@@ -268,7 +268,7 @@
             this.opMED.BackColor = System.Drawing.Color.White;
             this.opMED.Enabled = false;
             this.opMED.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.opMED.Location = new System.Drawing.Point(233, 221);
+            this.opMED.Location = new System.Drawing.Point(237, 219);
             this.opMED.Name = "opMED";
             this.opMED.Size = new System.Drawing.Size(12, 11);
             this.opMED.TabIndex = 132;
@@ -280,7 +280,7 @@
             this.opAD.BackColor = System.Drawing.Color.White;
             this.opAD.Enabled = false;
             this.opAD.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.opAD.Location = new System.Drawing.Point(255, 198);
+            this.opAD.Location = new System.Drawing.Point(256, 196);
             this.opAD.Name = "opAD";
             this.opAD.Size = new System.Drawing.Size(12, 11);
             this.opAD.TabIndex = 131;
@@ -688,7 +688,7 @@
             this.dtgMenores.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle2.BackColor = System.Drawing.Color.SteelBlue;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             dataGridViewCellStyle2.ForeColor = System.Drawing.Color.White;
             dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.SteelBlue;
             dataGridViewCellStyle2.SelectionForeColor = System.Drawing.Color.White;

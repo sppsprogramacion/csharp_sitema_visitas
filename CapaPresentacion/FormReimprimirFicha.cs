@@ -12,6 +12,8 @@ using System.Drawing;
 using System.Drawing.Printing;
 using System.IO;
 using System.Linq;
+using System.Runtime.InteropServices.ComTypes;
+using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -221,6 +223,7 @@ namespace CapaPresentacion
 
                     if (numeroFichaAux > 0)
                     {
+                        this.InicializarContrles();
                         this.CargarEntrada(numeroFichaAux);
 
                     }
@@ -298,6 +301,37 @@ namespace CapaPresentacion
 
         //FIN CARGAR ENTRADA
         //----------------------------------------------------------------------------------
-       
+
+        //INICIALIZAR CONTROLES
+        private void InicializarContrles()
+        {
+            //DATOS DEL CIUDADANO
+            lblApellidoNombre.Text = "Apellido y nombre"; ;
+            picFotoVisita.Image = null;
+            txtDni.Text = string.Empty; ;
+            txtSexo.Text = string.Empty; ;
+            txtFechaNacimiento.Text = string.Empty; ;
+            txtEdad.Text = string.Empty; ;
+
+            lblCategoriaEdad.Text = "Categoria - edad";
+            lblDiscapacidad.Text = "Discapacidad";
+
+            //DATOS DE INGRESO
+            txtNumeroFicha.Text = string.Empty;
+            txtIdIngreso.Text = string.Empty;
+
+            txtFechaIngreso.Text = string.Empty;
+            txtHoraIngreso.Text = string.Empty;
+            txtOrganismo.Text = string.Empty;
+
+            txtIntrno.Text = string.Empty;
+            txtParentesco.Text = string.Empty;
+            txtMenores.Text = string.Empty;
+            txtCasillero.Text = string.Empty;
+
+        }
+        //FINALIZAR INICIALIZAR CONTROLES
+        //----------------------------------------------------------------------------
+
     }
 }
