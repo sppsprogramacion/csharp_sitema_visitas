@@ -16,7 +16,7 @@ namespace CapaDatos
         public DateTime fecha_nacimiento_visita { get; set; }
         public int edad_visita { get; set; }
         public string foto_visita { get; set; }
-        public bool tiene_discapacidad { get; set; }
+        public bool tiene_discapacidad_visita { get; set; }
         public string discapacidad_detalle { get; set; }
         public DateTime fecha_alta_visita { get; set; }
         public string nombre_interno { get; set; }

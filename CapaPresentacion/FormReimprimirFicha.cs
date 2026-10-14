@@ -287,7 +287,7 @@ namespace CapaPresentacion
                 chkAdulto.Checked = true;
             }
 
-            if (dEntradaSalidaResponse.tiene_discapacidad)
+            if (dEntradaSalidaResponse.tiene_discapacidad_visita)
             {
                 lblDiscapacidad.Text = "TIENE DISCAPACIDAD. " + dEntradaSalidaResponse.discapacidad_detalle;
             }

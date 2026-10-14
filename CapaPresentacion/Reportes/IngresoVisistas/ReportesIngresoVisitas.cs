@@ -257,5 +257,210 @@ namespace CapaPresentacion.Reportes.IngresoVisistas
         }
         //FIN REIMPRIMIR FICHA INGRESO
         //------------------------------------------------------------------------------------
+
+        //COMPUTO DE VISITAS
+        public static MemoryStream RepPdfComputoVisitas(DComputoVisitas datos)
+        {
+            MemoryStream ms = new MemoryStream();
+         
+
+            float mmToPoints = 2.8346457f;
+
+            // Papel térmico de 80 mm, sin rotación
+            float anchoPagina = 75f * mmToPoints;
+            float altoPagina = 75f * mmToPoints;
+
+            Document doc = new Document(new Rectangle(anchoPagina, altoPagina),
+                5f,  // izquierda: aproximadamente 4,2 mm
+                15f,  // derecha: aproximadamente 4,2 mm
+                5f,   // arriba
+                5f    // abajo
+            );
+
+            PdfWriter writer = PdfWriter.GetInstance(doc, ms);
+            writer.CloseStream = false;
+
+            doc.Open();
+
+            //PdfContentByte cb = writer.DirectContent;
+
+            //cb.SetLineWidth(1f);
+
+            //cb.MoveTo(5f, altoPagina - 2f);
+            //cb.LineTo(anchoPagina - 15f, altoPagina - 2f);
+
+            //cb.Stroke();
+
+            // FUENTES
+            var fuenteTitulo = FontFactory.GetFont(FontFactory.HELVETICA_BOLD, 11, BaseColor.BLACK);
+
+            var fuenteEncabezado = FontFactory.GetFont(FontFactory.HELVETICA_BOLD, 8, BaseColor.BLACK);
+
+            var fuenteNormal = FontFactory.GetFont(FontFactory.HELVETICA, 9, BaseColor.BLACK);
+
+            var fuenteNumeros = FontFactory.GetFont(FontFactory.HELVETICA_BOLD, 12, BaseColor.BLACK);
+
+            // ENCABEZADO
+            
+            string organismo = CurrentUser.Instance.organismo.ToUpper();
+
+            doc.Add(new Paragraph("S.P.P.S. - " + organismo, fuenteNormal)
+            {
+                Alignment = Element.ALIGN_LEFT,
+                SpacingAfter = 3f
+            });
+                        
+
+            doc.Add(new Paragraph( "COMPUTO DE VISITAS: " + DateTime.Now.ToString("dd/MM/yyyy"), fuenteTitulo)
+            {
+                Alignment = Element.ALIGN_CENTER,
+                SpacingAfter = 3f
+            });
+
+            
+
+            // CALCULAR TOTALES
+            int totalAdultos = datos.AdultosMasculinos + datos.AdultosFemeninos + datos.AdultosNoBinarios;
+
+            int totalMenores = datos.MenoresMasculinos + datos.MenoresFemeninos + datos.MenoresNoBinarios;
+
+            int totalMasculinos = datos.AdultosMasculinos + datos.MenoresMasculinos;
+
+            int totalFemeninos = datos.AdultosFemeninos + datos.MenoresFemeninos;
+
+            int totalNoBinarios = datos.AdultosNoBinarios + datos.MenoresNoBinarios;
+
+            int totalGeneral = totalAdultos + totalMenores;
+
+            // TABLA PRINCIPAL
+            PdfPTable tabla = new PdfPTable(5);
+
+            tabla.WidthPercentage = 100;
+
+            tabla.SetWidths(new float[]
+{
+                20f,  // Categoría
+                15f,  // Masculino
+                15f,  // Femenino
+                15f,  // No binario
+                15f   // Totales
+            });
+
+            tabla.SpacingBefore = 3f;
+
+            // Función para agregar celdas
+            void AgregarCelda(string texto, Font fuente,
+                int alineacion = Element.ALIGN_CENTER)
+            {
+                PdfPCell celda = new PdfPCell(new Phrase(texto, fuente));
+
+                celda.HorizontalAlignment = alineacion;
+                celda.VerticalAlignment = Element.ALIGN_MIDDLE;
+
+                celda.PaddingTop = 7f;
+                celda.PaddingBottom = 7f;
+                celda.PaddingLeft = 1f;
+                celda.PaddingRight = 1f;
+
+                celda.BorderWidth = 0.6f;
+                celda.NoWrap = false;
+
+                tabla.AddCell(celda);
+            }
+
+            // ENCABEZADOS
+            AgregarCelda("CATEG.", fuenteEncabezado);
+            AgregarCelda("MASC.", fuenteEncabezado);
+            AgregarCelda("FEM.", fuenteEncabezado);
+            AgregarCelda("NOBIN", fuenteEncabezado);
+            AgregarCelda("TOTAL", fuenteEncabezado);
+
+            // ADULTOS
+            AgregarCelda("ADULTOS", fuenteEncabezado);
+            AgregarCelda(datos.AdultosMasculinos.ToString(), fuenteNumeros);
+            AgregarCelda(datos.AdultosFemeninos.ToString(), fuenteNumeros);
+            AgregarCelda(datos.AdultosNoBinarios.ToString(), fuenteNumeros);
+            AgregarCelda(totalAdultos.ToString(), fuenteNumeros);
+
+            // MENORES
+            AgregarCelda("MENORES", fuenteEncabezado);
+            AgregarCelda(datos.MenoresMasculinos.ToString(), fuenteNumeros);
+            AgregarCelda(datos.MenoresFemeninos.ToString(), fuenteNumeros);
+            AgregarCelda(datos.MenoresNoBinarios.ToString(), fuenteNumeros);
+            AgregarCelda(totalMenores.ToString(), fuenteNumeros);
+
+            // TOTALES
+            AgregarCelda("TOTALES", fuenteEncabezado);
+            //AgregarCelda(totalMasculinos.ToString(), fuenteNumeros);
+            //AgregarCelda(totalFemeninos.ToString(), fuenteNumeros);
+            //AgregarCelda(totalNoBinarios.ToString(), fuenteNumeros);
+            //AgregarCelda(totalGeneral.ToString(), fuenteNumeros);
+            AgregarCelda("9999", fuenteNumeros);
+            AgregarCelda("9999", fuenteNumeros);
+            AgregarCelda("9999", fuenteNumeros);
+            AgregarCelda("9999", fuenteNumeros);
+
+            doc.Add(tabla);
+
+            doc.Close();
+
+            ms.Position = 0;
+
+            return ms;
+        }
+        //FIN COMPUTO VISITAS
+        //--------------------------------------------------------------------------------------------
+
+
+
+        //ROTAR COMPUTO
+        public static MemoryStream RotarPdfParaTermica(MemoryStream pdfOriginal)
+        {
+            MemoryStream resultado = new MemoryStream();
+
+            pdfOriginal.Position = 0;
+
+            using (PdfReader reader = new PdfReader(pdfOriginal.ToArray()))
+            {
+                float mm = 2.8346457f;
+
+                float anchoPapel = 80f * mm;
+                float largoPapel = 120f * mm;
+
+                Document documento = new Document(
+                    new Rectangle(anchoPapel, largoPapel),
+                    0, 0, 0, 0
+                );
+
+                PdfWriter writer = PdfWriter.GetInstance(documento, resultado);
+                writer.CloseStream = false;
+
+                documento.Open();
+
+                PdfContentByte contenido = writer.DirectContent;
+
+                PdfImportedPage pagina = writer.GetImportedPage(reader, 1);
+
+                // Rotación de 90 grados y desplazamiento
+                // para centrar los 72 mm sobre el papel de 80 mm.
+                float desplazamiento = 4f * mm;
+
+                contenido.AddTemplate(
+                    pagina,
+                    0, -1,
+                    1, 0,
+                    desplazamiento, largoPapel
+                );
+
+                documento.Close();
+            }
+
+            resultado.Position = 0;
+
+            return resultado;
+        }
+
+        //FIN ROTAR COMPUTO
+        //-------------------------------------------------------------------------
     }
 }

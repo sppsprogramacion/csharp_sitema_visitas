@@ -81,7 +81,7 @@ namespace CapaPresentacion
 
 
 
-            this.ControlTieneDiscapacidad(dCiudadanoIngresoResponse.tiene_discapacidad, dCiudadanoIngresoResponse.discapacidad_detalle);
+            this.ControlTieneDiscapacidad(dCiudadanoIngresoResponse.tiene_discapacidad_visita, dCiudadanoIngresoResponse.discapacidad_detalle);
             this.ControlEdad(dCiudadanoIngresoResponse.edad_visita);
 
             //Cargar Huellas

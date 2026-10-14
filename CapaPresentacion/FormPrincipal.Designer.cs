@@ -60,6 +60,7 @@
             this.lblAdultosFemeninas = new System.Windows.Forms.Label();
             this.lblAdultosMasculinos = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
+            this.button1 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -173,8 +174,9 @@
             // 
             // btnImprimirComputo
             // 
-            this.btnImprimirComputo.BackColor = System.Drawing.Color.SteelBlue;
-            this.btnImprimirComputo.FlatAppearance.BorderColor = System.Drawing.Color.SteelBlue;
+            this.btnImprimirComputo.BackColor = System.Drawing.Color.Indigo;
+            this.btnImprimirComputo.FlatAppearance.BorderColor = System.Drawing.Color.Indigo;
+            this.btnImprimirComputo.FlatAppearance.BorderSize = 2;
             this.btnImprimirComputo.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnImprimirComputo.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnImprimirComputo.ForeColor = System.Drawing.Color.White;
@@ -184,11 +186,13 @@
             this.btnImprimirComputo.TabIndex = 130;
             this.btnImprimirComputo.Text = "Imprimir computo";
             this.btnImprimirComputo.UseVisualStyleBackColor = false;
+            this.btnImprimirComputo.Click += new System.EventHandler(this.btnImprimirComputo_Click);
             // 
             // btnActualizarComputo
             // 
-            this.btnActualizarComputo.BackColor = System.Drawing.Color.SteelBlue;
-            this.btnActualizarComputo.FlatAppearance.BorderColor = System.Drawing.Color.SteelBlue;
+            this.btnActualizarComputo.BackColor = System.Drawing.Color.Indigo;
+            this.btnActualizarComputo.FlatAppearance.BorderColor = System.Drawing.Color.Indigo;
+            this.btnActualizarComputo.FlatAppearance.BorderSize = 2;
             this.btnActualizarComputo.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnActualizarComputo.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnActualizarComputo.ForeColor = System.Drawing.Color.White;
@@ -466,12 +470,23 @@
             this.label1.Size = new System.Drawing.Size(513, 192);
             this.label1.TabIndex = 108;
             // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(581, 350);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(158, 65);
+            this.button1.TabIndex = 131;
+            this.button1.Text = "button1";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
             // FormPrincipal
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(103)))), ((int)(((byte)(153)))));
             this.ClientSize = new System.Drawing.Size(916, 606);
+            this.Controls.Add(this.button1);
             this.Controls.Add(this.btnImprimirComputo);
             this.Controls.Add(this.btnActualizarComputo);
             this.Controls.Add(this.label21);
@@ -548,6 +563,7 @@
         private System.Windows.Forms.Label lblAdultosFemeninas;
         private System.Windows.Forms.Label lblAdultosMasculinos;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Button button1;
     }
 }
 
