@@ -84,22 +84,15 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="IBitacoraProhibicionAnticipadaDao.cs" />
-    <Compile Include="IBitacoraProhibicionVisitaDao.cs" />
     <Compile Include="ICiudadanoDao.cs" />
     <Compile Include="IEntradaSalidaDao.cs" />
     <Compile Include="IEstadoCivilDao.cs" />
     <Compile Include="IAuthDao.cs" />
-    <Compile Include="IExcepcionIngresoVisitaDao.cs" />
     <Compile Include="IHuellaDao.cs" />
     <Compile Include="IInternoDao.cs" />
-    <Compile Include="INovedadCiudadanoDao.cs" />
     <Compile Include="IOrganismoDao.cs" />
     <Compile Include="IParentescoDao.cs" />
-    <Compile Include="IProhibicionVisitaAnticipadaDao.cs" />
-    <Compile Include="IProhibicionVisitaDao.cs" />
     <Compile Include="IProvinciaDao.cs" />
-    <Compile Include="IRegistroDiarioDao.cs" />
     <Compile Include="ISexoDao.cs" />
     <Compile Include="IVisitaInternoDao.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

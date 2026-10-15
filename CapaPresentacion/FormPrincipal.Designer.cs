@@ -29,7 +29,6 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormPrincipal));
-            this.btnVerVisitas = new System.Windows.Forms.Button();
             this.lblEncabezado = new System.Windows.Forms.Label();
             this.btnCerrarSistema = new System.Windows.Forms.Button();
             this.lblUsuario = new System.Windows.Forms.Label();
@@ -60,24 +59,8 @@
             this.lblAdultosFemeninas = new System.Windows.Forms.Label();
             this.lblAdultosMasculinos = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.button1 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
-            // 
-            // btnVerVisitas
-            // 
-            this.btnVerVisitas.BackColor = System.Drawing.Color.Indigo;
-            this.btnVerVisitas.FlatAppearance.BorderColor = System.Drawing.Color.Indigo;
-            this.btnVerVisitas.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnVerVisitas.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnVerVisitas.ForeColor = System.Drawing.Color.White;
-            this.btnVerVisitas.Location = new System.Drawing.Point(155, 144);
-            this.btnVerVisitas.Name = "btnVerVisitas";
-            this.btnVerVisitas.Size = new System.Drawing.Size(120, 70);
-            this.btnVerVisitas.TabIndex = 0;
-            this.btnVerVisitas.Text = "Visitas";
-            this.btnVerVisitas.UseVisualStyleBackColor = false;
-            this.btnVerVisitas.Click += new System.EventHandler(this.btnVerVisitas_Click);
             // 
             // lblEncabezado
             // 
@@ -470,23 +453,12 @@
             this.label1.Size = new System.Drawing.Size(513, 192);
             this.label1.TabIndex = 108;
             // 
-            // button1
-            // 
-            this.button1.Location = new System.Drawing.Point(581, 350);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(158, 65);
-            this.button1.TabIndex = 131;
-            this.button1.Text = "button1";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
-            // 
             // FormPrincipal
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(103)))), ((int)(((byte)(153)))));
             this.ClientSize = new System.Drawing.Size(916, 606);
-            this.Controls.Add(this.button1);
             this.Controls.Add(this.btnImprimirComputo);
             this.Controls.Add(this.btnActualizarComputo);
             this.Controls.Add(this.label21);
@@ -517,7 +489,6 @@
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.btnCerrarSistema);
             this.Controls.Add(this.lblEncabezado);
-            this.Controls.Add(this.btnVerVisitas);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.Name = "FormPrincipal";
@@ -531,8 +502,6 @@
         }
 
         #endregion
-
-        private System.Windows.Forms.Button btnVerVisitas;
         private System.Windows.Forms.Label lblEncabezado;
         private System.Windows.Forms.Button btnCerrarSistema;
         private System.Windows.Forms.PictureBox pictureBox1;
@@ -563,7 +532,6 @@
         private System.Windows.Forms.Label lblAdultosFemeninas;
         private System.Windows.Forms.Label lblAdultosMasculinos;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Button button1;
     }
 }
 

@@ -84,8 +84,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DBitacoraProhibicionAnticipada.cs" />
-    <Compile Include="DBitacoraProhibicionVisita.cs" />
     <Compile Include="DCiudadano.cs" />
     <Compile Include="DCiudadanoIngreso.cs" />
     <Compile Include="DComputoVisitas.cs" />
@@ -96,7 +94,6 @@
     <Compile Include="DEntradaSalida.cs" />
     <Compile Include="DEntradaSalidaConsulta.cs" />
     <Compile Include="DEntradaSalidaIngresoPPResponse.cs" />
-    <Compile Include="DExcepcionIngresoVisita.cs" />
     <Compile Include="DHuella.cs" />
     <Compile Include="DHuellaCambio.cs" />
     <Compile Include="DHuellaLocal.cs" />
@@ -107,24 +104,16 @@
     <Compile Include="DLoginResponse.cs" />
     <Compile Include="DMenorVisita.cs" />
     <Compile Include="DMenorVisitaIngresado.cs" />
-    <Compile Include="DMotivoAtencion.cs" />
     <Compile Include="DMunicipio.cs" />
     <Compile Include="DNacionalidad.cs" />
-    <Compile Include="DNovedadCiudadano.cs" />
     <Compile Include="DOrganismo.cs" />
     <Compile Include="DPais.cs" />
     <Compile Include="DParentesco.cs" />
-    <Compile Include="DProhibicionAnticipada.cs" />
-    <Compile Include="DProhibicionVisita.cs" />
     <Compile Include="DProvincia.cs" />
-    <Compile Include="DRegistroDiario.cs" />
     <Compile Include="DResponseEditar.cs" />
-    <Compile Include="DSectoresDestino.cs" />
     <Compile Include="DSexo.cs" />
     <Compile Include="DEstadoCivil.cs" />
     <Compile Include="DSQLite.cs" />
-    <Compile Include="DTipoAcceso.cs" />
-    <Compile Include="DTipoAtencion.cs" />
     <Compile Include="DUsuario.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="DVisitaInterno.cs" />

@@ -194,35 +194,11 @@
     <Compile Include="Biometria\FingerprintVerifier.cs" />
     <Compile Include="ClasesEspeciales\DEntradaSalidaGrilla.cs" />
     <Compile Include="ClasesEspeciales\SortableBindingList.cs" />
-    <Compile Include="FormAdminProhibicionAnticipada.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="FormAdminProhibicionAnticipada.Designer.cs">
-      <DependentUpon>FormAdminProhibicionAnticipada.cs</DependentUpon>
-    </Compile>
-    <Compile Include="FormAdminVisita.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="FormAdminVisita.Designer.cs">
-      <DependentUpon>FormAdminVisita.cs</DependentUpon>
-    </Compile>
     <Compile Include="FormEgresoVisita.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="FormEgresoVisita.Designer.cs">
       <DependentUpon>FormEgresoVisita.cs</DependentUpon>
-    </Compile>
-    <Compile Include="FormExcepcionesIngreso.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="FormExcepcionesIngreso.Designer.cs">
-      <DependentUpon>FormExcepcionesIngreso.cs</DependentUpon>
-    </Compile>
-    <Compile Include="FormHistorialProhibicion.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="FormHistorialProhibicion.Designer.cs">
-      <DependentUpon>FormHistorialProhibicion.cs</DependentUpon>
     </Compile>
     <Compile Include="FormHuellasEncontrado.cs">
       <SubType>Form</SubType>
@@ -254,29 +230,16 @@
     <Compile Include="FormPrincipal.Designer.cs">
       <DependentUpon>FormPrincipal.cs</DependentUpon>
     </Compile>
-    <Compile Include="FormProhibicionesAnticipadas.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="FormProhibicionesAnticipadas.Designer.cs">
-      <DependentUpon>FormProhibicionesAnticipadas.cs</DependentUpon>
-    </Compile>
     <Compile Include="FormReimprimirFicha.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="FormReimprimirFicha.Designer.cs">
       <DependentUpon>FormReimprimirFicha.cs</DependentUpon>
     </Compile>
-    <Compile Include="FormVisitas.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="FormVisitas.Designer.cs">
-      <DependentUpon>FormVisitas.cs</DependentUpon>
-    </Compile>
     <Compile Include="FuncionesGenerales\FormularioAyudas.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Reportes\AdministrarVisita\ReportesAdminVisitaPDF.cs" />
-    <Compile Include="Reportes\ExcepcionIngreso\ReportesExcepcionesIngresoPDF.cs" />
     <Compile Include="Reportes\IngresoVisistas\ReportesIngresoVisitas.cs" />
     <Compile Include="SqlServerTypes\Loader.cs" />
     <Compile Include="Validaciones\AdminProhibicionAnticipada\Datos\AdminProhibicionAnticipadaDatos.cs" />
@@ -297,20 +260,8 @@
     <Compile Include="Validaciones\Login\Validacion\LoginValidator.cs" />
     <Compile Include="Validaciones\ProhibicionesAnticipadas\Datos\ProhibicionAnticipadaDatos.cs" />
     <Compile Include="Validaciones\ProhibicionesAnticipadas\ValidacionesProhibicionesAnticipadas\ProhibicionAnticipadaNuevaValidator.cs" />
-    <EmbeddedResource Include="FormAdminProhibicionAnticipada.resx">
-      <DependentUpon>FormAdminProhibicionAnticipada.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="FormAdminVisita.resx">
-      <DependentUpon>FormAdminVisita.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="FormEgresoVisita.resx">
       <DependentUpon>FormEgresoVisita.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="FormExcepcionesIngreso.resx">
-      <DependentUpon>FormExcepcionesIngreso.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="FormHistorialProhibicion.resx">
-      <DependentUpon>FormHistorialProhibicion.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormHuellasEncontrado.resx">
       <DependentUpon>FormHuellasEncontrado.cs</DependentUpon>
@@ -324,14 +275,8 @@
     <EmbeddedResource Include="FormLogin.resx">
       <DependentUpon>FormLogin.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FormProhibicionesAnticipadas.resx">
-      <DependentUpon>FormProhibicionesAnticipadas.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="FormReimprimirFicha.resx">
       <DependentUpon>FormReimprimirFicha.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="FormVisitas.resx">
-      <DependentUpon>FormVisitas.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormPrincipal.resx">
       <DependentUpon>FormPrincipal.cs</DependentUpon>

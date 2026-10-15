@@ -9,7 +9,7 @@ namespace CommonCache
 {
     public static class SessionTemporal
     {
-        public static DExcepcionIngresoVisita excepcion_ingreso_visita { get; set; }
+        //public static DExcepcionIngresoVisita excepcion_ingreso_visita { get; set; }
 
     }
 }

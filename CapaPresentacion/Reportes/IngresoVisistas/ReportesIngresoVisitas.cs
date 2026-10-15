@@ -391,14 +391,10 @@ namespace CapaPresentacion.Reportes.IngresoVisistas
 
             // TOTALES
             AgregarCelda("TOTALES", fuenteEncabezado);
-            //AgregarCelda(totalMasculinos.ToString(), fuenteNumeros);
-            //AgregarCelda(totalFemeninos.ToString(), fuenteNumeros);
-            //AgregarCelda(totalNoBinarios.ToString(), fuenteNumeros);
-            //AgregarCelda(totalGeneral.ToString(), fuenteNumeros);
-            AgregarCelda("9999", fuenteNumeros);
-            AgregarCelda("9999", fuenteNumeros);
-            AgregarCelda("9999", fuenteNumeros);
-            AgregarCelda("9999", fuenteNumeros);
+            AgregarCelda(totalMasculinos.ToString(), fuenteNumeros);
+            AgregarCelda(totalFemeninos.ToString(), fuenteNumeros);
+            AgregarCelda(totalNoBinarios.ToString(), fuenteNumeros);
+            AgregarCelda(totalGeneral.ToString(), fuenteNumeros);
 
             doc.Add(tabla);
 

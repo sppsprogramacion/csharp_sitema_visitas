@@ -87,23 +87,16 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="BitacoraProhibicionAnticipadaDaoImplement.cs" />
-    <Compile Include="BitacoraProhibicionVisitaDaoImplement.cs" />
     <Compile Include="CiudadanoDaoImpl.cs" />
     <Compile Include="EntradaSalidaDaoImplement.cs" />
     <Compile Include="EstadoCivilDaoImpl.cs" />
     <Compile Include="AuthDaoImpl.cs" />
-    <Compile Include="ExcepcionIngresoVisitaDaoImpl.cs" />
     <Compile Include="HuellaDaoImplement.cs" />
     <Compile Include="InternoDaolmpl.cs" />
-    <Compile Include="NovedadCiudadanoDaoImpl.cs" />
     <Compile Include="OrganismoDaoImpl.cs" />
     <Compile Include="ParentescoDaoImpl.cs" />
-    <Compile Include="ProhibicinVisitaDaoImpl.cs" />
-    <Compile Include="ProhibisionVisitaAnticipadaDaoImpl.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ProvinciaDaoImpl.cs" />
-    <Compile Include="RegistroDiarioDaoImpl.cs" />
     <Compile Include="SexoDaoImpl.cs" />
     <Compile Include="VisitaInternoDaoImpl.cs" />
   </ItemGroup>

@@ -66,34 +66,13 @@ namespace CapaPresentacion
             DComputoVisitas computo = await this.ObtenerComputo();
         }
 
-        private void btnVerVisitas_Click(object sender, EventArgs e)
-        {
-            FormVisitas formVisitas = new FormVisitas();
-
-            formVisitas.ShowDialog();
-        }
-
+        
         private void btnCerrarSistema_Click(object sender, EventArgs e)
         {
             Application.Exit();
         }
-
-        private void btnProhibicionesAnticipadas_Click(object sender, EventArgs e)
-        {
-            FormProhibicionesAnticipadas formProhibicionesAnticipadas = new FormProhibicionesAnticipadas();
-
-            formProhibicionesAnticipadas.ShowDialog();
-        }
-
+                
         
-
-        private void btnExcepcionesIngreso_Click(object sender, EventArgs e)
-        {
-            FormExcepcionesIngreso formExepcionesIngreso = new FormExcepcionesIngreso();
-
-            formExepcionesIngreso.ShowDialog();
-        }
-
         private void btnIngresoVisita_Click(object sender, EventArgs e)
         {
             FormIngresoVisitas formIngresoVisitas = new FormIngresoVisitas();
@@ -130,93 +109,102 @@ namespace CapaPresentacion
 
             try
             {
-                // Obtener los datos del cómputo
                 DComputoVisitas computo = await this.ObtenerComputo();
 
                 if (computo == null)
                 {
-                    MessageBox.Show(
-                        "No se pudo imprimir el cómputo",
-                        "Sistema Visitas",
-                        MessageBoxButtons.OK,
-                        MessageBoxIcon.Warning
-                    );
+                    MessageBox.Show("No se pudo obtener el cómputo","Sistema Visitas", MessageBoxButtons.OK,MessageBoxIcon.Warning);
                     return;
                 }
 
-                // Generar PDF directamente en formato vertical
-                // de 80 mm de ancho, SIN ROTACIÓN
-                using (MemoryStream msOriginal =
-                    ReportesIngresoVisitas.RepPdfComputoVisitas(computo))
+                using (MemoryStream msOriginal = ReportesIngresoVisitas.RepPdfComputoVisitas(computo))
+                using (MemoryStream ms = new MemoryStream(msOriginal.ToArray()))
+                using (PdfDocument pdfDocument = PdfDocument.Load(ms))
+                using (Form formVisor = new Form())
                 {
-                    // Clonar el MemoryStream para PdfiumViewer
-                    using (MemoryStream ms =
-                        new MemoryStream(msOriginal.ToArray()))
+                    formVisor.Text = "Vista previa - Cómputo de Visitas";
+                    formVisor.Width = 850;
+                    formVisor.Height = 600;
+                    formVisor.StartPosition = FormStartPosition.CenterParent;
+
+                    // Panel inferior
+                    Panel panelBotones = new Panel
                     {
-                        using (PdfDocument pdfDocument = PdfDocument.Load(ms))
+                        Dock = DockStyle.Bottom,
+                        Height = 70
+                    };
+
+                    // Botón imprimir
+                    Button btnImprimir = new Button
+                    {
+                        Text = "Imprimir",
+                        Width = 200,
+                        Height = 50,
+                        Left = 300,
+                        Top = 10,
+                        Font = new System.Drawing.Font(
+                            "Arial",
+                            12,
+                            FontStyle.Bold
+                        )
+                    };
+
+                    btnImprimir.Click += (s, args) =>
+                    {
+                        try
                         {
-                            using (Form formVisor = new Form())
+                            using (PrintDocument printDocument =
+                                pdfDocument.CreatePrintDocument())
                             {
-                                formVisor.Text = "Vista previa - Cómputo de Visitas";
-                                formVisor.Width = 850;
-                                formVisor.Height = 600;
-                                formVisor.StartPosition =
-                                    FormStartPosition.CenterParent;
+                                // Orientación vertical
+                                printDocument.DefaultPageSettings.Landscape = false;
 
-                                PdfViewer pdfViewer = new PdfViewer
+                                // Tamaño del papel 80 x 75 mm
+                                printDocument.DefaultPageSettings.PaperSize =
+                                    new System.Drawing.Printing.PaperSize(
+                                        "Ticket 80x75",
+                                        315,
+                                        295
+                                    );
+
+                                printDocument.PrintController = new StandardPrintController();
+
+                                // Seleccionar impresora
+                                using (PrintDialog dialogo = new PrintDialog())
                                 {
-                                    Dock = DockStyle.Fill,
-                                    Document = pdfDocument
-                                };
+                                    dialogo.Document = printDocument;
+                                    dialogo.UseEXDialog = true;
 
-                                formVisor.Controls.Add(pdfViewer);
-
-                                // IMPRESIÓN AUTOMÁTICA
-                                // Descomentar cuando quieras imprimir
-                                /*
-                                formVisor.Shown += (s, args) =>
-                                {
-                                    try
+                                    if (dialogo.ShowDialog(formVisor) == DialogResult.OK)
                                     {
-                                        using (PrintDocument printDocument =
-                                            pdfDocument.CreatePrintDocument())
-                                        {
-                                            printDocument.DefaultPageSettings.Landscape = false;
-
-                                            // Papel térmico 80 x 75 mm
-                                            printDocument.DefaultPageSettings.PaperSize =
-                                                new System.Drawing.Printing.PaperSize(
-                                                    "Ticket 80x75",
-                                                    315,
-                                                    295
-                                                );
-
-                                            printDocument.PrintController =
-                                                new StandardPrintController();
-
-                                            printDocument.Print();
-                                        }
+                                        printDocument.Print();
                                     }
-                                    catch (Exception ex)
-                                    {
-                                        MessageBox.Show(
-                                            "Error al imprimir el cómputo: " + ex.Message,
-                                            "Sistema Visitas",
-                                            MessageBoxButtons.OK,
-                                            MessageBoxIcon.Error
-                                        );
-                                    }
-                                };
-                                */
-
-                                // Mostrar vista previa
-                                formVisor.ShowDialog(this);
-
-                                // Desvincular el documento antes de liberarlo
-                                pdfViewer.Document = null;
+                                }
                             }
                         }
-                    }
+                        catch (Exception ex)
+                        {
+                            MessageBox.Show( "Error al imprimir: " + ex.Message,"Sistema Visitas", MessageBoxButtons.OK, MessageBoxIcon.Error );
+                        }
+                    };
+
+                    panelBotones.Controls.Add(btnImprimir);
+
+                    // Visor PDF
+                    PdfViewer pdfViewer = new PdfViewer
+                    {
+                        Dock = DockStyle.Fill,
+                        Document = pdfDocument,
+                        ShowToolbar = false
+                    };
+
+                    formVisor.Controls.Add(pdfViewer);
+                    formVisor.Controls.Add(panelBotones);
+
+                    // Mostrar formulario
+                    formVisor.ShowDialog(this);
+
+                    pdfViewer.Document = null;
                 }
             }
             catch (Exception ex)
@@ -307,131 +295,6 @@ namespace CapaPresentacion
         //FIN OBTENER COMPUTO
         //-------------------------------------------------------------------------
 
-        private async void button1_Click(object sender, EventArgs e)
-        {
-            btnImprimirComputo.Enabled = false;
-
-            try
-            {
-                DComputoVisitas computo = await this.ObtenerComputo();
-
-                if (computo == null)
-                {
-                    MessageBox.Show(
-                        "No se pudo obtener el cómputo",
-                        "Sistema Visitas",
-                        MessageBoxButtons.OK,
-                        MessageBoxIcon.Warning
-                    );
-                    return;
-                }
-
-                using (MemoryStream msOriginal =
-                    ReportesIngresoVisitas.RepPdfComputoVisitas(computo))
-                using (MemoryStream ms =
-                    new MemoryStream(msOriginal.ToArray()))
-                using (PdfDocument pdfDocument = PdfDocument.Load(ms))
-                using (Form formVisor = new Form())
-                {
-                    formVisor.Text = "Vista previa - Cómputo de Visitas";
-                    formVisor.Width = 850;
-                    formVisor.Height = 600;
-                    formVisor.StartPosition = FormStartPosition.CenterParent;
-
-                    // Panel inferior
-                    Panel panelBotones = new Panel
-                    {
-                        Dock = DockStyle.Bottom,
-                        Height = 70
-                    };
-
-                    // Botón imprimir
-                    Button btnImprimir = new Button
-                    {
-                        Text = "Imprimir",
-                        Width = 200,
-                        Height = 50,
-                        Left = 300,
-                        Top = 10
-                    };
-
-                    btnImprimir.Click += (s, args) =>
-                    {
-                        try
-                        {
-                            using (PrintDocument printDocument =
-                                pdfDocument.CreatePrintDocument())
-                            {
-                                // Orientación vertical
-                                printDocument.DefaultPageSettings.Landscape = false;
-
-                                // Tamaño del papel 80 x 75 mm
-                                printDocument.DefaultPageSettings.PaperSize =
-                                    new System.Drawing.Printing.PaperSize(
-                                        "Ticket 80x75",
-                                        315,
-                                        295
-                                    );
-
-                                printDocument.PrintController =
-                                    new StandardPrintController();
-
-                                // Seleccionar impresora
-                                using (PrintDialog dialogo = new PrintDialog())
-                                {
-                                    dialogo.Document = printDocument;
-                                    dialogo.UseEXDialog = true;
-
-                                    if (dialogo.ShowDialog(formVisor) == DialogResult.OK)
-                                    {
-                                        printDocument.Print();
-                                    }
-                                }
-                            }
-                        }
-                        catch (Exception ex)
-                        {
-                            MessageBox.Show(
-                                "Error al imprimir: " + ex.Message,
-                                "Sistema Visitas",
-                                MessageBoxButtons.OK,
-                                MessageBoxIcon.Error
-                            );
-                        }
-                    };
-
-                    panelBotones.Controls.Add(btnImprimir);
-
-                    // Visor PDF
-                    PdfViewer pdfViewer = new PdfViewer
-                    {
-                        Dock = DockStyle.Fill,
-                        Document = pdfDocument,
-                        ShowToolbar = false
-                    };
-
-                    formVisor.Controls.Add(pdfViewer);
-                    formVisor.Controls.Add(panelBotones);
-
-                    // Mostrar formulario
-                    formVisor.ShowDialog(this);
-
-                    pdfViewer.Document = null;
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(
-                    "Error al mostrar el cómputo: " + ex.Message,
-                    "Sistema Visitas",
-                    MessageBoxButtons.OK,
-                    MessageBoxIcon.Error
-                );
-            }
-            finally
-            {
-                btnImprimirComputo.Enabled = true;
-            }
-        }
+       
     }
 }
